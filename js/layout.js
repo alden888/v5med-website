@@ -25,7 +25,7 @@ const V5Layout = (() => {
                 // 使用默认配置作为回退
                 this.config = {
                     IMAGES: { LOGO: 'images/v5logo.png', LOGO_LOCAL: 'images/v5logo.png' },
-                    CONTACT: { WHATSAPP: { API_URL: 'https://wa.me/447895047944' } }
+                    CONTACT: { WHATSAPP: { API_URL: 'https://wa.me/8615133008348' } }
                 };
             }
             this.currentPage = this._detectPage();
@@ -47,7 +47,7 @@ const V5Layout = (() => {
          * 解决主站无统计、转化事件（WhatsApp 点击/表单提交）无法归因的问题。
          */
         _loadAnalytics() {
-            const GA_ID = (window.V5Config && window.V5Config.ANALYTICS && window.V5Config.ANALYTICS.GA4_ID) || 'G-XXXXXXXXXX';
+            const GA_ID = (window.V5Config && window.V5Config.ANALYTICS && window.V5Config.ANALYTICS.GA4_ID) || 'G-HVN50TM5EK';
             if (window.gtag || document.querySelector(`script[src*="${GA_ID}"]`)) return;
 
             const s = document.createElement('script');
@@ -249,14 +249,7 @@ const V5Layout = (() => {
                                     <li class="flex items-start gap-3">
                                         <i class="fab fa-whatsapp mt-1 text-green-500"></i>
                                         <div class="flex flex-col gap-1">
-                                            <div>
-                                                <span class="text-[10px] text-gray-500">UK/EU:</span>
-                                                <a href="https://wa.me/447895047944" class="hover:text-white transition decoration-dotted underline">+44 7895 047944</a>
-                                            </div>
-                                            <div>
-                                                <span class="text-[10px] text-gray-500">CN/Asia:</span>
-                                                <a href="https://wa.me/8618012669897" class="hover:text-white transition decoration-dotted underline">+86 180 1266 9897</a>
-                                            </div>
+                                            <a href="${CONTACT.WHATSAPP.API_URL}" class="hover:text-white transition decoration-dotted underline">${CONTACT.WHATSAPP.DISPLAY}</a>
                                         </div>
                                     </li>
                                     <li class="flex items-start gap-3">
