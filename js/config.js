@@ -1,6 +1,6 @@
 /**
  * V5 Medical Website Configuration (v5med.net)
- * @version 1.0.0
+ * @version 1.0.1
  * @updated 2026-09-04
  * 
  * 建站令 CEO-ORD-20260904-020 强制要求：
@@ -51,9 +51,9 @@ const V5Config = (() => {
             ADDRESS: 'Suzhou, Jiangsu, China'
         },
         
-        // GA4 Property - v5med.net独立账号（待CEO提供）
+        // GA4 Property - v5med.net独立账号（CEO确认 2026-09-04）
         ANALYTICS: {
-            GA4_ID: 'G-XXXXXXXXXX'  // TODO: 替换为v5med.net独立GA4 Property
+            GA4_ID: 'G-HVN50TM5EK'  // v5med.net独立GA4 Property
         },
         
         // JSON-LD 结构化数据
