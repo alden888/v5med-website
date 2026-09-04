@@ -1,6 +1,6 @@
 # V5 Medical LTD Robots.txt
 # Optimized for SEO & Security
-# Website: https://v5md.com
+# Website: https://v5med.net
 # Last updated: 2026-08-22
 #
 # [FIX] 合并为单一 User-agent: * 组。
@@ -45,7 +45,7 @@ Disallow: /*.swp$
 # SITEMAP INDEX
 # ------------------------------
 # Main Site Sitemap
-Sitemap: https://v5md.com/sitemap.xml
+Sitemap: https://v5med.net/sitemap.xml
 
 # Blog Knowledge Hub Sitemap (static article pages)
-Sitemap: https://v5md.com/blog/sitemap.xml
+Sitemap: https://v5med.net/blog/sitemap.xml

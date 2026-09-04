@@ -9,24 +9,24 @@
 # ------------------------------
 
 # Force HTTPS (SEO Best Practice)
-http://v5md.com/* https://v5md.com/:splat 301!
-http://www.v5md.com/* https://v5md.com/:splat 301!
+http://v5med.net/* https://v5med.net/:splat 301!
+http://www.v5med.net/* https://v5med.net/:splat 301!
 
 # Force non-www (Choose one option)
-www.v5md.com/* https://v5md.com/:splat 301!
+www.v5med.net/* https://v5med.net/:splat 301!
 
 # ------------------------------
 # WHATSAPP CONTACT SHORTCUTS
 # ------------------------------
 
 # Main WhatsApp contact (with pre-filled message)
-/wa          https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
-/whatsapp    https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
-/message     https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+/wa          https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+/whatsapp    https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+/message     https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
 
 # Simple chat (without pre-filled message)
-/chat        https://api.whatsapp.com/send/?phone=447895047944 302
-/talk        https://api.whatsapp.com/send/?phone=447895047944 302
+/chat        https://api.whatsapp.com/send/?phone=8615133008348 302
+/talk        https://api.whatsapp.com/send/?phone=8615133008348 302
 
 # ------------------------------
 # TEAM MEMBERS WHATSAPP SHORTCUTS
@@ -42,12 +42,12 @@ www.v5md.com/* https://v5md.com/:splat 301!
 /kellan      https://api.whatsapp.com/send/?phone=8617365387650&text=Hi%20Kellan%2C%20I%20am%20interested%20in%20V5%20Medical%20products.%20Please%20contact%20me. 302
 
 # Support - CEO Main Line
-/support     https://api.whatsapp.com/send/?phone=8618012669897&text=Hi%20V5%20Medical%20Support%2C%20I%20need%20assistance. 302
+/support     https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%20Support%2C%20I%20need%20assistance. 302
 
 # Product-specific inquiries
-/sutures     https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20sutures.%20Please%20send%20me%20a%20quote. 302
-/packs       https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20packs.%20Please%20send%20me%20a%20quote. 302
-/dental      https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20dental%20consumables.%20Please%20send%20me%20a%20quote. 302
+/sutures     https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20sutures.%20Please%20send%20me%20a%20quote. 302
+/packs       https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20packs.%20Please%20send%20me%20a%20quote. 302
+/dental      https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20dental%20consumables.%20Please%20send%20me%20a%20quote. 302
 
 # ------------------------------
 # DOWNLOAD SHORTCUTS
@@ -77,9 +77,9 @@ www.v5md.com/* https://v5md.com/:splat 301!
 # ------------------------------
 
 # Campaign tracking (for analytics)
-/campaign/uk https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uk_market 302
-/campaign/eu https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=eu_market 302
-/campaign/ae https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uae_market 302
+/campaign/uk https://v5med.net/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uk_market 302
+/campaign/eu https://v5med.net/?utm_source=whatsapp&utm_medium=chat&utm_campaign=eu_market 302
+/campaign/ae https://v5med.net/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uae_market 302
 
 # ------------------------------
 # CACHE CONTROL (Performance)
