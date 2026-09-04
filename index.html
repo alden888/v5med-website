@@ -655,22 +655,26 @@
             <div class="max-w-4xl mx-auto text-center">
                 <h2 id="cta-heading" class="text-3xl font-bold mb-4">Ready to streamline your procurement?</h2>
                 <p class="text-blue-200 mb-8 max-w-xl mx-auto">Join the distributors who have stopped gambling with random factories. Get monthly compliance updates.</p>
-                <form action="https://formspree.io/f/xdkqlygg" method="POST"
+                <form onsubmit="return handleNewsletter(event)"
                       class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-8">
-                    <input type="email" name="email" required autocomplete="email"
+                    <input type="email" id="newsletter-email" required autocomplete="email"
                            placeholder="Enter your business email"
                            class="px-5 py-3 rounded-lg text-gray-900 w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <!--
-                      [P1-5 FIX] "Footer Newsletter" → "Homepage CTA Newsletter"
-                      原始代码写的 "Footer Newsletter"，但这个表单在首页 CTA 区，不在页脚。
-                      错误的 source 值导致 Formspree 和 GA 无法区分两种订阅渠道，
-                      营销归因数据严重失真。
-                    -->
                     <input type="hidden" name="source" value="Homepage CTA Newsletter">
                     <button type="submit" class="bg-green-500 hover:bg-green-400 text-white px-6 py-3 rounded-lg font-bold transition whitespace-nowrap">
                         Subscribe
                     </button>
                 </form>
+                <script>
+                function handleNewsletter(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('newsletter-email').value;
+                    const subject = encodeURIComponent('Newsletter Subscription');
+                    const body = encodeURIComponent(`Subscribe to newsletter: ${email}\nSource: Homepage CTA`);
+                    window.location.href = `mailto:sales@v5med.net?subject=${subject}&body=${body}`;
+                    return false;
+                }
+                </script>
                 <a href="contact.html" class="text-white underline hover:text-blue-200 text-sm transition">Start Full Inquiry</a>
             </div>
         </section>

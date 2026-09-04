@@ -61,7 +61,7 @@
                 <div class="lg:col-span-7 xl:col-span-8">
                     <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8">
                         
-                        <form id="secure-form" action="https://formspree.io/f/xdkqlygg" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="return validateAndSubmit(event)">
+                        <form id="secure-form" action="mailto:sales@v5med.net" method="POST" enctype="text/plain" class="space-y-6" onsubmit="return handleFormSubmit(event)">
                             
                             <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
                             
@@ -325,14 +325,39 @@
         function toggleSection(id, shouldShow) { const el = document.getElementById(id); shouldShow ? el.classList.remove('hidden') : el.classList.add('hidden'); }
 
         let pageLoadTime = Date.now();
-        function validateAndSubmit(event) {
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
             const submitBtn = document.getElementById('submit-btn');
             const timeDiff = Date.now() - pageLoadTime;
-            if (timeDiff < 2000) { console.log("Bot detected"); event.preventDefault(); return false; }
+            if (timeDiff < 2000) { console.log("Bot detected"); return false; }
+            
+            // 收集表单数据
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+            
+            // 构建邮件内容
+            const subject = encodeURIComponent(`Contact Form: ${data.company || 'New Inquiry'}`);
+            const body = encodeURIComponent(
+                `New Contact Form Submission\n\n` +
+                `Company: ${data.company || 'N/A'}\n` +
+                `Email: ${data.email || 'N/A'}\n` +
+                `Phone: ${data.phone || 'N/A'}\n` +
+                `Country: ${data.country || 'N/A'}\n` +
+                `Product Interest: ${data.product || 'N/A'}\n` +
+                `Message: ${data.message || 'N/A'}\n\n` +
+                `Source: v5med.net Contact Form`
+            );
+            
+            // 打开邮件客户端
+            window.location.href = `mailto:sales@v5med.net?subject=${subject}&body=${body}`;
+            
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-            return true;
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Opening Email Client...';
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed', 'bg-green-600');
+            
+            return false;
         }
 
         document.addEventListener("DOMContentLoaded", function() { 

@@ -388,11 +388,8 @@
 <script>
 // ─── Configuration ───
 const CONFIG = {
-    ERP_URL: 'https://erp.12888.de',
-    ERP_USER: 'go@v5medical.ai',
-    ERP_PWD: 'V5GoAgent2026!',
-    ASSIGNEE: 'V5NOBOT',  // Assign to Leo for follow-up
-    SOURCE: 'Quote Landing Page (12888.de)',
+    SALES_EMAIL: 'sales@v5med.net',
+    SOURCE: 'Quote Landing Page (v5med.net)',
 };
 
 // ─── i18n Translations ───
@@ -554,56 +551,26 @@ function showError(fieldId, message) {
 }
 
 // ─── Submit to Worker Proxy (production) or direct ERP (local dev) ───
-const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 const SUBMIT_URL = IS_LOCAL ? null : '/api/submit-quote'; // Worker proxy
 
 async function submitToBackend(data) {
-    if (IS_LOCAL) {
-        // Direct ERP call (dev mode — requires CORS disabled or local proxy)
-        const loginResp = await fetch(`${CONFIG.ERP_URL}/api/method/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ usr: CONFIG.ERP_USER, pwd: CONFIG.ERP_PWD }),
-        });
-        if (!loginResp.ok) throw new Error('ERP login failed');
-        const cookie = loginResp.headers.get('set-cookie') || '';
-
-        const leadData = {
-            doctype: 'Lead',
-            lead_name: data.contact,
-            company_name: data.company,
-            email_id: data.email,
-            phone: data.phone || '',
-            status: 'Lead',
-            source: 'Website',
-            v5_agent_owner: 'go@v5medical.ai',
-            v5_outreach_channel: 'Website Inquiry',
-            v5_target_products: data.category,
-            v5_response_status: '🆕 New',
-            v5_source_detail: 'quote.12888.de landing page',
-            v5_campaign_name: 'Cold Email CTA 2026-Q3',
-            notes: `Product: ${data.category}\nDetails: ${data.description || 'N/A'}`,
-        };
-
-        const resp = await fetch(`${CONFIG.ERP_URL}/api/resource/Lead`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Cookie': cookie },
-            body: JSON.stringify(leadData),
-        });
-        if (!resp.ok) throw new Error('Lead creation failed');
-        const result = await resp.json();
-        return result.data?.name || 'unknown';
-    } else {
-        // Via Cloudflare Worker proxy
-        const resp = await fetch(SUBMIT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-        const result = await resp.json();
-        if (!resp.ok || !result.success) throw new Error(result.error || 'Submit failed');
-        return result.lead_id;
-    }
+    // 通过邮件发送到 sales@v5med.net
+    const subject = encodeURIComponent(`RFQ from ${data.company} - ${data.category}`);
+    const body = encodeURIComponent(
+        `New RFQ Submission\n\n` +
+        `Company: ${data.company}\n` +
+        `Contact: ${data.contact}\n` +
+        `Email: ${data.email}\n` +
+        `Phone: ${data.phone || 'N/A'}\n` +
+        `Product Category: ${data.category}\n` +
+        `Description: ${data.description || 'N/A'}\n\n` +
+        `Source: ${CONFIG.SOURCE}`
+    );
+    
+    // 打开邮件客户端
+    window.location.href = `mailto:${CONFIG.SALES_EMAIL}?subject=${subject}&body=${body}`;
+    
+    return 'email-sent';
 }
 
 // ─── Form Submit ───
