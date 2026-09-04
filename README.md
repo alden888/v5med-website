@@ -1,423 +1,271 @@
-# V5 Medical LTD - Official Website
+# V5 Medical - Official Website
 
 ![V5 Medical Logo](https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png)
 
-> **Professional Global Medical Consumables Supplier**  
-> Factory Direct | ISO 13485 | CE | FDA Certified
+> **Global B2B Supplier of Medical Consumables & Pharmaceutical Packaging**  
+> Surgical Sutures | Sterile Packs | Injection Devices | Pharma Packaging
 
-[![Website](https://img.shields.io/badge/Website-v5med.net-blue)](https://v5med.net)
-[![Version](https://img.shields.io/badge/Version-2.9.0-green)]()
-[![License](https://img.shields.io/badge/License-Proprietary-red)]()
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind-38B2AC?logo=tailwind-css&logoColor=white)
-![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?logo=cloudflare&logoColor=white)
+**Website**: [v5med.net](https://v5med.net)  
+**Status**: Production Ready  
+**Deployment**: Cloudflare Pages
 
 ---
 
-## 🎯 Project Overview
+## Overview
 
-This repository contains the **official website** for **V5 Medical LTD** ([v5med.net](https://v5med.net)), a China-based medical supply chain integrator specializing in surgical consumables, sterile packs, and medical devices for global distributors.
+This repository contains the official website for **V5 Medical** (Suzhou V5 Medical Technology Co., Ltd.), a China-based medical supply chain integrator serving B2B distributors worldwide.
 
-The site is built as a **high-performance static web application**, optimized for:
-- ⚡ **Speed**: Cloudflare CDN with <1s LCP
-- 🔍 **SEO**: Dynamic meta tags, JSON-LD structured data (via `seo-utils.js`)
-- 🎨 **UX**: Mobile-first responsive design
-- 🛡️ **Security**: CSP headers, XSS protection
-
----
-
-## 🚀 Key Features
-
-### 1. 🏗️ Dynamic Layout Engine
-- **Unified Header & Footer**: `js/layout.js` renders navigation across all pages
-- **Single Source of Truth**: Update menu/contact once, applies globally
-
-### 2. ⚙️ Centralized Configuration
-- **Config First**: All globals (contact, API URLs, CDN paths) in `js/config.js`
-- **Environment Aware**: Auto-detects localhost vs production
-
-### 3. 🖼️ Smart Image Loading
-- **Triple Fallback System** via `js/image-utils.js`:
-  1. Cloudflare R2 CDN (Primary)
-  2. Local path (Development, aligned with `images/products/` structured catalog)
-  3. GitHub Raw (Emergency)
-  4. Default Placeholder (Final)
-- Standardized product image directory structure for surgical sutures, protective equipment, dental products, etc.
-
-### 4. 🛍️ Dynamic Product Database
-- **No Backend Required**: Product catalog in `js/complete-products.js`
-- **Features**: Category filtering, real-time search (debounced in `catalog.html`), dynamic detail pages
-- **Dual Database Support**: `product-loader.js` supports legacy (`productDatabase`) and new (`completeProductDatabase`) schemas
-
-### 5. 🔍 SEO Optimized
-- **Dynamic Meta Tags**: `js/seo-utils.js` updates `<title>`, `<meta>`, JSON-LD per page
-- **Performance**: LCP images use `fetchpriority="high"`, lazy loading for below-fold content
-- **Analytics**: Built-in tracking for page views, WhatsApp clicks, product interactions (GDPR compliant)
-
-### 6. 📝 Docsify-Powered Knowledge Hub
-- **Blog & Technical Content**: `/blog/` runs Docsify for Markdown-based content
-  - Medical packaging specs (Tyvek vs. Medical Paper)
-  - CE Marking (MDR) compliance guides
-  - Surgical pack sterilization standards (EN ISO 13408)
-  - Payment strategy ("Two-Lane" system for fast delivery)
-- **Categories**: Sourcing Strategy, Technical Specs, Compliance (MDR), Sterilization Standards
-
-### 7. 📕 Product Catalog PDF
-- **Online Viewing**: Direct PDF access from product catalog page
-- **GitHub-hosted**: `pdf/Catalog.pdf` auto-deployed with site
-- **No Backend Required**: Static file served via CDN
-
-### 8. 💳 Payment Gateway Integration
-- **Stripe**: Credit card payments for samples (<$500)
-- **Bank Wire (T/T)**: For bulk orders (>$500)
-- **Dual-lane system**: Fast lane (Credit Card) for trials, Commercial lane (T/T) for production
-
-### 9. 🏭 Static SEO Page Generator
-- **`build-static.py`**: One command regenerates all crawlable pages from the single data source
-- **Outputs**: 56 static product pages (`products/<id>.html`), 8 category landing pages (`categories/<slug>.html`), static blog article pages (`blog/posts/<slug>.html`), and both sitemaps
-- **Fail-fast validation**: Product count must match `metadata.totalProducts`; every product image must exist and be >1KB
-- **Category-differentiated content**: Certifications, specs and descriptions per category (no blanket FDA/Sterile claims on packaging products)
-- **Real `lastmod`**: Sitemap dates come from each file's last git commit, not the build date
-
-### 10. 📊 Performance Monitoring
-- **Core Web Vitals Tracking**: `performance-monitor.js` records TTFB, DOM Ready, Full Load metrics
-- **Optimized Loading**: Non-critical JS deferred, explicit image dimensions (0 CLS)
+The site is a high-performance static web application optimized for:
+- **Speed**: Cloudflare CDN, optimized images, deferred JS loading
+- **SEO**: Semantic HTML, JSON-LD structured data, static crawlable pages
+- **Conversion**: WhatsApp integration, RFQ forms, product catalog
+- **Security**: CSP headers, HTTPS-only, input sanitization
 
 ---
 
-## 📂 Project Structure
+## Key Features
+
+### Dynamic Layout Engine
+- Unified header & footer via `js/layout.js`
+- Single source of truth for navigation and contact info
+- Auto-injects GA4 analytics site-wide
+
+### Centralized Configuration
+- All global settings in `js/config.js`
+- Contact info, WhatsApp, email, domain — all parameterized
+- Environment-aware (localhost vs production)
+
+### Smart Image Loading
+- Triple fallback system via `js/image-utils.js`:
+  1. Cloudflare R2 CDN (primary)
+  2. Local path (development)
+  3. GitHub Raw (emergency)
+  4. Default placeholder (final)
+
+### Product Catalog System
+- 56 SKUs across 8 categories
+- Real-time search and filtering
+- Dynamic product detail pages
+- Static SEO pages generated by `build-static.py`
+
+### SEO Optimization
+- Dynamic meta tags and JSON-LD via `js/seo-utils.js`
+- 56 static product pages (crawlable without JS)
+- 8 category landing pages
+- Blog with static article pages for search engines
+- Sitemaps for main site and blog
+
+### Knowledge Hub
+- Docsify-powered blog at `/blog/`
+- Technical guides: CE marking, sterilization, packaging specs
+- Static HTML versions for SEO (generated by build script)
+
+### Contact & Conversion
+- RFQ form → `sales@v5med.net`
+- WhatsApp deep links with pre-filled messages
+- Multi-type contact form (Quote/QA/OEM)
+- Product-specific inquiry shortcuts
+
+---
+
+## Project Structure
 
 ```
-v5md/
-├── index.html              # Homepage (Hero, Features, CTA)
-├── about.html              # Company Profile, Team, Certifications
-├── catalog.html            # Product Catalog (Search & Filter with WhatsApp CTA)
-├── product-detail.html     # Dynamic Product Template
-├── contact.html            # Multi-type Contact Form (Quote/QA/OEM)
-├── payment.html            # Secure Payment Portal (Stripe + Bank Wire)
-├── blog/                   # Docsify Knowledge Hub
-│   ├── index.html          # Blog Entry Point
-│   ├── README.md           # Blog Homepage (Technical Specs & Guides)
-│   ├── _sidebar.md         # Navigation Sidebar
-│   ├── sitemap.xml         # Blog Sitemap (static article pages)
-│   └── posts/              # Markdown Articles + generated static HTML
-│       ├── tyvek-vs-paper.md / .html
-│       ├── payment-strategy-guide.md / .html
-│       ├── ce-marking-process.md / .html
-│       └── ...
-├── products/               # 56 static product pages (generated, canonical)
+v5med-website/
+├── index.html              # Homepage
+├── about.html              # Company profile
+├── catalog.html            # Product catalog (search & filter)
+├── contact.html            # Contact form
+├── quote/                  # RFQ landing page
+├── payment.html            # Payment portal
+├── privacy.html            # Privacy policy
+├── blog/                   # Docsify knowledge hub
+│   ├── index.html
+│   ├── posts/              # Markdown articles + static HTML
+│   └── sitemap.xml
+├── products/               # 56 static product pages (generated)
 ├── categories/             # 8 category landing pages (generated)
-├── build-static.py         # 🏭 Static SEO page generator (single data source → HTML + sitemaps)
-├── js/                     # Core Logic
-│   ├── config.js           # 🔧 [CRITICAL] Global Settings & Paths
-│   ├── layout.js           # 🔧 [CRITICAL] Header/Footer Renderer (+ site-wide GA4 injection)
-│   ├── main.js             # General UI Interactions (Mobile Menu, Scroll)
-│   ├── complete-products.js# Product Database (56 SKUs, category-differentiated specs/certs)
-│   ├── image-utils.js      # Smart Image Loader (Triple Fallback)
-│   ├── seo-utils.js        # Dynamic SEO Manager (JSON-LD, Meta Tags)
-│   ├── product-loader.js   # Async Product Data Loader (dual DB support)
-│   ├── security-utils.js   # XSS Protection, Input Validation
-│   ├── performance-monitor.js # Core Web Vitals tracking
-│   └── ...
+├── build-static.py         # Static page generator
+├── js/
+│   ├── config.js           # Global configuration
+│   ├── layout.js           # Header/footer renderer
+│   ├── complete-products.js # Product database
+│   ├── image-utils.js      # Image fallback system
+│   ├── seo-utils.js        # Meta tags & JSON-LD
+│   ├── product-loader.js   # Async product loader
+│   ├── security-utils.js   # Input sanitization
+│   └── performance-monitor.js # Core Web Vitals
 ├── css/
-│   └── style.css           # Custom Overrides for Tailwind
-├── images/                 # Local Asset Fallbacks
-│   ├── products/           # Standardized Product Images (per-SKU files)
-│   │   ├── surgical-sutures/
-│   │   ├── surgical-instruments/
-│   │   ├── gauze-dressings/
-│   │   ├── protective-equipment/
-│   │   ├── injection-infusion/
-│   │   ├── dental-products/
-│   │   ├── pharmaceutical-packaging/
-│   │   └── surgical-packs/
-│   ├── 2026-Greeting-Card/ # Monthly greeting card artwork (optimized JPEG)
-│   ├── logo/
-│   │   └── v5logo.png
+│   └── style.css           # Custom styles
+├── images/
+│   ├── products/           # Product images by category
 │   ├── hero-bg.jpg
-│   └── ...
-├── pdf/                    # Downloadable Catalogs
-│   ├── Catalog.pdf
-│   ├── price list.pdf
-│   ├── V5_Medical_HighPurity_PriceList_EN.pdf
-│   └── V5_Medical_Capability_Statement.pdf
-├── _headers                # Cloudflare Pages Headers (CSP, HSTS, CORS)
-├── _redirects              # Cloudflare Pages Redirects (SEO, UTM)
-├── robots.txt              # SEO Crawler Instructions
-├── sitemap.xml             # Main Site Sitemap
-└── README.md               # This File
+│   └── v5logo.png
+├── pdf/                    # Catalogs & price lists
+├── _headers                # Cloudflare security headers
+├── _redirects              # URL redirects & shortcuts
+├── robots.txt
+└── sitemap.xml
 ```
 
 ---
 
-## 🛠️ How to Maintain
+## Configuration
 
-### 1️⃣ Updating Contact Info
-Edit `js/config.js` → Change `CONTACT` object → Auto-updates Header, Footer, Contact Page.
+All site-wide settings are in `js/config.js`:
 
-### 2️⃣ Adding/Editing Products
-Edit `js/complete-products.js` → Add/modify an entry in the `productData` array → Catalog updates automatically:
 ```javascript
-{ name: "New Surgical Suture", id: "new-product", category: "surgical-sutures", img: "images/products/surgical-sutures/new-product.jpg" }
+const V5Config = {
+    DOMAIN: 'v5med.net',
+    CONTACT: {
+        WHATSAPP: { DISPLAY: '+86 151 3300 8348', NUMBER: '8615133008348' },
+        EMAIL: { SALES: 'sales@v5med.net' }
+    },
+    ANALYTICS: {
+        GA4_ID: 'G-HVN50TM5EK'
+    }
+};
 ```
-- `category` must match a key in `categories` (aligned with the image directory structure)
-- Certifications / specs / descriptions come from `categoryProfiles` — edit them per category, not per product
-- After editing, run `python build-static.py` to regenerate static pages & sitemaps (it validates image files and product count, failing fast on problems)
 
-### 3️⃣ Modifying Layout (Header/Footer)
-Edit `js/layout.js` → Update `renderHeader()` or `renderFooter()` → Changes apply site-wide.
+To update contact info:
+1. Edit `js/config.js`
+2. Changes auto-propagate to header, footer, and contact page
 
-### 4️⃣ Editing Page Content
-Open specific HTML file → Edit content inside `<main>` tag → **Do not manually add `<nav>` or `<footer>`** (auto-injected).
+---
 
-### 5️⃣ Adding Blog Posts
-1. Create Markdown file in `blog/posts/`
-2. Add YAML frontmatter:
-   ```markdown
-   ---
-   title: "Your Title"
-   date: "2025-01-02"
-   author: "V5 Team"
-   category: "Compliance"
-   ---
-   ```
-3. Update `blog/_sidebar.md` with link (e.g., technical specs for sterile barrier systems)
-4. Run `python build-static.py` to generate the static article page (`blog/posts/<slug>.html`) — this is what Google indexes; the Docsify hash route is for interactive reading
+## Product Management
 
-### 6️⃣ Rebuilding Static SEO Pages
+### Adding/Editing Products
+
+Edit `js/complete-products.js`:
+
+```javascript
+{
+    name: "Product Name",
+    id: "product-id",
+    category: "surgical-sutures",
+    img: "images/products/surgical-sutures/product.jpg",
+    specs: { /* product specifications */ },
+    certifications: ["CE", "ISO 13485"]
+}
+```
+
+After editing:
 ```bash
-pip install markdown   # once (a venv is recommended)
 python build-static.py
 ```
-Regenerates `products/`, `categories/`, `blog/posts/*.html`, `sitemap.xml` and `blog/sitemap.xml` from `js/complete-products.js` + `blog/posts/*.md`. The build **fails fast** if a product image is missing/corrupt or the product count doesn't match `metadata.totalProducts`.
+
+This regenerates:
+- 56 product pages in `products/`
+- 8 category pages in `categories/`
+- Blog article pages in `blog/posts/`
+- Sitemaps
+
+The build script validates:
+- Product count matches metadata
+- All product images exist and are >1KB
+- Fails fast on errors
 
 ---
 
-## 💻 Local Development
+## Local Development
 
 ### Prerequisites
-- Any static web server (e.g., Live Server, Python `http.server`, Node.js `http-server`)
+- Python 3.x (for build script)
+- Any static web server
 
-### Clone & Run
+### Setup
+
 ```bash
-git clone https://github.com/alden888/v5md.git
-cd v5md
+git clone https://github.com/alden888/v5med-website.git
+cd v5med-website
 
-# Option 1: VS Code Live Server
-# Install "Live Server" extension → Click "Go Live"
-
-# Option 2: Python
+# Option 1: Python
 python3 -m http.server 8000
-# Visit http://localhost:8000
 
-# Option 3: Node.js
+# Option 2: Node.js
 npx http-server -p 8000
+
+# Option 3: VS Code Live Server
+# Install "Live Server" extension → Click "Go Live"
 ```
 
-> ⚠️ **CORS Warning**: Opening HTML files directly (`file://`) may block JS features (e.g., product database loading) due to browser security policies.
+Visit `http://localhost:8000`
+
+> **Note**: Opening HTML files directly (`file://`) may block JS features due to CORS.
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
-### Recommended: Cloudflare Pages
+### Cloudflare Pages (Recommended)
+
 1. Connect GitHub repo to Cloudflare Pages
-2. Pre-configured files:
-   - `_headers`: CSP, HSTS, caching rules
-   - `_redirects`: SEO-friendly redirects, WhatsApp shortcuts
-3. **Build Command**: None (purely static)
-4. **Output Directory**: `/` (root)
+2. Settings:
+   - **Build Command**: None (purely static)
+   - **Output Directory**: `/` (root)
+3. Pre-configured files:
+   - `_headers`: CSP, HSTS, caching
+   - `_redirects`: SEO redirects, WhatsApp shortcuts
 
-### Alternative: GitHub Pages
+### GitHub Pages (Alternative)
+
 1. Enable GitHub Pages in repo settings
 2. Set source to root directory
-3. ⚠️ Note: Custom headers (`_headers`) won't work (no CSP/HSTS support)
+3. **Limitation**: Custom headers won't work (no CSP/HSTS)
 
 ---
 
-## ⚡ Performance Optimization
+## Performance
 
 ### Core Web Vitals
 - **LCP** (<2.5s): Critical images use `fetchpriority="high"`
 - **FID** (<100ms): Non-critical JS deferred
-- **CLS** (0): Explicit image dimensions (aligned with standardized product image structure)
+- **CLS** (0): Explicit image dimensions
 
 ### Caching Strategy
-- **Static Assets**: 1 year cache (`immutable`)
-- **HTML**: 1 hour cache (`must-revalidate`)
-- **Cache Busting**: Version parameters (`main.js?v=2.2.0`)
+- Static assets: 1 year (immutable)
+- HTML: 1 hour (must-revalidate)
+- PDFs: 30 days
 
-### CDN Configuration
-- **Cloudflare R2**: Primary image host (for product images, logo)
-- **GitHub Raw**: Emergency fallback
-- **Auto-failover**: Triple-layer error handling in `image-utils.js`
-
----
-
-## 🔒 Security
-
-- **Content Security Policy (CSP)**: Enforced via `_headers` (single-line format — Cloudflare Pages does not support multi-line header values)
-- **HTTPS Only**: Cloudflare auto-redirect
-- **XSS Protection**: `security-utils.js` sanitizes inputs
-- **CSRF Protection**: Form nonces, SameSite cookies
-- **Payment Page**: Bank account details are NOT published on `payment.html` — customers are directed to their sales representative / Proforma Invoice (anti-fraud)
+### CDN
+- Primary: Cloudflare R2
+- Fallback: GitHub Raw
+- Auto-failover: Triple-layer error handling
 
 ---
 
-## 📊 Analytics
+## Security
 
-Built-in tracking for:
-- Page views (via `performance-monitor.js`)
-- PDF downloads
-- WhatsApp clicks (tracked in `catalog.html` WhatsApp button)
-- Product interactions
-- Core Web Vitals (TTFB, DOM Ready, Full Load)
-
-Compliant with GDPR (anonymous data, no PII).
+- **HTTPS Only**: Enforced via Cloudflare
+- **CSP**: Strict Content Security Policy
+- **XSS Protection**: Input sanitization
+- **Form Security**: Honeypot fields, rate limiting
+- **Payment**: Bank details not published (anti-fraud)
 
 ---
 
-## 🧪 Testing
+## Contact
 
-### Manual Testing Checklist
-- [ ] Header/Footer render on all pages
-- [ ] Product images load with fallback (test broken CDN paths)
-- [ ] Contact form submission (test mode)
-- [ ] Mobile responsiveness (375px → 1920px)
-- [ ] Cross-browser (Chrome, Firefox, Safari, Edge)
-- [ ] Product search in `catalog.html`
-- [ ] Static pages in `products/` / `categories/` / `blog/posts/*.html` are up to date (`python build-static.py`)
-- [ ] SEO meta tags update (verify via `seo-utils.js`)
-
-### Performance Testing
-```bash
-# Lighthouse CI
-npm install -g @lhci/cli
-lhci autorun --config=lighthouserc.json
-```
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-### Code Standards
-- **JS**: ES6+, no jQuery (consistent with existing utils like `seo-utils.js`, `performance-monitor.js`)
-- **CSS**: Tailwind utility-first, minimal custom CSS (`css/style.css`)
-- **HTML**: Semantic tags, ARIA labels for accessibility
-- **File Naming**: Lowercase with hyphens (aligned with product image structure)
-
----
-
-## 📄 License
-
-© 2025 V5 Medical LTD. All Rights Reserved.
-
-**Unauthorized copying, modification, distribution, or use of this software is prohibited** without prior written permission from V5 Medical LTD.
-
----
-
-## 📞 Support
+### Sales Inquiries
+- **Email**: sales@v5med.net
+- **WhatsApp**: +86 151 3300 8348
+- **RFQ Form**: [v5med.net/quote](https://v5med.net/quote)
 
 ### Technical Support
-- **Email**: tech@v5med.net
-- **WhatsApp**: +44-078-9504-7944
+- **QA/Regulatory**: qa@v5med.net
 - **Website**: [v5med.net](https://v5med.net)
 
-### Business Inquiries
-- **Sales**: sales@v5med.net
-- **QA/Regulatory**: qa@v5med.net (CE Marking, sterilization standards)
-- **Finance**: finance@v5med.net (payment strategy, T/T/Credit Card lanes)
+---
+
+## License
+
+© 2026 V5 Medical (Suzhou V5 Medical Technology Co., Ltd.). All Rights Reserved.
+
+Unauthorized copying, modification, distribution, or use is prohibited without prior written permission.
 
 ---
 
-## 🎓 Documentation References
-- [Cloudflare Pages Docs](https://developers.cloudflare.com/pages/)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Docsify Docs](https://docsify.js.org/)
-- [Stripe Payment Links](https://stripe.com/docs/payment-links)
-- [EN ISO 13408 - Sterilization Standards](https://www.iso.org/standard/74439.html)
-- [MDR (EU 2017/745)](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32017R0745)
-
----
-
-## 🗓️ Changelog
-
-### [2.9.0] - 2026-08-22
-#### Added
-- Static SEO page generator `build-static.py` with fail-fast validation (product count + image integrity)
-- 56 static product pages, 8 category landing pages, static blog article pages (crawlable without JS)
-- Site-wide GA4 injection via `layout.js`; blog sitemap (`blog/sitemap.xml`)
-- `pharmaceutical-packaging` category (5 SKUs) with category-differentiated specs/certifications
-- Per-SKU branded placeholder images; compressed greeting-card artwork (5.8MB → 306KB, served locally)
-
-#### Changed
-- Catalog & related-product links now point to canonical static pages (`/products/<id>.html`)
-- Product schema no longer carries placeholder `price: "0"` offers; FAQ schema matches visible content only
-- Sitemap `lastmod` uses real git commit dates; `noindex` payment page removed from sitemap
-- Blanket "FDA"/"Sterile" badges removed from non-sterile packaging products
-- Bank account details removed from `payment.html` (anti-fraud: via sales rep / PI only)
-
-#### Fixed
-- Broken `default-product.jpg` (5-byte text file) and 4 corrupt/missing product images
-- Greeting card image blocked by CSP (was hotlinked from `raw.githubusercontent.com`)
-- Category CTA text swallowed by implicit string concatenation in generator
-- `og:type` hardcoded to `article` on all generated pages
-- Dead `/work` redirect to the removed workbench
-
-#### Removed
-- Internal workbench (`/workbench/`) — removed from repository
-
----
-
-### [2.8.0] - 2025-03-22
-#### Added
-- Product Catalog PDF online viewer (`catalog.html` sidebar)
-- QA Team on-site photo in homepage hero section
-
-#### Changed
-- Updated all JS file versions across site for cache busting
-- Migrated `layout.js` V5Layout to `window` object for better module detection
-
-#### Fixed
-- Privacy Policy footer link now correctly points to `privacy.html`
-- ON-SITE PROTOCOL label repositioned to top-left of image
-- Fixed layout.js loading failure on Cloudflare Pages (delayed config access)
-- PDF links now use relative paths (hide GitHub repo from customers)
-
----
-
-### [2.7.0] - 2025-01-02
-#### Added
-- Payment portal (`payment.html`) with Stripe integration (Two-Lane payment system)
-- Internal workbench (`/workbench/`) with authentication & order management
-- Blog knowledge hub (`/blog/`) powered by Docsify (CE Marking, sterilization, packaging specs)
-- Enhanced SEO utilities (`seo-utils.js`) with JSON-LD injection
-- Product loader system (`product-loader.js`) with dual database support
-- Standardized product image directory structure (`images/products/`)
-
-#### Changed
-- Migrated to complete product database (51 SKUs)
-- Updated image loading with triple fallback (aligned with new image structure)
-- Improved mobile responsiveness for `catalog.html` search & WhatsApp CTA
-- Refactored performance monitoring (`performance-monitor.js`) for Core Web Vitals
-
-#### Fixed
-- Image path resolution in product catalog (matching `images/products/` structure)
-- Mobile menu z-index conflicts
-- Google Translate positioning
-- Workbench login error handling
-
-### [2.0.0] - 2024-12-15
-- Initial public release
-
----
-
-**Last Updated**: August 22, 2026  
-**Maintained by**: V5 Medical Development Team  
-**Build Status**: ✅ Stable (Production-Ready)
+**Version**: 1.0.0  
+**Last Updated**: September 2026  
+**Maintained by**: V5 Medical Development Team
