@@ -11,9 +11,9 @@
 
 const completeProductDatabase = {
     metadata: {
-        version: '3.5.0',
-        lastUpdated: '2026-08-22',
-        totalProducts: 56
+        version: '4.0.0',
+        lastUpdated: '2026-09-04',
+        totalProducts: 107
     },
     
     categories: {
@@ -24,7 +24,8 @@ const completeProductDatabase = {
         'surgical-packs': 'Surgical Packs',
         'injection-infusion': 'Injection & Infusion',
         'dental-products': 'Dental Products',
-        'pharmaceutical-packaging': 'Pharmaceutical Packaging'
+        'pharmaceutical-packaging': 'Pharmaceutical Packaging',
+        'peptide-raw-materials': 'Peptide Raw Materials'
     },
     
     products: [],
@@ -107,7 +108,58 @@ const productData = [
     { name: "Package Inserts (IFU)", id: "pharma-package-inserts", category: "pharmaceutical-packaging", img: "images/products/pharmaceutical-packaging/pharma-package-inserts.jpg" },
     { name: "Self-Adhesive Pharmaceutical Labels", id: "pharma-adhesive-labels", category: "pharmaceutical-packaging", img: "images/products/pharmaceutical-packaging/pharma-adhesive-labels.jpg" },
     { name: "Holographic Anti-Counterfeit Labels", id: "pharma-hologram-labels", category: "pharmaceutical-packaging", img: "images/products/pharmaceutical-packaging/pharma-hologram-labels.jpg" },
-    { name: "Pharmaceutical Blister Trays", id: "pharma-blister-trays", category: "pharmaceutical-packaging", img: "images/products/pharmaceutical-packaging/pharma-blister-trays.jpg" }
+    { name: "Pharmaceutical Blister Trays", id: "pharma-blister-trays", category: "pharmaceutical-packaging", img: "images/products/pharmaceutical-packaging/pharma-blister-trays.jpg" },
+    { name: "5-Amino-1MQ API", id: "v5-pep-001", category: "peptide-raw-materials", img: "images/products/v5-pep-001-main.jpg" },
+    { name: "SS-31 API", id: "v5-pep-002", category: "peptide-raw-materials", img: "images/products/v5-pep-002-main.jpg" },
+    { name: "Acetic Acid Water 0.6% API", id: "v5-pep-003", category: "peptide-raw-materials", img: "images/products/v5-pep-003-main.jpg" },
+    { name: "AOD9604 API", id: "v5-pep-004", category: "peptide-raw-materials", img: "images/products/v5-pep-004-main.jpg" },
+    { name: "ARA-290 API", id: "v5-pep-005", category: "peptide-raw-materials", img: "images/products/v5-pep-005-main.jpg" },
+    { name: "AHK-Cu API", id: "v5-pep-006", category: "peptide-raw-materials", img: "images/products/v5-pep-006-main.jpg" },
+    { name: "Vitamin B12 API", id: "v5-pep-007", category: "peptide-raw-materials", img: "images/products/v5-pep-007-main.jpg" },
+    { name: "BAC water          无菌水 WAC API", id: "v5-pep-008", category: "peptide-raw-materials", img: "images/products/v5-pep-008-main.jpg" },
+    { name: "BPC157 API", id: "v5-pep-009", category: "peptide-raw-materials", img: "images/products/v5-pep-009-main.jpg" },
+    { name: "CJC1295（Without DAC） API", id: "v5-pep-010", category: "peptide-raw-materials", img: "images/products/v5-pep-010-main.jpg" },
+    { name: "CJC-1295 no DAC API", id: "v5-pep-011", category: "peptide-raw-materials", img: "images/products/v5-pep-011-main.jpg" },
+    { name: "GHK-CU API", id: "v5-pep-012", category: "peptide-raw-materials", img: "images/products/v5-pep-012-main.jpg" },
+    { name: "DSIP API", id: "v5-pep-013", category: "peptide-raw-materials", img: "images/products/v5-pep-013-main.jpg" },
+    { name: "Epithalon API", id: "v5-pep-014", category: "peptide-raw-materials", img: "images/products/v5-pep-014-main.jpg" },
+    { name: "Gonadorelin (GT/GTT) API", id: "v5-pep-015", category: "peptide-raw-materials", img: "images/products/v5-pep-015-main.jpg" },
+    { name: "IGF-1 LR3 API", id: "v5-pep-016", category: "peptide-raw-materials", img: "images/products/v5-pep-016-main.jpg" },
+    { name: "Ipamorelin API", id: "v5-pep-017", category: "peptide-raw-materials", img: "images/products/v5-pep-017-main.jpg" },
+    { name: "BPC API", id: "v5-pep-018", category: "peptide-raw-materials", img: "images/products/v5-pep-018-main.jpg" },
+    { name: "KPV API", id: "v5-pep-019", category: "peptide-raw-materials", img: "images/products/v5-pep-019-main.jpg" },
+    { name: "Kisspeptin-10 API", id: "v5-pep-020", category: "peptide-raw-materials", img: "images/products/v5-pep-020-main.jpg" },
+    { name: "LC Lipolytic API", id: "v5-pep-021", category: "peptide-raw-materials", img: "images/products/v5-pep-021-main.jpg" },
+    { name: "MOTS-C API", id: "v5-pep-022", category: "peptide-raw-materials", img: "images/products/v5-pep-022-main.jpg" },
+    { name: "Melanotan II API", id: "v5-pep-023", category: "peptide-raw-materials", img: "images/products/v5-pep-023-main.jpg" },
+    { name: "NAD+ API", id: "v5-pep-024", category: "peptide-raw-materials", img: "images/products/v5-pep-024-main.jpg" },
+    { name: "Snap-8 (Argireline) API", id: "v5-pep-025", category: "peptide-raw-materials", img: "images/products/v5-pep-025-main.jpg" },
+    { name: "PT-141 API", id: "v5-pep-026", category: "peptide-raw-materials", img: "images/products/v5-pep-026-main.jpg" },
+    { name: "Retatrutide API", id: "v5-pep-027", category: "peptide-raw-materials", img: "images/products/v5-pep-027-main.jpg" },
+    { name: "selank API", id: "v5-pep-028", category: "peptide-raw-materials", img: "images/products/v5-pep-028-main.jpg" },
+    { name: "Semaglutide API", id: "v5-pep-029", category: "peptide-raw-materials", img: "images/products/v5-pep-029-main.jpg" },
+    { name: "Sermorelin API", id: "v5-pep-030", category: "peptide-raw-materials", img: "images/products/v5-pep-030-main.jpg" },
+    { name: "Thymosin Alpha-1 API", id: "v5-pep-031", category: "peptide-raw-materials", img: "images/products/v5-pep-031-main.jpg" },
+    { name: "TB500 CTHYMOSIN B4Acetate API", id: "v5-pep-032", category: "peptide-raw-materials", img: "images/products/v5-pep-032-main.jpg" },
+    { name: "TB-500 API", id: "v5-pep-033", category: "peptide-raw-materials", img: "images/products/v5-pep-033-main.jpg" },
+    { name: "Tirzepatide API", id: "v5-pep-034", category: "peptide-raw-materials", img: "images/products/v5-pep-034-main.jpg" },
+    { name: "Tesamorelin API", id: "v5-pep-035", category: "peptide-raw-materials", img: "images/products/v5-pep-035-main.jpg" },
+    { name: "Thymalin API", id: "v5-pep-036", category: "peptide-raw-materials", img: "images/products/v5-pep-036-main.jpg" },
+    { name: "VIP (Vasoactive Intestinal Peptide) API", id: "v5-pep-037", category: "peptide-raw-materials", img: "images/products/v5-pep-037-main.jpg" },
+    { name: "Lemon Bottle API", id: "v5-pep-038", category: "peptide-raw-materials", img: "images/products/v5-pep-038-main.jpg" },
+    { name: "LC216 Lipolytic API", id: "v5-pep-039", category: "peptide-raw-materials", img: "images/products/v5-pep-039-main.jpg" },
+    { name: "Disposable Syringe 3-Part 5ml", id: "v5-sur-001", category: "injection-infusion", img: "images/products/v5-sur-001-main.jpg" },
+    { name: "Disposable Syringe 3-Part 10ml", id: "v5-sur-002", category: "injection-infusion", img: "images/products/v5-sur-002-main.jpg" },
+    { name: "Pen Needle (GLP-1 Compatible)", id: "v5-sur-003", category: "injection-infusion", img: "images/products/v5-sur-003-main.jpg" },
+    { name: "Disposable Biopsy Forceps", id: "v5-sur-004", category: "injection-infusion", img: "images/products/v5-sur-004-main.jpg" },
+    { name: "Alcohol Prep Pad", id: "v5-sur-005", category: "injection-infusion", img: "images/products/v5-sur-005-main.jpg" },
+    { name: "Vaccine Color Box", id: "v5-pkg-001", category: "pharmaceutical-packaging", img: "images/products/v5-pkg-001-main.jpg" },
+    { name: "Package Insert / Leaflet", id: "v5-pkg-002", category: "pharmaceutical-packaging", img: "images/products/v5-pkg-002-main.jpg" },
+    { name: "Vaccination Card + Plastic Sleeve", id: "v5-pkg-003", category: "pharmaceutical-packaging", img: "images/products/v5-pkg-003-main.jpg" },
+    { name: "Vial Label (Self-Adhesive)", id: "v5-pkg-004", category: "pharmaceutical-packaging", img: "images/products/v5-pkg-004-main.jpg" },
+    { name: "Pharmaceutical Packaging Kit", id: "v5-pkg-005", category: "pharmaceutical-packaging", img: "images/products/v5-pkg-005-main.jpg" },
+    { name: "Dental Suture", id: "v5-den-001", category: "dental-products", img: "images/products/v5-den-001-main.jpg" },
+    { name: "Debonding Agent", id: "v5-den-002", category: "dental-products", img: "images/products/v5-den-002-main.jpg" },
 ];
 
 // ==========================================

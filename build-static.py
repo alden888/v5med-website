@@ -220,6 +220,21 @@ CATEGORIES = {
             "Origin": "China",
         },
     },
+    "peptide-raw-materials": {
+        "name": "Peptide Raw Materials",
+        "title": "Peptide Raw Materials & APIs Supplier (GLP-1, Research Grade) | V5 Medical",
+        "blurb": "High-purity peptide raw materials and active pharmaceutical ingredients (APIs) — including GLP-1 analogs (Tirzepatide, Semaglutide, Retatrutide), cosmetic peptides, and research-grade compounds. GMP-certified production with full CoA, MSDS documentation. Cold-chain shipping worldwide.",
+        "keywords": "peptide raw materials supplier, GLP-1 API manufacturer, tirzepatide supplier, semaglutide API, cosmetic peptides, research peptides China, GMP peptide manufacturer",
+        "certs": ["GMP", "ISO 13485"],
+        "desc": "{name} — high-purity peptide active ingredient manufactured under GMP conditions. Full analytical documentation (CoA, HPLC, MS) provided. Cold-chain packaging for global shipment.",
+        "specs": {
+            "Purity": "≥98% (HPLC)",
+            "Quality Standard": "GMP / ISO 13485",
+            "Packaging": "Vacuum-sealed vials, cold chain",
+            "Documentation": "CoA, MSDS, HPLC/MS reports",
+            "Origin": "China",
+        },
+    },
 }
 
 # ---------------- 通用模板 ----------------

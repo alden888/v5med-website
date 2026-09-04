@@ -3,97 +3,103 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://v5med.net/</loc>
-        <lastmod>2026-07-31</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://v5med.net/about.html</loc>
-        <lastmod>2026-07-31</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://v5med.net/catalog.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/contact.html</loc>
-        <lastmod>2026-07-31</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://v5med.net/links.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
         <loc>https://v5med.net/privacy.html</loc>
-        <lastmod>2026-07-31</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
         <loc>https://v5med.net/blog/</loc>
-        <lastmod>2025-12-27</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/surgical-sutures.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/surgical-instruments.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/gauze-dressings.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/protective-equipment.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/surgical-packs.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/injection-infusion.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/dental-products.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/categories/pharmaceutical-packaging.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/categories/peptide-raw-materials.html</loc>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://v5med.net/products/pga-absorbable-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -102,7 +108,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pgla-absorbable-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -111,7 +117,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/chromic-catgut.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -120,7 +126,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/plain-catgut.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -129,7 +135,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/silk-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -138,7 +144,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/nylon-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -147,7 +153,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/polypropylene-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -156,7 +162,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/polyester-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -165,7 +171,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pdo-suture.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -174,7 +180,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/surgical-blades.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -183,7 +189,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/scalpels.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -192,7 +198,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/lancets.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -201,7 +207,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/surgical-scissors.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -210,7 +216,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/forceps.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -219,7 +225,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/needle-holders.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -228,7 +234,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/gauze-swabs.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -237,7 +243,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/gauze-rolls.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -246,7 +252,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/gauze-balls.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -255,7 +261,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/abdominal-pads.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -264,7 +270,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/cotton-rolls.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -273,7 +279,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/cotton-balls.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -282,7 +288,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/non-woven-sponges.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -291,7 +297,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/surgical-face-masks.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -300,7 +306,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/n95-ffp2-masks.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -309,7 +315,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/surgical-gowns.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -318,7 +324,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/protective-coveralls.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -327,7 +333,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/disposable-caps.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -336,7 +342,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/shoe-covers.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -345,7 +351,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/disposable-syringes.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -354,7 +360,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/insulin-syringes.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -363,7 +369,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/hypodermic-needles.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -372,7 +378,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/iv-cannula.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -381,7 +387,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/infusion-sets.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -390,7 +396,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/blood-transfusion-sets.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -399,7 +405,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/dental-examination-kits.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -408,7 +414,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/oral-care-kits.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -417,7 +423,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/saliva-ejectors.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -426,7 +432,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/dental-bibs.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -435,7 +441,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/impression-trays.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -444,7 +450,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/surgical-packs-general.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -453,7 +459,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/umbilical-cord-protection-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -462,7 +468,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/gynecological-examination-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -471,7 +477,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/hpv-screening-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -480,7 +486,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/ent-examination-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -489,7 +495,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/disposable-suture-set.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -498,7 +504,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/wound-dressing-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -507,7 +513,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/debridement-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -516,7 +522,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/perineal-care-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -525,7 +531,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/disposable-shaving-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -534,7 +540,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/sterile-dialysis-care-kit.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -543,7 +549,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/uterine-suction-curettage-set.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -552,7 +558,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pharma-folding-cartons.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -561,7 +567,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pharma-package-inserts.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -570,7 +576,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pharma-adhesive-labels.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -579,7 +585,7 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pharma-hologram-labels.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
@@ -588,11 +594,470 @@
     </url>
     <url>
         <loc>https://v5med.net/products/pharma-blister-trays.html</loc>
-        <lastmod>2026-08-22</lastmod>
+        <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
         <image:image>
             <image:loc>https://v5med.net/images/products/pharmaceutical-packaging/pharma-blister-trays.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-001.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-001-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-002.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-002-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-003.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-003-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-004.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-004-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-005.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-005-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-006.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-006-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-007.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-007-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-008.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-008-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-009.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-009-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-010.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-010-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-011.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-011-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-012.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-012-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-013.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-013-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-014.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-014-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-015.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-015-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-016.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-016-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-017.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-017-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-018.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-018-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-019.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-019-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-020.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-020-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-021.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-021-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-022.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-022-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-023.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-023-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-024.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-024-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-025.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-025-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-026.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-026-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-027.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-027-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-028.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-028-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-029.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-029-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-030.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-030-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-031.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-031-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-032.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-032-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-033.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-033-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-034.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-034-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-035.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-035-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-036.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-036-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-037.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-037-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-038.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-038-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pep-039.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pep-039-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-sur-001.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-sur-001-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-sur-002.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-sur-002-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-sur-003.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-sur-003-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-sur-004.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-sur-004-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-sur-005.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-sur-005-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pkg-001.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pkg-001-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pkg-002.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pkg-002-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pkg-003.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pkg-003-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pkg-004.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pkg-004-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-pkg-005.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-pkg-005-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-den-001.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-den-001-main.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://v5med.net/products/v5-den-002.html</loc>
+        <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://v5med.net/images/products/v5-den-002-main.jpg</image:loc>
         </image:image>
     </url>
 </urlset>
