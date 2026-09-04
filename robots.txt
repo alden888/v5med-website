@@ -1,0 +1,51 @@
+# V5 Medical LTD Robots.txt
+# Optimized for SEO & Security
+# Website: https://v5md.com
+# Last updated: 2026-08-22
+#
+# [FIX] 合并为单一 User-agent: * 组。
+# 原文件存在独立的 Googlebot/Bingbot/Baiduspider 组，
+# 一旦爬虫匹配到专属组，就会完全忽略 * 组的规则，
+# 导致 Disallow: /pdf/ 等全局规则对 Googlebot 实际失效。
+# 现在所有爬虫统一遵守本组规则。
+
+User-agent: *
+Allow: /
+
+# Resources assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# [STRATEGY] Block direct PDF access to encourage landing page visits,
+# except the public marketing catalog.
+# (Google 采用最长匹配优先：Allow /pdf/Catalog.pdf 优先于 Disallow: /pdf/)
+Disallow: /pdf/
+Allow: /pdf/Catalog.pdf
+
+# Block Cloudflare specific paths
+Disallow: /cdn-cgi/
+
+# Block GitHub repository specific files (Clean SEO)
+Disallow: /README.md
+Disallow: /README-cn.md
+Disallow: /_headers
+Disallow: /_redirects
+Disallow: /.nojekyll
+Disallow: /LICENSE
+
+# Block temporary and backup files
+Disallow: /*.tmp$
+Disallow: /*.bak$
+Disallow: /*.old$
+Disallow: /*.swp$
+
+# ------------------------------
+# SITEMAP INDEX
+# ------------------------------
+# Main Site Sitemap
+Sitemap: https://v5md.com/sitemap.xml
+
+# Blog Knowledge Hub Sitemap (static article pages)
+Sitemap: https://v5md.com/blog/sitemap.xml

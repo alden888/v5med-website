@@ -1,0 +1,9 @@
+name = "quote-form-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ERP_URL = "https://erp.12888.de"
+ERP_USER = "go@v5medical.ai"
+
+# ERP_PWD must be set via: wrangler secret put ERP_PWD

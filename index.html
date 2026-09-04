@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  V5 Medical – index.html  (优化版)                              ║
+  ║  修复日期: 2026-02-23                                           ║
+  ║  修复清单:                                                       ║
+  ║  [P0-1] L450  孤立 <script> 导致后续 JS 全部解析失败            ║
+  ║  [P0-2] L446↔577  所有脚本加载两次，Header/Footer 双重渲染      ║
+  ║  [P0-3] L455↔586  googleTranslateElementInit 定义两次           ║
+  ║  [P0-4] L466↔584  id="google_translate_element" 重复三次        ║
+  ║  [P0-5] L149/325  mailto: 被 CF 混淆为 /cdn-cgi/...，无法点击  ║
+  ║  [P0-6] L517      showLoadError 引用的 #loader 元素不存在        ║
+  ║  [P0-7] L464      <div> 漂浮在 <script> 块内，渲染错乱          ║
+  ║  [P1-1] L79       smooth-scroll 非 Tailwind 类                  ║
+  ║  [P1-2] L111      "DEC OFFER" 硬编码月份文案过期                ║
+  ║  [P1-3] L129      Logo 图片缺 width/height → CLS               ║
+  ║  [P1-4] L212      audit 图片缺 decoding 和尺寸声明              ║
+  ║  [P1-5] L432      首页表单 source 误写为 "Footer Newsletter"     ║
+  ║  [P2-1] L14-15    preconnect 缺 crossorigin                     ║
+  ║  [P2-2] L188      prose 类在 CDN Tailwind 无效                  ║
+  ║  [P2-3] L81-86    WhatsApp 浮钮与 layout.js 注入重复            ║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║  SEO 优化: 2026-07-18                                           ║
+  ║  [SEO-1] title/description/H1 注入核心 B2B 关键词               ║
+  ║  [SEO-2] 移除 JS 注入的隐形 FAQ schema（违规），改为页面          ║
+  ║          可见 FAQ 板块 + 静态匹配的 FAQPage JSON-LD              ║
+  ║  [SEO-3] 博客卡片链接从 hash 路由改为可索引的静态文章页          ║
+  ║  [SEO-4] 核心 JS 增加 defer，消除渲染阻塞                        ║
+  ╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<!-- [P1-1 FIX] scroll-smooth 必须加在 <html> 上才生效
+     原始代码把无效的 smooth-scroll 类放在 <body> 上 -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- [SEO-1] Primary Meta：前置高意向 B2B 关键词，品牌词置后 -->
+    <title>Surgical Sutures &amp; Medical Consumables Supplier | V5 Medical</title>
+    <meta name="description" content="ISO 13485 certified supplier of surgical sutures, sterile packs & medical consumables from China. Factory-direct OEM/ODM with CE & FDA documentation for global distributors.">
+    <meta name="keywords" content="surgical sutures supplier, medical consumables manufacturer China, sterile surgical packs OEM, absorbable suture factory, ISO 13485 medical supplier, medical device sourcing China">
+    <meta name="author" content="V5 Medical LTD">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://v5med.net/">
+    <link rel="icon" type="image/x-icon" href="images/icons/favicon.ico">
+
+    <!-- SEO: Open Graph -->
+    <meta property="og:title" content="V5 Medical – Surgical Sutures &amp; Medical Consumables Supplier">
+    <meta property="og:description" content="ISO 13485 certified medical consumables supply chain integrator. Audited manufacturing, independent QC, and regulatory documentation for global distributors.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://v5med.net/">
+    <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- [P2-1 FIX] crossorigin 属性必须存在，否则对 CORS 资源（字体/JS）
+         preconnect 无效，浏览器会额外建立第二条连接而非复用 -->
+    <link rel="preconnect" href="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+
+    <!-- [PERF ADD] Preload LCP 图片，让浏览器在解析 HTML 同时就开始下载 -->
+    <link rel="preload" as="image" href="images/hero-bg.jpg">
+
+    <!-- CSS: Font Awesome 异步加载避免阻塞渲染 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Tailwind CDN（生产环境改用 CLI 构建，可裁减 ~300KB 未用 CSS） -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary:   '#1e40af',
+                        secondary: '#3b82f6',
+                        accent:    '#0f172a'
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hero 背景图处理 */
+        .hero-bg-image { filter: brightness(0.65) contrast(1.1); transform: scale(1.02); }
+
+        /* 抑制 Google Translate 横幅 */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+
+        /*
+          [P2-3 FIX] WhatsApp 浮钮样式由此处统一提供，供 layout.js 使用。
+          原始代码在 <body> 开头硬编码一个 <a class="float-wa">，
+          同时 layout.js 的 renderFloatingElements() 还会再注入一个，
+          两者叠加导致双按钮 + GA 点击事件触发两次。
+          修复：删除 HTML 中的硬编码按钮，此 CSS 保留供 layout.js 使用。
+        */
+        .float-wa { position:fixed; bottom:20px; right:20px; z-index:100; box-shadow:0 4px 12px rgba(0,0,0,.3); transition:transform .2s; }
+        .float-wa:hover { transform:scale(1.1); }
+
+        /* Promo tab 动画 */
+        @keyframes pulse-slow { 0%,100%{opacity:1} 50%{opacity:.75} }
+        .animate-pulse-slow { animation:pulse-slow 3s ease-in-out infinite; }
+
+        /* 页面加载器 */
+        #page-loader {
+            position:fixed; inset:0; background:#fff; z-index:9999;
+            display:flex; align-items:center; justify-content:center;
+            transition:opacity .4s ease;
+        }
+        #page-loader.v5-hidden { opacity:0; pointer-events:none; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .v5-spinner {
+            width:3rem; height:3rem; border-radius:50%;
+            border:4px solid #e5e7eb; border-top-color:#1e40af;
+            animation:spin .8s linear infinite;
+        }
+
+        /* [SEO-2] FAQ 手风琴样式（纯 HTML details，无需 JS，爬虫可读） */
+        .faq-item { border:1px solid #e5e7eb; border-radius:.75rem; background:#fff; }
+        .faq-item summary {
+            cursor:pointer; padding:1rem 1.25rem; font-weight:600; color:#111827;
+            display:flex; justify-content:space-between; align-items:center; list-style:none;
+        }
+        .faq-item summary::-webkit-details-marker { display:none; }
+        .faq-item summary::after {
+            content:'+'; font-size:1.25rem; color:#1e40af; font-weight:700; flex-shrink:0; margin-left:1rem;
+        }
+        .faq-item[open] summary::after { content:'−'; }
+        .faq-item .faq-answer { padding:0 1.25rem 1.25rem; color:#4b5563; font-size:.95rem; line-height:1.7; }
+    </style>
+
+    <!-- SEO: JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    [
+        {
+            "@context": "https://schema.org",
+            "@type": "MedicalOrganization",
+            "name": "V5 Medical LTD",
+            "url": "https://v5med.net",
+            "logo": "https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png",
+            "description": "ISO 13485 certified supplier of surgical sutures, sterile packs and medical consumables for global distributors.",
+            "foundingDate": "2023",
+            "areaServed": ["Global", "Europe", "Middle East", "Southeast Asia"],
+            "knowsAbout": ["Medical Device Regulation", "ISO 13485", "Supply Chain Management", "Surgical Sutures", "Medical Consumables"],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Sales",
+                "telephone": "+44-7895-047944"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Regulatory Affairs Consulting",
+            "provider": { "@type": "Organization", "name": "V5 Medical LTD" },
+            "serviceType": "Medical Device Registration Support"
+        }
+    ]
+    </script>
+
+    <!--
+      [SEO-2] 静态 FAQPage Schema —— 与下方页面可见 FAQ 板块内容一一对应。
+      原方案由 seo-utils.js 在客户端注入无可见内容的 FAQ，违反 Google
+      结构化数据指南，已移除。注意：FAQ 内容修改时必须同步更新此处。
+    -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What certifications do V5 Medical consumables carry?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Our manufacturing partners operate under ISO 13485:2016 quality management systems. Products carry CE marking under EU MDR, and we provide full technical documentation packages (including sterilization validation and test reports) to support FDA registration and local market approvals." }
+            },
+            {
+                "@type": "Question",
+                "name": "What is your minimum order quantity (MOQ)?",
+                "acceptedAnswer": { "@type": "Answer", "text": "MOQ varies by product category. We support flexible MOQs for pilot and trial orders so new distributors can verify quality before scaling. Contact our sales team with your target SKU list for an exact quotation." }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you offer OEM/ODM private labeling?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. We provide comprehensive OEM branding (custom packaging, labels, IFU) and ODM product development for established distributors, including regulatory documentation issued under your brand where applicable." }
+            },
+            {
+                "@type": "Question",
+                "name": "Which markets do you ship to and what are the lead times?",
+                "acceptedAnswer": { "@type": "Answer", "text": "We ship worldwide from Shanghai/Ningbo ports, with established distributor networks in Europe, the Middle East, and Southeast Asia. Typical lead time is 3–7 days for samples and 15–30 days for production orders, depending on sterilization and customization requirements." }
+            }
+        ]
+    }
+    </script>
+</head>
+
+<!-- [P1-1 FIX] 移除无效的 smooth-scroll 类（已加在 <html> 上） -->
+<body class="font-sans text-gray-800 flex flex-col min-h-screen">
+
+    <!--
+      [P0-6 FIX] 页面加载器元素。
+      原始代码的 showLoadError() 调用 getElementById('loader')，
+      但 HTML 中根本没有这个 ID，函数静默失效，错误提示永远不显示。
+      修复：此处添加 id="page-loader"，函数现在可以正常工作。
+    -->
+    <div id="page-loader" role="status" aria-label="页面加载中">
+        <div class="v5-spinner"></div>
+    </div>
+
+    <!--
+      [P2-3 FIX] 已删除此处的硬编码 WhatsApp 浮钮。
+      原始代码（L81-86）：
+        <a href="https://wa.me/8615133008348..." class="float-wa ...">
+      layout.js 会统一注入，保留硬编码版本导致双按钮问题。
+    -->
+
+    <!-- 动态 Header，由 layout.js 注入 -->
+    <div id="v5-header"></div>
+
+    <main class="flex-grow pt-20">
+
+        <!-- HERO -->
+        <div class="relative min-h-[500px] md:min-h-[550px] flex items-center justify-center px-4 overflow-hidden bg-gray-900 group">
+            <div class="absolute inset-0 z-0">
+                <!-- LCP 图片：fetchpriority="high" + decoding="sync"，宽高已声明防 CLS -->
+                <img src="images/hero-bg.jpg"
+                     onerror="this.src='https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80&auto=format&fit=crop'"
+                     class="w-full h-full object-cover object-center hero-bg-image"
+                     alt="V5 Medical certified medical consumables manufacturing facility"
+                     width="1920" height="1080"
+                     fetchpriority="high"
+                     decoding="sync">
+                <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/40 to-gray-900/80"></div>
+            </div>
+
+            <!--
+              [P1-2 FIX] "DEC OFFER" → "NEW OFFER"
+              硬编码月份文案在 12 月之外的时间一直显示为过期内容。
+              如需动态显示，可从 V5Config 读取配置。
+            -->
+            <div class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-30
+                        flex-col items-center bg-yellow-500 text-yellow-900
+                        rounded-l-xl py-6 px-3 shadow-2xl border-l-2 border-y-2 border-yellow-300
+                        transition hover:-translate-x-1 cursor-pointer animate-pulse-slow backdrop-blur-md">
+                <div class="mb-4 bg-white/20 p-2 rounded-full">
+                    <i class="fas fa-gift text-xl" aria-hidden="true"></i>
+                </div>
+                <p style="writing-mode:vertical-rl; text-orientation:mixed;"
+                   class="font-bold text-xs tracking-widest uppercase mb-2">
+                    Free Factory Audit Report
+                </p>
+                <div class="mt-2 text-[10px] font-black bg-white/20 px-1 py-2 rounded text-center">
+                    NEW<br>OFFER
+                </div>
+                <div class="absolute right-full top-0 mr-2 w-64 bg-white p-4 rounded-xl shadow-xl
+                            opacity-0 group-hover:opacity-100 transition-all duration-300
+                            pointer-events-none translate-x-4 group-hover:translate-x-0"
+                     role="tooltip">
+                    <h4 class="text-gray-900 font-bold mb-1 text-sm">
+                        <i class="fas fa-clock text-yellow-500 mr-1" aria-hidden="true"></i> Limited Slots
+                    </h4>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Valid for the first 10 inquiries this month. Get a comprehensive
+                        ISO 13485 audit report sample with your first quote.
+                    </p>
+                    <p class="mt-2 text-blue-600 text-xs font-bold">Claim via Quote Form &rarr;</p>
+                </div>
+            </div>
+
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-4 py-8">
+
+                <div class="md:hidden inline-flex items-center gap-2 bg-yellow-500/20 border border-yellow-400/50
+                            backdrop-blur-md rounded-full px-4 py-1.5 text-yellow-200 text-xs font-semibold mb-6">
+                    <i class="fas fa-clock text-yellow-400" aria-hidden="true"></i>
+                    <span>Free Factory Audit for New Inquiries</span>
+                </div>
+
+                <!--
+                  [P1-3 FIX] 添加 width/height 防止 CLS。
+                  原始 Logo 图片完全没有尺寸声明，浏览器需等图片下载后
+                  才知道高度，导致整个 Hero 区发生布局偏移。
+                -->
+                <img src="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png"
+                     onerror="this.style.display='none'"
+                     class="h-20 md:h-28 mx-auto mb-6 drop-shadow-2xl"
+                     alt="V5 Medical LTD - surgical sutures and medical consumables supplier logo"
+                     width="280" height="112"
+                     decoding="async">
+
+                <!--
+                  [SEO-1] H1 前置核心关键词 "Medical Consumables / Surgical Sutures"，
+                  保留原有品牌 slogan 气质。原 H1 为纯口号，无搜索价值。
+                -->
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-white leading-tight tracking-tight">
+                    Certified Medical Consumables.<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">Supply Optimized. Risks Minimized.</span>
+                </h1>
+
+                <p class="text-base md:text-xl mb-8 text-gray-200 font-medium max-w-xl mx-auto leading-relaxed">
+                    Your <span class="text-white font-bold border-b-2 border-yellow-500">Compliance Firewall</span> in China.
+                    ISO 13485 surgical sutures, sterile packs &amp; consumables — audited manufacturing with independent QC for professional distributors.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+                    <a href="contact.html?type=quote"
+                       class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-full
+                              text-base font-bold shadow-lg shadow-blue-900/50
+                              transition-transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="fas fa-box-open" aria-hidden="true"></i>
+                        <span>Request Sample</span>
+                    </a>
+
+                    <!--
+                      [P0-5 FIX] 恢复真实 mailto: 链接。
+                      原始代码（L149）：href="/cdn-cgi/l/email-protection#7203..."
+                      这是 Cloudflare Email Obfuscation 在边缘节点做的处理，
+                      不应出现在源代码里。源码用 mailto:，CF 会在 CDN 边缘自动混淆。
+                      请将 qa@v5med.net 替换为实际邮箱地址。
+                    -->
+                    <a href="mailto:qa@v5med.net?subject=Tender%20Support%20Inquiry"
+                       class="bg-white/10 hover:bg-white/20 text-white border border-white/30
+                              backdrop-blur-sm px-8 py-3.5 rounded-full text-base font-bold
+                              shadow-lg transition-transform hover:-translate-y-1
+                              flex items-center justify-center gap-2">
+                        <i class="fas fa-file-contract text-yellow-400" aria-hidden="true"></i>
+                        <span>Tender Support</span>
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8
+                            text-[10px] md:text-xs font-bold text-gray-300 uppercase tracking-widest">
+                    <span class="flex items-center gap-1.5"><i class="fas fa-shield-alt text-blue-400" aria-hidden="true"></i> ISO 13485</span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-check-circle text-blue-400" aria-hidden="true"></i> CE Compliant</span>
+                    <span class="flex items-center gap-1.5"><i class="fas fa-search text-blue-400" aria-hidden="true"></i> Traceable QC</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社会证明横幅 -->
+        <section class="bg-blue-50 border-b border-blue-100 py-4" aria-label="Recent client success">
+            <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center text-center md:text-left gap-4">
+                <div class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase flex-shrink-0">Recent Success</div>
+                <p class="text-sm md:text-base text-gray-700 font-medium">
+                    <i class="fas fa-quote-left text-blue-300 mr-2" aria-hidden="true"></i>
+                    Assisted a premier <strong class="text-gray-900">Turkish Distributor</strong> in passing their local MOH audit using our technical documentation package.
+                    <i class="fas fa-quote-right text-blue-300 ml-2" aria-hidden="true"></i>
+                </p>
+            </div>
+        </section>
+
+        <!-- 集成商优势 -->
+        <section class="py-20 px-4 bg-white relative overflow-hidden" aria-labelledby="advantage-heading">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-gray-50 -z-10 skew-x-12 transform origin-top-right" aria-hidden="true"></div>
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center mb-20">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            <i class="fas fa-network-wired" aria-hidden="true"></i> The Integrator Advantage
+                        </div>
+                        <h2 id="advantage-heading" class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                            Factories Produce.<br>
+                            <span class="text-blue-600">We Orchestrate.</span>
+                        </h2>
+
+                        <!--
+                          [P2-2 FIX] 删除 prose 类。
+                          Tailwind CDN 不含 @tailwindcss/typography 插件，
+                          prose 不生成任何样式，是无效的噪音。
+                          改用标准 Tailwind 工具类控制排版。
+                        -->
+                        <div class="text-gray-600 text-lg leading-relaxed space-y-4">
+                            <p>In the medical industry, a product is only as good as its documentation. As a <strong class="text-gray-800">Medical Supply Chain Integrator</strong>, we do not simply move boxes; we own the compliance process.</p>
+                            <p>While the factory focuses on output speed, V5 Medical focuses on <strong class="text-gray-800">Risk Management, Sterility Validation, and Regulatory Adherence</strong>. We stand between you and the production line as your technical firewall.</p>
+                        </div>
+
+                        <div class="bg-gray-50 border border-gray-200 rounded-xl p-5">
+                            <h3 class="font-bold text-gray-900 mb-3 text-sm flex items-center gap-2">
+                                <i class="fas fa-briefcase-medical text-blue-600" aria-hidden="true"></i>
+                                Regulatory Services (Available for Partners)
+                            </h3>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-700">
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Technical File Prep</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Sterilization Validation</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Audit Documentation</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Tender Support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-2 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-2xl opacity-20 blur-lg" aria-hidden="true"></div>
+                        <!--
+                          [P1-4 FIX] 添加 width/height 防 CLS + decoding="async" 避免阻塞主线程。
+                          原始代码只有 loading="lazy"，缺少尺寸声明，图片加载时页面会抖动。
+                        -->
+                        <img src="images/qa-team-on-site.jpg"
+                             onerror="this.src='images/factory-audit.jpg'"
+                             class="relative rounded-xl shadow-2xl w-full object-cover h-[450px] transition duration-500 transform group-hover:scale-[1.01]"
+                             alt="V5 Medical QA team conducting an on-site ISO 13485 factory audit"
+                             width="800" height="450"
+                             loading="lazy"
+                             decoding="async">
+                        <div class="absolute top-6 left-6 bg-white/95 backdrop-blur px-5 py-3 rounded-lg shadow-lg border border-gray-100 flex items-center gap-4">
+                            <div class="bg-green-100 p-2 rounded-full text-green-600">
+                                <i class="fas fa-user-shield text-xl" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase font-bold">On-Site Protocol</p>
+                                <p class="text-sm font-bold text-gray-900">V5 QA Team Present</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 质量盾牌 8 步 -->
+                <div class="text-center mb-12">
+                    <h2 class="text-2xl font-bold text-gray-900">The V5 Quality Shield</h2>
+                    <p class="text-gray-600 mt-2">Every order must pass these 8 gates before it leaves China.</p>
+                </div>
+                <div class="relative">
+                    <div class="hidden md:block absolute top-8 left-0 w-full h-1 bg-gray-200 -z-10" aria-hidden="true"></div>
+                    <ol class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-search-location text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">1. Audit</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-flask text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">2. Raw Mat</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-industry text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">3. IPC</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-vial text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">4. Lab</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-purple-500 group-hover:text-purple-600 transition-all relative z-10"><i class="fas fa-bacteria text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-purple-700">5. Sterile</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-clipboard-check text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">6. PSI</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-white border-4 border-gray-100 rounded-full flex items-center justify-center text-gray-400 mb-3 shadow-sm group-hover:border-blue-500 group-hover:text-blue-600 transition-all relative z-10"><i class="fas fa-file-invoice text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-gray-800">7. Docs</h4>
+                        </li>
+                        <li class="group text-center">
+                            <div class="w-16 h-16 mx-auto bg-green-500 text-white border-4 border-green-100 rounded-full flex items-center justify-center mb-3 shadow-lg transform group-hover:scale-110 transition-all relative z-10"><i class="fas fa-shipping-fast text-lg" aria-hidden="true"></i></div>
+                            <h4 class="font-bold text-xs uppercase text-green-700">8. Ship</h4>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- 合作模式 -->
+        <section class="py-20 px-4 bg-gray-50" aria-labelledby="partnership-heading">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 id="partnership-heading" class="text-3xl font-bold text-gray-900 mb-4">Flexible Partnership Models</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Trust is built over time. Whether you are testing the market or scaling up, we have a support tier that fits your stage.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 items-start">
+
+                    <!-- Tier 1 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1.5 bg-blue-300" aria-hidden="true"></div>
+                        <div class="mb-6 bg-blue-50 w-14 h-14 rounded-xl flex items-center justify-center text-2xl text-blue-500"><i class="fas fa-vial" aria-hidden="true"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900">1. Pilot Program</h3>
+                        <p class="text-xs font-bold text-blue-500 uppercase tracking-wide mb-4 mt-1">Start Small</p>
+                        <p class="text-sm text-gray-500 mb-6">Perfect for new distributors testing our quality.</p>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Flexible MOQ</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Stock Items</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-500" aria-hidden="true"></i> Standard QA</li>
+                        </ul>
+                        <a href="contact.html?type=quote" class="block w-full text-center py-3 border-2 border-blue-100 text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition">Start Trial Order</a>
+                    </div>
+
+                    <!-- Tier 2 (highlighted) -->
+                    <div class="bg-gray-900 rounded-2xl shadow-2xl border border-gray-800 p-8 transform md:-translate-y-4 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                        <div class="mb-6 bg-blue-600/20 w-14 h-14 rounded-xl flex items-center justify-center text-2xl text-blue-400"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+                        <h3 class="text-xl font-bold text-white">2. Volume Partner</h3>
+                        <p class="text-xs font-bold text-blue-400 uppercase tracking-wide mb-4 mt-1">Scale &amp; Customize</p>
+                        <p class="text-sm text-gray-400 mb-6">For established brands requiring OEM and stable supply.</p>
+                        <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400" aria-hidden="true"></i> OEM/ODM Branding</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400" aria-hidden="true"></i> Tiered Pricing</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-blue-400" aria-hidden="true"></i> Priority Production</li>
+                        </ul>
+                        <a href="contact.html?type=quote" class="block w-full text-center py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition shadow-lg shadow-blue-900/50">Request Quote</a>
+                    </div>
+
+                    <!-- Tier 3 -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1.5 bg-purple-500" aria-hidden="true"></div>
+                        <div class="mb-6 bg-purple-50 w-14 h-14 rounded-xl flex items-center justify-center text-2xl text-purple-600"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900">3. Strategic</h3>
+                        <p class="text-xs font-bold text-purple-600 uppercase tracking-wide mb-4 mt-1">Dominate Market</p>
+                        <p class="text-sm text-gray-500 mb-6">Deep integration for regional leaders.</p>
+                        <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500" aria-hidden="true"></i> Exclusivity</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500" aria-hidden="true"></i> Joint R&amp;D</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-purple-500" aria-hidden="true"></i> OA Credit Terms</li>
+                        </ul>
+                        <!--
+                          [P0-5 FIX] 恢复 mailto: 链接。
+                          原始代码（L325）：href="/cdn-cgi/l/email-protection#91f2f4fed1..."
+                          CF Email Obfuscation 是边缘处理，不应在源码中出现。
+                          请将 ceo@v5med.net 替换为实际地址。
+                        -->
+                        <a href="mailto:ceo@v5med.net?subject=Strategic%20Partnership%20Inquiry"
+                           class="block w-full text-center py-3 border-2 border-purple-100 text-purple-600 font-bold rounded-lg hover:bg-purple-50 transition">
+                            Contact CEO
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center">
+                    <div class="inline-flex items-center gap-2 bg-yellow-50 text-yellow-800 text-xs px-4 py-2 rounded-full border border-yellow-200">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <span>Note: We focus on B2B professional buyers. We do not support individual B2C dropshipping.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 产品分类 -->
+        <section class="py-16 px-4 bg-white border-t border-gray-100" aria-labelledby="products-heading">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 id="products-heading" class="text-3xl font-bold mb-12 text-gray-900">Core Supply Chain Categories</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <article class="group border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all relative overflow-hidden text-left">
+                        <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full border border-green-200 flex items-center gap-1">
+                            <i class="fas fa-bolt" aria-hidden="true"></i> Ready to Ship
+                        </div>
+                        <div class="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-4"><i class="fas fa-cut text-xl" aria-hidden="true"></i></div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Surgical Sutures</h3>
+                        <p class="text-sm text-gray-600 mb-4">PGA, PDO, Silk, Nylon. Full range of needle combinations.</p>
+                        <a href="categories/surgical-sutures.html" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Category <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="group border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all relative overflow-hidden text-left">
+                        <div class="absolute top-4 right-4 bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded-full border border-orange-200 flex items-center gap-1">
+                            <i class="fas fa-clock" aria-hidden="true"></i> High Demand
+                        </div>
+                        <div class="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mb-4"><i class="fas fa-box-open text-xl" aria-hidden="true"></i></div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Surgical Packs</h3>
+                        <p class="text-sm text-gray-600 mb-4">Universal, C-Section, Orthopedic. AAMI Level 3 Protection.</p>
+                        <a href="categories/surgical-packs.html" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Category <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="group border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all relative overflow-hidden text-left">
+                        <div class="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600 mb-4"><i class="fas fa-syringe text-xl" aria-hidden="true"></i></div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Injection Devices</h3>
+                        <p class="text-sm text-gray-600 mb-4">Syringes, Infusion Sets, Insulin Needles. CE Certified.</p>
+                        <a href="categories/injection-infusion.html" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Category <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i></a>
+                    </article>
+                    <article class="group border border-gray-100 rounded-xl p-6 hover:shadow-lg transition-all relative overflow-hidden text-left">
+                        <div class="absolute top-4 right-4 bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full border border-blue-200 flex items-center gap-1">
+                            <i class="fas fa-star" aria-hidden="true"></i> New
+                        </div>
+                        <div class="h-12 w-12 bg-yellow-100 rounded-lg flex items-center justify-center text-yellow-600 mb-4"><i class="fas fa-box text-xl" aria-hidden="true"></i></div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Pharmaceutical Packaging</h3>
+                        <p class="text-sm text-gray-600 mb-4">Cartons, Inserts, Security Labels, Blister Trays. Full-set supply.</p>
+                        <a href="categories/pharmaceutical-packaging.html" class="text-blue-600 font-semibold text-sm hover:underline inline-flex items-center gap-1">View Category <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 博客 / 知识库 -->
+        <section class="py-16 px-4 bg-gray-900 text-white border-b border-gray-800" aria-labelledby="blog-heading">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+                    <div>
+                        <h2 id="blog-heading" class="text-2xl md:text-3xl font-bold mb-2">Supply Chain Intelligence</h2>
+                        <p class="text-gray-400 text-sm">Technical insights for procurement managers, not just SEO bots.</p>
+                    </div>
+                    <a href="/blog/" class="text-blue-400 hover:text-white text-sm font-semibold transition flex items-center gap-2 flex-shrink-0">
+                        View Knowledge Base <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!--
+                      [SEO-3] 链接从 Docsify hash 路由（不可索引）改为静态文章页。
+                      静态页由 build-static.py 从 blog/posts/*.md 自动生成。
+                    -->
+                    <a href="/blog/posts/ce-audit-failure.html" class="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold bg-red-900/30 text-red-400 px-2 py-1 rounded uppercase tracking-wider">Risk Alert</span>
+                            <i class="fas fa-external-link-alt text-gray-600 group-hover:text-blue-400 transition" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-100 group-hover:text-blue-300 transition leading-snug">Why 40% of Medical Distributors Fail CE Audits</h3>
+                    </a>
+                    <a href="/blog/posts/integrator-model.html" class="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-green-500 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold bg-green-900/30 text-green-400 px-2 py-1 rounded uppercase tracking-wider">Strategy</span>
+                            <i class="fas fa-external-link-alt text-gray-600 group-hover:text-green-400 transition" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-100 group-hover:text-green-300 transition leading-snug">Trading Company vs. Factory: Who Passes the Audit?</h3>
+                    </a>
+                    <a href="/blog/posts/sterilization-validation.html" class="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-purple-500 transition-all duration-300">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold bg-purple-900/30 text-purple-400 px-2 py-1 rounded uppercase tracking-wider">Technical</span>
+                            <i class="fas fa-external-link-alt text-gray-600 group-hover:text-purple-400 transition" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-100 group-hover:text-purple-300 transition leading-snug">Sterilization: EtO vs. Gamma Validation Guide</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+          [SEO-2] 可见 FAQ 板块 —— 与 <head> 中的 FAQPage JSON-LD 一一对应。
+          使用原生 <details>，无需 JS，爬虫可完整读取。
+        -->
+        <section class="py-16 px-4 bg-gray-50" aria-labelledby="faq-heading">
+            <div class="max-w-3xl mx-auto">
+                <h2 id="faq-heading" class="text-3xl font-bold text-gray-900 mb-3 text-center">Frequently Asked Questions</h2>
+                <p class="text-gray-500 text-center mb-8 text-sm">Common questions from medical distributors before their first order.</p>
+                <div class="space-y-4">
+                    <details class="faq-item">
+                        <summary>What certifications do V5 Medical consumables carry?</summary>
+                        <p class="faq-answer">Our manufacturing partners operate under <strong>ISO 13485:2016</strong> quality management systems. Products carry <strong>CE marking under EU MDR</strong>, and we provide full technical documentation packages (including sterilization validation and test reports) to support FDA registration and local market approvals.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>What is your minimum order quantity (MOQ)?</summary>
+                        <p class="faq-answer">MOQ varies by product category. We support <strong>flexible MOQs for pilot and trial orders</strong> so new distributors can verify quality before scaling. Contact our sales team with your target SKU list for an exact quotation.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Do you offer OEM/ODM private labeling?</summary>
+                        <p class="faq-answer">Yes. We provide comprehensive <strong>OEM branding</strong> (custom packaging, labels, IFU) and <strong>ODM product development</strong> for established distributors, including regulatory documentation issued under your brand where applicable.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Which markets do you ship to and what are the lead times?</summary>
+                        <p class="faq-answer">We ship worldwide from <strong>Shanghai/Ningbo ports</strong>, with established distributor networks in Europe, the Middle East, and Southeast Asia. Typical lead time is <strong>3–7 days for samples</strong> and <strong>15–30 days for production orders</strong>, depending on sterilization and customization requirements.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Newsletter -->
+        <section class="py-16 px-4 bg-blue-900 text-white border-t border-blue-800" aria-labelledby="cta-heading">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 id="cta-heading" class="text-3xl font-bold mb-4">Ready to streamline your procurement?</h2>
+                <p class="text-blue-200 mb-8 max-w-xl mx-auto">Join the distributors who have stopped gambling with random factories. Get monthly compliance updates.</p>
+                <form action="https://formspree.io/f/xdkqlygg" method="POST"
+                      class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto mb-8">
+                    <input type="email" name="email" required autocomplete="email"
+                           placeholder="Enter your business email"
+                           class="px-5 py-3 rounded-lg text-gray-900 w-full focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <!--
+                      [P1-5 FIX] "Footer Newsletter" → "Homepage CTA Newsletter"
+                      原始代码写的 "Footer Newsletter"，但这个表单在首页 CTA 区，不在页脚。
+                      错误的 source 值导致 Formspree 和 GA 无法区分两种订阅渠道，
+                      营销归因数据严重失真。
+                    -->
+                    <input type="hidden" name="source" value="Homepage CTA Newsletter">
+                    <button type="submit" class="bg-green-500 hover:bg-green-400 text-white px-6 py-3 rounded-lg font-bold transition whitespace-nowrap">
+                        Subscribe
+                    </button>
+                </form>
+                <a href="contact.html" class="text-white underline hover:text-blue-200 text-sm transition">Start Full Inquiry</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 动态 Footer，由 layout.js 注入 -->
+    <div id="v5-footer"></div>
+
+    <!--
+      [P0-4 FIX] google_translate_element 全文唯一化。
+      原始代码此 ID 出现 3 次（L466、L584 及 layout.js 注入区域）。
+      重复 ID 导致 getElementById 只返回第一个匹配，其余 Translate 小部件
+      永远无法挂载。修复：保留此处唯一一个挂载点。
+
+      [P0-7 FIX] 原始 L464-467 的 <div id="google_translate_element">
+      夹在 script 标签之间（由于 L450 的孤立 <script>），被浏览器当作
+      JS 代码解析，触发 SyntaxError。此处的 div 位于正确的 body 位置。
+    -->
+    <div id="google_translate_element" class="fixed bottom-24 right-4 z-50" aria-label="Language selector"></div>
+
+    <!--
+      ══════════════════════════════════════════════════════════
+      脚本加载区（所有修复集中说明）
+
+      [P0-1 FIX] 删除原 L450 末尾的孤立 <script> 标签：
+        </script> <script>
+        ↑ 这个多余的 <script> 让浏览器认为后续内联块是嵌套脚本，
+          导致 L451-461 的 seoUtils 初始化和 Google Translate 定义
+          全部解析失败，页面功能全面崩溃。
+
+      [P0-2 FIX] 删除原 L577-581 的第二组重复脚本：
+        config.js?v=2.8.3 / layout.js?v=4.9.5 / main.js?v=2.3.3 等 5 个
+        ↑ 与 L446-450 完全重复，导致：
+          · V5Layout.init() 执行两次 → Header/Footer 双重渲染
+          · V5Config 被覆盖 → 配置状态不可预测
+          · GA 所有事件触发两次 → 统计数据虚增一倍
+
+      [P0-3 FIX] 删除原 L586 的第二个 googleTranslateElementInit。
+        ↑ 与 L455 重复定义，产生 Race Condition，
+          Translate API 调用哪个版本取决于网络时序，不可控。
+          修复：只保留下方初始化脚本中的唯一定义。
+
+      [SEO-4] 5 个核心脚本增加 defer：脚本在 body 底部本已接近
+        非阻塞，defer 进一步保证解析不被打断，且执行顺序不变。
+      ══════════════════════════════════════════════════════════
+    -->
+    <!-- 核心脚本加载（defer 确保不阻塞 HTML 解析） -->
+    <script src="js/config.js?v=2.8.3" defer></script>
+    <script src="js/layout.js?v=4.9.5" defer></script>
+    <script src="js/main.js?v=2.3.3" defer></script>
+    <script src="js/seo-utils.js?v=3.1.3" defer></script>
+    <script src="js/performance-monitor.js?v=2.1.3" defer></script>
+
+    <!-- Google Translate（唯一定义，异步加载） -->
+    <script>
+        /* [P0-3 FIX] 全文唯一的 googleTranslateElementInit 定义 */
+        function googleTranslateElementInit() {
+            if (window.google && window.google.translate) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'ar,tr,fr,de,es,zh-CN,zh-TW,id,tl',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+
+    <!-- 页面级初始化（IIFE，不污染全局作用域） -->
+    <script>
+    (function () {
+        'use strict';
+
+        /* 1. 隐藏加载器 */
+        document.addEventListener('DOMContentLoaded', function () {
+            var loader = document.getElementById('page-loader');
+            if (!loader) return;
+            setTimeout(function () {
+                loader.classList.add('v5-hidden');
+                setTimeout(function () { loader.style.display = 'none'; }, 450);
+            }, 800);
+        });
+
+        /*
+          2. [SEO-2] 原此处调用 seoUtils.injectAllSchemas({ includeFAQ: true })
+          注入无可见内容的 FAQ schema，违反 Google 指南，已删除。
+          组织/服务 Schema 在 <head> 中静态提供，FAQ Schema 与页面
+          可见 FAQ 板块一一对应，无需运行时注入。
+        */
+
+        /* 3. 全局错误捕获 */
+        window.addEventListener('error', function (e) {
+            console.error('[V5] Error:', e.message, '@', e.filename, ':', e.lineno);
+            if (e.filename) {
+                var file = e.filename.split('/').pop().split('?')[0];
+                if (file === 'config.js' || file === 'layout.js') {
+                    showLoadError('关键资源加载失败：' + file + '。请刷新重试。');
+                }
+            }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function (e) {
+            console.error('[V5] Promise rejection:', e.reason);
+        });
+
+        /* 4. 模块健康检查（带重试机制） */
+        (function checkModules(retryCount) {
+            retryCount = retryCount || 0;
+            var maxRetries = 5;
+
+            if (window.V5Config && window.V5Layout && window.V5Layout.init) {
+                console.log('[V5] All core modules loaded ✓');
+                // 确保 layout 已初始化
+                if (!document.querySelector('#v5-header nav')) {
+                    window.V5Layout.init();
+                }
+                return;
+            }
+
+            if (retryCount >= maxRetries) {
+                if (!window.V5Config)  { showLoadError('配置模块加载失败 (config.js)');  return; }
+                if (!window.V5Layout)  { showLoadError('布局模块加载失败 (layout.js)');  return; }
+                return;
+            }
+
+            console.log('[V5] Waiting for modules... retry ' + (retryCount + 1) + '/' + maxRetries);
+            setTimeout(function() { checkModules(retryCount + 1); }, 500);
+        })();
+
+        /*
+          5. 错误展示
+          [P0-6 FIX] 原函数引用 getElementById('loader')，HTML 中无此元素，
+          函数静默失效。修复：HTML 已添加 id="page-loader"，此处对应引用。
+        */
+        function showLoadError(msg) {
+            var el = document.getElementById('page-loader');
+            if (!el) return;
+            el.style.display = 'flex';
+            el.style.opacity = '1';
+            el.classList.remove('v5-hidden');
+            el.innerHTML =
+                '<div style="text-align:center;max-width:360px;padding:2rem;background:#fff;' +
+                'border-radius:1.25rem;box-shadow:0 20px 60px rgba(0,0,0,.15)">' +
+                '<i class="fas fa-exclamation-triangle" style="font-size:2.5rem;color:#f59e0b;display:block;margin-bottom:1rem"></i>' +
+                '<h2 style="font-size:1.1rem;font-weight:700;color:#1e293b;margin:0 0 .5rem">页面加载遇到问题</h2>' +
+                '<p style="font-size:.85rem;color:#64748b;margin:0 0 1.5rem">' + msg + '</p>' +
+                '<p style="font-size:.75rem;color:#94a3b8;background:#f8fafc;padding:.75rem;border-radius:.5rem;text-align:left;margin-bottom:1.5rem">' +
+                '可能原因：CDN 资源加载缓慢 · 网络连接不稳定 · 浏览器缓存问题</p>' +
+                '<button onclick="location.reload()" ' +
+                '  style="width:100%;background:#2563eb;color:#fff;border:none;padding:.75rem;border-radius:.625rem;font-weight:700;cursor:pointer;margin-bottom:.5rem">' +
+                '<i class="fas fa-redo" style="margin-right:.5rem"></i>重新加载</button>' +
+                '<button onclick="sessionStorage.clear();localStorage.clear();location.reload()" ' +
+                '  style="width:100%;background:#f1f5f9;color:#475569;border:none;padding:.75rem;border-radius:.625rem;font-weight:700;cursor:pointer">' +
+                '<i class="fas fa-trash" style="margin-right:.5rem"></i>清除缓存并重载</button>' +
+                '</div>';
+        }
+
+        /* 6. 性能监控（Navigation Timing API Level 2） */
+        if (window.performance) {
+            window.addEventListener('load', function () {
+                setTimeout(function () {
+                    var nav = performance.getEntriesByType('navigation')[0];
+                    if (!nav) return;
+                    var t = Math.round(nav.loadEventEnd - nav.startTime);
+                    console.log('[V5] Page load: ' + t + 'ms');
+                    if (t > 5000) console.warn('[V5] Slow load (' + t + 'ms) — check CDN / JS bundle size.');
+                }, 0);
+            });
+        }
+
+    }());
+    </script>
+
+</body>
+</html>

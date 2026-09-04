@@ -1,0 +1,87 @@
+# ------------------------------
+# V5 Medical LTD - Cloudflare Pages 响应头配置
+# 适配：Docsify 渲染、Stripe 支付、静态资源缓存、安全防护
+# Last updated: 2026-08-22
+# ------------------------------
+
+# ==============================
+# 1. 全局安全响应头（全站生效）
+# ==============================
+/*
+  # 防点击劫持：禁止任何页面嵌入本网站到 iframe
+  X-Frame-Options: DENY
+  # 防 MIME 类型嗅探：强制浏览器按声明的 Content-Type 解析资源
+  X-Content-Type-Options: nosniff
+  # 防 XSS 攻击：启用浏览器内置 XSS 防护并拦截恶意脚本
+  X-XSS-Protection: 1; mode=block
+  # 来源策略：跨域时仅发送域名，保护隐私
+  Referrer-Policy: strict-origin-when-cross-origin
+  # 权限策略：仅开放 payment 权限（适配 Stripe 支付），其余敏感权限禁用
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(self "https://js.stripe.com"), usb=(), accelerometer=(), gyroscope=()
+  # HSTS：强制 HTTPS 访问（有效期1年），包含子域名并加入预加载列表
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  # 跨域策略：禁止未授权跨域访问资源
+  X-Permitted-Cross-Domain-Policies: none
+  # 下载保护：禁止 IE 自动打开下载文件
+  X-Download-Options: noopen
+  # CT 证书透明度：强制验证证书，防伪造
+  Expect-CT: max-age=86400, enforce
+  # 品牌标识（自定义头，非标准但可用于标识站点）
+  X-Company-Name: V5 Medical LTD
+  X-Platform: Global Supply Chain
+
+  # 内容安全策略（CSP）：精细化控制资源加载，适配业务所需
+  # [FIX] 单行书写 —— Cloudflare Pages 不支持多行 header 值，原多行 CSP 实际未生效。
+  # [FIX] 补充 googletagmanager / google-analytics / translate 域名：
+  #       原 CSP 缺少 googletagmanager.com，导致博客的 GA4 被 CSP 拦截，统计一直失效。
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://unpkg.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https://*.stripe.com https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' https://api.whatsapp.com https://formspree.io https://www.google-analytics.com https://analytics.google.com https://*.google-analytics.com https://raw.githubusercontent.com https://api.stripe.com https://translate.google.com https://translate.googleapis.com https://translate-pa.googleapis.com; frame-src 'self' https://www.google.com https://www.youtube.com https://*.stripe.com https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;
+
+# ==============================
+# 2. Docsify 适配：Markdown 文件解析
+# ==============================
+# 根目录 .md 文件
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+  Access-Control-Allow-Origin: *
+
+# blog 子目录 .md 文件
+/blog/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+  Access-Control-Allow-Origin: *
+
+# ==============================
+# 3. 缓存策略：按资源类型精细化配置
+# ==============================
+# HTML 文件：立即重新验证，确保内容实时更新（适配产品目录/博客等动态内容）
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 静态资源（1年长期缓存）：Immutable 表示缓存后无需验证，最大化提速
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# PDF 文件（产品手册/宣传册）：30天缓存，强制浏览器内联打开（不自动下载）
+/*.pdf
+  Content-Type: application/pdf
+  Content-Disposition: inline
+  Cache-Control: public, max-age=2592000

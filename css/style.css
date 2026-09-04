@@ -1,0 +1,377 @@
+/*!
+ * V5 Medical LTD Core Style Sheet
+ * @version 2.0.0
+ * @author V5 Medical Development Team
+ * @description Optimized custom styles complementing Tailwind CSS
+ */
+
+/* ============================================
+   1. DESIGN TOKENS (CSS Variables)
+   ============================================ */
+:root {
+    /* Brand Colors */
+    --color-primary: #1e40af;
+    --color-primary-dark: #1e3a8a;
+    --color-primary-light: #3b82f6;
+    --color-secondary: #10b981;
+    --color-secondary-dark: #059669;
+    
+    /* Status Colors */
+    --color-danger: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+    
+    /* Neutrals */
+    --color-white: #ffffff;
+    --color-gray-50: #f8fafc;
+    --color-gray-100: #f1f5f9;
+    --color-gray-800: #1e293b;
+    --color-gray-900: #0f172a;
+    
+    /* Dimensions */
+    --navbar-height: 80px;
+    --radius-md: 0.5rem;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-base: 300ms ease;
+    
+    /* Z-Index Layers */
+    --z-dropdown: 50;
+    --z-sticky: 100;
+    --z-fixed: 1000;
+    --z-modal: 5000;
+    --z-loader: 9999;
+}
+
+/* Dark Mode Support via Variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-white: #0f172a;
+        --color-gray-50: #1e293b;
+        --color-gray-800: #f1f5f9;
+        --color-gray-900: #f8fafc;
+    }
+}
+
+/* ============================================
+   2. GLOBAL RESETS & BASE
+   ============================================ */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--navbar-height);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Hardware Acceleration Class */
+.gpu-accelerate {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+/* ============================================
+   3. CUSTOM COMPONENTS
+   ============================================ */
+
+/* --- Page Loader --- */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-loader);
+    transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Navigation --- */
+.nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Floating Actions (WhatsApp & BackToTop) --- */
+.whatsapp-float, .back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    z-index: var(--z-fixed);
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.whatsapp-float {
+    bottom: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.whatsapp-float:hover {
+    background-color: var(--color-secondary-dark);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.back-to-top {
+    bottom: 6rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-primary);
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-3px);
+}
+
+/* --- Google Translate Customization --- */
+.goog-te-gadget-simple {
+    background-color: rgba(30, 64, 175, 0.9) !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: white !important;
+    transition: background-color 0.2s;
+}
+
+.goog-te-gadget-simple:hover {
+    background-color: var(--color-primary-dark) !important;
+}
+
+.goog-te-gadget-simple img { display: none !important; }
+.goog-te-gadget-simple span { color: white !important; }
+
+/* --- Toast Notification --- */
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: var(--z-modal);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    color: white;
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 90vw;
+}
+
+.notification.active { transform: translateX(0); }
+.notification.success { background-color: var(--color-secondary); }
+.notification.error { background-color: var(--color-danger); }
+.notification.info { background-color: var(--color-info); }
+
+/* --- Card Hover Effects --- */
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================
+   4. PRINT STYLES
+   ============================================ */
+@media print {
+    .no-print, 
+    nav, 
+    footer, 
+    .whatsapp-float, 
+    .back-to-top, 
+    .page-loader,
+    #google_translate_element {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        background: white;
+        color: black;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+    
+    a[href^="#"]:after,
+    a[href^="javascript"]:after {
+        content: "";
+    }
+}
+
+/* ============================================
+   5. ACCESSIBILITY
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   V5 Medical Mobile Experience & Accessibility Enhancements (Validated)
+   ========================================================================== */
+
+/* --- 1. Mobile Specific Optimizations (Max Width: 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1.1 Enhanced Text Readability for Hero Section */
+    .hero-text-shadow {
+        text-shadow: 
+            0 2px 4px rgba(0, 0, 0, 0.7),
+            0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Stronger gradient overlay for better text contrast */
+    .hero-gradient-overlay {
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.2) 70%,
+            rgba(0, 0, 0, 0.5) 100%
+        );
+    }
+    
+    /* 1.2 Touch Target Size (Minimum 48x48px rule) */
+    button, 
+    .btn, 
+    .nav-link, 
+    a.inline-block,
+    input[type="submit"] {
+        min-height: 48px;
+        min-width: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 1.3 Form Input Optimization (Prevent iOS Zoom) */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px !important; /* Critical for iOS */
+        padding: 12px 16px !important;
+        border-radius: 8px;
+        min-height: 48px;
+    }
+
+    /* 1.4 Active State Feedback (Press Effect) */
+    .blog-card:active,
+    .product-card:active,
+    a.bg-blue-600:active,
+    a.bg-green-500:active,
+    button:active {
+        transform: scale(0.96);
+        transition: transform 0.1s ease;
+        opacity: 0.9;
+    }
+
+    /* 1.5 Navigation Menu Touch Area */
+    #mobile-menu a {
+        padding: 16px 24px !important;
+        font-size: 16px;
+        display: block;
+    }
+
+    /* 1.6 Safe Area for Floating Buttons (Avoid overlapping iPhone Home Bar) */
+    .fixed.bottom-6 {
+        bottom: max(24px, env(safe-area-inset-bottom) + 24px) !important;
+    }
+    
+    /* 1.7 Prevent Horizontal Overflow */
+    body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+}
+
+/* --- 2. Universal Touch Improvements --- */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices to prevent "sticky hover" */
+    .group:hover .group-hover\:scale-110 {
+        transform: none;
+    }
+    
+    /* Add tap highlight color */
+    a, button, input, select, textarea {
+        -webkit-tap-highlight-color: rgba(30, 64, 175, 0.1); /* Primary blue tint */
+    }
+}
+
+/* --- 3. Accessibility (A11y) --- */
+*:focus-visible {
+    outline: 3px solid #3b82f6; /* Visible focus ring */
+    outline-offset: 2px;
+}
+
+/* Screen Reader Only Class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

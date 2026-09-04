@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote — V5 Medical | Medical Consumables Supplier</title>
+    <meta name="description" content="Request a quotation for GLP-1 pen needles, syringes, surgical sutures, and 230+ medical consumables from V5 Medical. ISO 13485 certified. 24-hour response.">
+    <meta name="keywords" content="medical consumables quote, GLP-1 pen needles, syringes, surgical sutures, medical supplier, V5 Medical">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="V5 Medical LTD">
+    <link rel="icon" type="image/x-icon" href="https://v5med.net/images/icons/favicon.ico">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Get a Quote — V5 Medical">
+    <meta property="og:description" content="230+ SKUs · ISO 13485 Certified · 24-Hour Response">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quote.12888.de">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        v5red: '#c41e3a',
+                        v5dark: '#1a1a2e',
+                        v5gray: '#f8fafc',
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        .gradient-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        .form-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.97);
+        }
+
+        .input-focus:focus {
+            border-color: #c41e3a;
+            box-shadow: 0 0 0 3px rgba(196,30,58,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #c41e3a 0%, #e63946 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(196,30,58,0.3);
+        }
+        .btn-primary:active { transform: translateY(0); }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-check {
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .lang-btn.active {
+            background: #c41e3a;
+            color: white;
+        }
+
+        /* Trust badges */
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(255,255,255,0.12);
+            color: #e2e8f0;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Responsive hero height */
+        @media (max-width: 768px) {
+            .hero-section { padding-top: 3rem; padding-bottom: 2rem; }
+        }
+    </style>
+</head>
+
+<body class="bg-v5gray text-gray-800 font-sans antialiased">
+
+<!-- ============ HEADER ============ -->
+<header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <img src="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png" alt="V5 Medical" class="h-8 w-auto">
+            <span class="font-bold text-v5red text-lg tracking-tight">V5 MEDICAL</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <!-- Language Toggle -->
+            <div class="flex bg-gray-100 rounded-lg p-0.5">
+                <button onclick="setLang('en')" id="lang-en" class="lang-btn active px-3 py-1 rounded-md text-xs font-semibold transition">EN</button>
+                <button onclick="setLang('cn')" id="lang-cn" class="lang-btn px-3 py-1 rounded-md text-xs font-semibold transition text-gray-500">中文</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ============ HERO SECTION ============ -->
+<section class="gradient-hero hero-section py-16 md:py-24 text-center relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4">
+        <!-- Trust Badges -->
+        <div class="flex flex-wrap justify-center gap-2 mb-6">
+            <span class="trust-badge"><i class="fas fa-certificate text-yellow-400"></i> ISO 13485</span>
+            <span class="trust-badge"><i class="fas fa-shield-halved text-green-400"></i> CE / FDA</span>
+            <span class="trust-badge"><i class="fas fa-globe text-blue-400"></i> <span data-i18n="badge-countries">40+ Countries</span></span>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
+            <span data-i18n="hero-title-1">Get Your Medical Consumables</span><br>
+            <span class="text-v5red" data-i18n="hero-title-2">Quotation in 24 Hours</span>
+        </h1>
+        <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="hero-desc">
+            230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Factory-direct pricing with ISO 13485 certification.
+        </p>
+
+        <a href="#quote-form" class="inline-block btn-primary text-white px-8 py-3.5 rounded-lg text-sm font-bold shadow-lg">
+            <i class="fas fa-file-invoice mr-2"></i> <span data-i18n="hero-cta">Request a Quote</span>
+        </a>
+    </div>
+</section>
+
+<!-- ============ PRODUCT HIGHLIGHTS ============ -->
+<section class="py-12 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-center text-xl md:text-2xl font-bold text-v5dark mb-8" data-i18n="products-title">Our Core Product Lines</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="text-center p-4 rounded-xl bg-gray-50 hover:shadow-md transition">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-red-50 flex items-center justify-center">
+                    <i class="fas fa-syringe text-v5red text-lg"></i>
+                </div>
+                <h3 class="font-semibold text-sm text-v5dark" data-i18n="prod-1-title">GLP-1 Pen Needles</h3>
+                <p class="text-xs text-gray-400 mt-1" data-i18n="prod-1-desc">32G, 4mm / 5mm / 6mm / 8mm</p>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-gray-50 hover:shadow-md transition">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-blue-50 flex items-center justify-center">
+                    <i class="fas fa-syringe text-blue-500 text-lg"></i>
+                </div>
+                <h3 class="font-semibold text-sm text-v5dark" data-i18n="prod-2-title">Syringes</h3>
+                <p class="text-xs text-gray-400 mt-1" data-i18n="prod-2-desc">1ml / 3ml / 5ml / 10ml</p>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-gray-50 hover:shadow-md transition">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-green-50 flex items-center justify-center">
+                    <i class="fas fa-scissors text-green-500 text-lg"></i>
+                </div>
+                <h3 class="font-semibold text-sm text-v5dark" data-i18n="prod-3-title">Surgical Sutures</h3>
+                <p class="text-xs text-gray-400 mt-1" data-i18n="prod-3-desc">Absorbable / Non-absorbable</p>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-gray-50 hover:shadow-md transition">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-purple-50 flex items-center justify-center">
+                    <i class="fas fa-box-open text-purple-500 text-lg"></i>
+                </div>
+                <h3 class="font-semibold text-sm text-v5dark" data-i18n="prod-4-title">Medical PVC</h3>
+                <p class="text-xs text-gray-400 mt-1" data-i18n="prod-4-desc">Rigid sheets / Film</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ QUOTE FORM ============ -->
+<section id="quote-form" class="py-12 md:py-16 px-4 bg-v5gray">
+    <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-v5dark mb-2" data-i18n="form-title">Request a Quotation</h2>
+            <p class="text-gray-500 text-sm" data-i18n="form-subtitle">Fill in the form below. Our team will respond within 24 hours.</p>
+        </div>
+
+        <div class="form-card rounded-2xl shadow-lg p-6 md:p-8" id="formContainer">
+            <form id="quoteForm" onsubmit="handleSubmit(event)" novalidate>
+                <!-- Company Name -->
+                <div class="mb-5">
+                    <label for="company" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <span data-i18n="field-company">Company Name</span> <span class="text-v5red">*</span>
+                    </label>
+                    <input type="text" id="company" name="company" required
+                        data-i18n-placeholder="placeholder-company"
+                        placeholder="e.g. MedSupply Co., Ltd."
+                        class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                </div>
+
+                <!-- Contact Person -->
+                <div class="mb-5">
+                    <label for="contact" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <span data-i18n="field-contact">Contact Person</span> <span class="text-v5red">*</span>
+                    </label>
+                    <input type="text" id="contact" name="contact" required
+                        data-i18n-placeholder="placeholder-contact"
+                        placeholder="Full name"
+                        class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                </div>
+
+                <!-- Email + Phone row -->
+                <div class="grid md:grid-cols-2 gap-5 mb-5">
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                            <span data-i18n="field-email">Email</span> <span class="text-v5red">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required
+                            data-i18n-placeholder="placeholder-email"
+                            placeholder="you@company.com"
+                            class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                            <span data-i18n="field-phone">Phone / WhatsApp</span>
+                        </label>
+                        <input type="tel" id="phone" name="phone"
+                            data-i18n-placeholder="placeholder-phone"
+                            placeholder="+1 234 567 8900"
+                            class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                </div>
+
+                <!-- Product Category -->
+                <div class="mb-5">
+                    <label for="category" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <span data-i18n="field-category">Product Category</span> <span class="text-v5red">*</span>
+                    </label>
+                    <select id="category" name="category" required
+                        class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-white transition appearance-none">
+                        <option value="" data-i18n="option-select">-- Select a category --</option>
+                        <option value="GLP-1 Pen Needles" data-i18n="option-glp1">GLP-1 Pen Needles</option>
+                        <option value="Insulin Syringes" data-i18n="option-insulin">Insulin Syringes</option>
+                        <option value="General Syringes" data-i18n="option-syringes">General Syringes</option>
+                        <option value="Surgical Sutures" data-i18n="option-sutures">Surgical Sutures</option>
+                        <option value="Medical PVC Sheets" data-i18n="option-pvc">Medical PVC Sheets</option>
+                        <option value="IV Cannula" data-i18n="option-iv">IV Cannula</option>
+                        <option value="Blood Collection Tubes" data-i18n="option-blood">Blood Collection Tubes</option>
+                        <option value="Other / Multiple" data-i18n="option-other">Other / Multiple Categories</option>
+                    </select>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-6">
+                    <label for="description" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                        <span data-i18n="field-desc">Requirement Details</span>
+                    </label>
+                    <textarea id="description" name="description" rows="4"
+                        data-i18n-placeholder="placeholder-desc"
+                        placeholder="Product specs, quantity, destination country, target price, etc."
+                        class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition resize-none"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" id="submitBtn"
+                    class="btn-primary w-full text-white py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-i18n="btn-submit">Submit Inquiry</span>
+                </button>
+
+                <p class="text-center text-xs text-gray-400 mt-3" data-i18n="form-privacy">
+                    Your information is secure and will only be used for quotation purposes.
+                </p>
+            </form>
+        </div>
+
+        <!-- SUCCESS MESSAGE (hidden by default) -->
+        <div id="successMessage" class="hidden">
+            <div class="form-card rounded-2xl shadow-lg p-8 md:p-12 text-center fade-in">
+                <div class="success-check w-20 h-20 mx-auto mb-6 rounded-full bg-green-100 flex items-center justify-center">
+                    <i class="fas fa-check text-green-500 text-3xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-v5dark mb-3" data-i18n="success-title">Thank You for Your Inquiry!</h2>
+                <p class="text-gray-500 mb-2" data-i18n="success-desc">
+                    We have received your request. Our sales team will contact you within 24 hours.
+                </p>
+                <p class="text-sm text-gray-400 mb-6" data-i18n="success-ref">
+                    Reference ID will be sent to your email.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    <a href="https://wa.me/8615133008348" target="_blank"
+                        class="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 text-white rounded-lg text-sm font-semibold hover:bg-green-600 transition">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Us
+                    </a>
+                    <button onclick="resetForm()"
+                        class="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">
+                        <i class="fas fa-redo"></i> <span data-i18n="btn-another">Submit Another Inquiry</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ WHY V5 MEDICAL ============ -->
+<section class="py-12 px-4 bg-white">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-center text-xl md:text-2xl font-bold text-v5dark mb-8" data-i18n="why-title">Why Choose V5 Medical</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="flex items-start gap-4 p-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center">
+                    <i class="fas fa-award text-v5red"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-v5dark mb-1" data-i18n="why-1-title">ISO 13485 Certified</h3>
+                    <p class="text-xs text-gray-500" data-i18n="why-1-desc">Full quality management system for medical devices. CE and FDA documentation available.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 p-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                    <i class="fas fa-industry text-blue-500"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-v5dark mb-1" data-i18n="why-2-title">Factory Direct</h3>
+                    <p class="text-xs text-gray-500" data-i18n="why-2-desc">Own manufacturing facility in Kunshan, China. Competitive pricing with no middlemen.</p>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 p-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                    <i class="fas fa-truck-fast text-green-500"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-v5dark mb-1" data-i18n="why-3-title">Global Logistics</h3>
+                    <p class="text-xs text-gray-500" data-i18n="why-3-desc">Serving 40+ countries with reliable shipping. DDP / CIF / FOB terms available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-v5dark text-gray-400 py-8 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+        <div class="flex items-center justify-center gap-2 mb-3">
+            <img src="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png" alt="V5 Medical" class="h-6 w-auto opacity-80">
+            <span class="font-bold text-white text-sm">V5 MEDICAL</span>
+            <span class="text-gray-600 mx-1">|</span>
+            <span class="text-gray-500 text-xs">12888.de</span>
+        </div>
+        <p class="text-xs">
+            © 2026 V5 Medical LTD. All rights reserved.<br>
+            <span data-i18n="footer-address">No. 168, Luying Road, Kunshan, Jiangsu, China</span> ·
+            <a href="mailto:sales@v5med.net" class="text-gray-400 hover:text-white transition">sales@v5med.net</a>
+        </p>
+    </div>
+</footer>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+// ─── Configuration ───
+const CONFIG = {
+    ERP_URL: 'https://erp.12888.de',
+    ERP_USER: 'go@v5medical.ai',
+    ERP_PWD: 'V5GoAgent2026!',
+    ASSIGNEE: 'V5NOBOT',  // Assign to Leo for follow-up
+    SOURCE: 'Quote Landing Page (12888.de)',
+};
+
+// ─── i18n Translations ───
+const I18N = {
+    en: {
+        'badge-countries': '40+ Countries',
+        'hero-title-1': 'Get Your Medical Consumables',
+        'hero-title-2': 'Quotation in 24 Hours',
+        'hero-desc': '230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Factory-direct pricing with ISO 13485 certification.',
+        'hero-cta': 'Request a Quote',
+        'products-title': 'Our Core Product Lines',
+        'prod-1-title': 'GLP-1 Pen Needles',
+        'prod-1-desc': '32G, 4mm / 5mm / 6mm / 8mm',
+        'prod-2-title': 'Syringes',
+        'prod-2-desc': '1ml / 3ml / 5ml / 10ml',
+        'prod-3-title': 'Surgical Sutures',
+        'prod-3-desc': 'Absorbable / Non-absorbable',
+        'prod-4-title': 'Medical PVC',
+        'prod-4-desc': 'Rigid sheets / Film',
+        'form-title': 'Request a Quotation',
+        'form-subtitle': 'Fill in the form below. Our team will respond within 24 hours.',
+        'field-company': 'Company Name',
+        'field-contact': 'Contact Person',
+        'field-email': 'Email',
+        'field-phone': 'Phone / WhatsApp',
+        'field-category': 'Product Category',
+        'field-desc': 'Requirement Details',
+        'placeholder-company': 'e.g. MedSupply Co., Ltd.',
+        'placeholder-contact': 'Full name',
+        'placeholder-email': 'you@company.com',
+        'placeholder-phone': '+1 234 567 8900',
+        'placeholder-desc': 'Product specs, quantity, destination country, target price, etc.',
+        'option-select': '-- Select a category --',
+        'option-glp1': 'GLP-1 Pen Needles',
+        'option-insulin': 'Insulin Syringes',
+        'option-syringes': 'General Syringes',
+        'option-sutures': 'Surgical Sutures',
+        'option-pvc': 'Medical PVC Sheets',
+        'option-iv': 'IV Cannula',
+        'option-blood': 'Blood Collection Tubes',
+        'option-other': 'Other / Multiple Categories',
+        'btn-submit': 'Submit Inquiry',
+        'btn-another': 'Submit Another Inquiry',
+        'form-privacy': 'Your information is secure and will only be used for quotation purposes.',
+        'success-title': 'Thank You for Your Inquiry!',
+        'success-desc': 'We have received your request. Our sales team will contact you within 24 hours.',
+        'success-ref': 'Reference ID will be sent to your email.',
+        'why-title': 'Why Choose V5 Medical',
+        'why-1-title': 'ISO 13485 Certified',
+        'why-1-desc': 'Full quality management system for medical devices. CE and FDA documentation available.',
+        'why-2-title': 'Factory Direct',
+        'why-2-desc': 'Own manufacturing facility in Kunshan, China. Competitive pricing with no middlemen.',
+        'why-3-title': 'Global Logistics',
+        'why-3-desc': 'Serving 40+ countries with reliable shipping. DDP / CIF / FOB terms available.',
+        'footer-address': 'No. 168, Luying Road, Kunshan, Jiangsu, China',
+        'err-required': 'Please fill in all required fields.',
+        'err-email': 'Please enter a valid email address.',
+        'err-submit': 'Submission failed. Please try again or contact us directly.',
+        'loading': 'Submitting...',
+    },
+    cn: {
+        'badge-countries': '覆盖40+国家',
+        'hero-title-1': '医疗耗材询价',
+        'hero-title-2': '24小时内报价',
+        'hero-desc': '230+ SKU，涵盖GLP-1注射针、注射器、手术缝合线等。工厂直供，ISO 13485认证。',
+        'hero-cta': '立即询价',
+        'products-title': '核心产品线',
+        'prod-1-title': 'GLP-1注射针',
+        'prod-1-desc': '32G, 4mm / 5mm / 6mm / 8mm',
+        'prod-2-title': '注射器',
+        'prod-2-desc': '1ml / 3ml / 5ml / 10ml',
+        'prod-3-title': '手术缝合线',
+        'prod-3-desc': '可吸收 / 不可吸收',
+        'prod-4-title': '医用PVC硬片',
+        'prod-4-desc': '硬片 / 薄膜',
+        'form-title': '提交询价',
+        'form-subtitle': '填写以下表单，我们的团队将在24小时内回复。',
+        'field-company': '公司名称',
+        'field-contact': '联系人',
+        'field-email': '邮箱',
+        'field-phone': '电话 / WhatsApp',
+        'field-category': '产品类别',
+        'field-desc': '需求详情',
+        'placeholder-company': '例如：MedSupply Co., Ltd.',
+        'placeholder-contact': '姓名',
+        'placeholder-email': 'you@company.com',
+        'placeholder-phone': '+86 180 1266 9897',
+        'placeholder-desc': '产品规格、数量、目的国、目标价格等',
+        'option-select': '-- 请选择类别 --',
+        'option-glp1': 'GLP-1注射针',
+        'option-insulin': '胰岛素注射器',
+        'option-syringes': '通用注射器',
+        'option-sutures': '手术缝合线',
+        'option-pvc': '医用PVC硬片',
+        'option-iv': '留置针',
+        'option-blood': '采血管',
+        'option-other': '其他 / 多品类',
+        'btn-submit': '提交询价',
+        'btn-another': '再次询价',
+        'form-privacy': '您的信息安全保密，仅用于报价目的。',
+        'success-title': '感谢您的询价！',
+        'success-desc': '我们已收到您的请求，销售团队将在24小时内联系您。',
+        'success-ref': '参考编号将发送至您的邮箱。',
+        'why-title': '为什么选择V5 Medical',
+        'why-1-title': 'ISO 13485认证',
+        'why-1-desc': '完整的医疗器械质量管理体系，可提供CE和FDA文档。',
+        'why-2-title': '工厂直供',
+        'why-2-desc': '昆山自有工厂，无中间商，价格更有竞争力。',
+        'why-3-title': '全球物流',
+        'why-3-desc': '服务40+国家，DDP/CIF/FOB多种贸易条款可选。',
+        'footer-address': '中国江苏省昆山市鹿鸣路168号',
+        'err-required': '请填写所有必填字段。',
+        'err-email': '请输入有效的邮箱地址。',
+        'err-submit': '提交失败，请重试或直接联系我们。',
+        'loading': '提交中...',
+    }
+};
+
+let currentLang = 'en';
+
+function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-cn').classList.toggle('active', lang === 'cn');
+    document.getElementById('lang-en').classList.toggle('text-gray-500', lang !== 'en');
+    document.getElementById('lang-cn').classList.toggle('text-gray-500', lang !== 'cn');
+
+    const t = I18N[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+    });
+    document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
+}
+
+// ─── Form Validation ───
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    field.style.borderColor = '#c41e3a';
+    // Remove old error
+    const old = field.parentNode.querySelector('.field-error');
+    if (old) old.remove();
+    const err = document.createElement('p');
+    err.className = 'field-error text-xs text-v5red mt-1';
+    err.textContent = message;
+    field.parentNode.appendChild(err);
+    field.addEventListener('input', () => {
+        field.style.borderColor = '#e5e7eb';
+        err.remove();
+    }, { once: true });
+}
+
+// ─── Submit to Worker Proxy (production) or direct ERP (local dev) ───
+const IS_LOCAL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const SUBMIT_URL = IS_LOCAL ? null : '/api/submit-quote'; // Worker proxy
+
+async function submitToBackend(data) {
+    if (IS_LOCAL) {
+        // Direct ERP call (dev mode — requires CORS disabled or local proxy)
+        const loginResp = await fetch(`${CONFIG.ERP_URL}/api/method/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ usr: CONFIG.ERP_USER, pwd: CONFIG.ERP_PWD }),
+        });
+        if (!loginResp.ok) throw new Error('ERP login failed');
+        const cookie = loginResp.headers.get('set-cookie') || '';
+
+        const leadData = {
+            doctype: 'Lead',
+            lead_name: data.contact,
+            company_name: data.company,
+            email_id: data.email,
+            phone: data.phone || '',
+            status: 'Lead',
+            source: 'Website',
+            v5_agent_owner: 'go@v5medical.ai',
+            v5_outreach_channel: 'Website Inquiry',
+            v5_target_products: data.category,
+            v5_response_status: '🆕 New',
+            v5_source_detail: 'quote.12888.de landing page',
+            v5_campaign_name: 'Cold Email CTA 2026-Q3',
+            notes: `Product: ${data.category}\nDetails: ${data.description || 'N/A'}`,
+        };
+
+        const resp = await fetch(`${CONFIG.ERP_URL}/api/resource/Lead`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Cookie': cookie },
+            body: JSON.stringify(leadData),
+        });
+        if (!resp.ok) throw new Error('Lead creation failed');
+        const result = await resp.json();
+        return result.data?.name || 'unknown';
+    } else {
+        // Via Cloudflare Worker proxy
+        const resp = await fetch(SUBMIT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+        const result = await resp.json();
+        if (!resp.ok || !result.success) throw new Error(result.error || 'Submit failed');
+        return result.lead_id;
+    }
+}
+
+// ─── Form Submit ───
+async function handleSubmit(e) {
+    e.preventDefault();
+    const t = I18N[currentLang];
+    const btn = document.getElementById('submitBtn');
+
+    // Clear old errors
+    document.querySelectorAll('.field-error').forEach(el => el.remove());
+    ['company','contact','email','category'].forEach(id => {
+        document.getElementById(id).style.borderColor = '#e5e7eb';
+    });
+
+    // Validate
+    let hasError = false;
+    const company = document.getElementById('company').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const category = document.getElementById('category').value;
+    const description = document.getElementById('description').value.trim();
+
+    if (!company) { showError('company', t['err-required']); hasError = true; }
+    if (!contact) { showError('contact', t['err-required']); hasError = true; }
+    if (!email || !validateEmail(email)) { showError('email', t['err-email']); hasError = true; }
+    if (!category) { showError('category', t['err-required']); hasError = true; }
+    if (hasError) return;
+
+    // Show loading
+    btn.disabled = true;
+    btn.innerHTML = `<div class="spinner"></div> <span>${t['loading']}</span>`;
+
+    try {
+        // Submit to ERP via proxy (production) or direct (local dev)
+        const leadId = await submitToBackend({ company, contact, email, phone, category, description });
+
+        console.log('Lead created:', leadId);
+
+        // Show success
+        document.getElementById('formContainer').classList.add('hidden');
+        document.getElementById('successMessage').classList.remove('hidden');
+
+        // Track conversion (optional)
+        if (typeof gtag === 'function') {
+            gtag('event', 'generate_lead', {
+                'event_category': 'quote_form',
+                'event_label': category,
+            });
+        }
+
+    } catch (err) {
+        console.error('Submit error:', err);
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-paper-plane"></i> <span>${t['btn-submit']}</span>`;
+        alert(t['err-submit']);
+    }
+}
+
+function resetForm() {
+    document.getElementById('quoteForm').reset();
+    document.getElementById('formContainer').classList.remove('hidden');
+    document.getElementById('successMessage').classList.add('hidden');
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    const t = I18N[currentLang];
+    btn.innerHTML = `<i class="fas fa-paper-plane"></i> <span>${t['btn-submit']}</span>`;
+    // Scroll to form
+    document.getElementById('quote-form').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── Init: detect browser language ───
+(function() {
+    const browserLang = navigator.language || navigator.userLanguage;
+    if (browserLang && browserLang.startsWith('zh')) {
+        setLang('cn');
+    }
+})();
+</script>
+
+</body>
+</html>

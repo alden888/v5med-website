@@ -1,0 +1,60 @@
+github.com/alden888/v5md/
+├── images/
+│   ├── products/
+│   │   ├── surgical-sutures/          # 手术缝合线（统一命名）
+│   │   │   ├── pga-absorbable-suture.jpg
+│   │   │   ├── pgla-absorbable-suture.jpg
+│   │   │   ├── chromic-catgut.jpg
+│   │   │   ├── plain-catgut.jpg       # 新增
+│   │   │   ├── silk-suture.jpg
+│   │   │   ├── nylon-suture.jpg
+│   │   │   ├── polypropylene-suture.jpg
+│   │   │   ├── polyester-suture.jpg   # 新增
+│   │   │   └── pdo-suture.jpg         # 新增
+│   │   │
+│   │   ├── surgical-instruments/      # 手术器械（统一命名）
+│   │   │   ├── surgical-blades.jpg
+│   │   │   ├── scalpels.jpg           # 重命名（原 disposable-scalpels.jpg）
+│   │   │   ├── lancets.jpg            # 重命名（原 blood-lancets.jpg）
+│   │   │   ├── surgical-scissors.jpg  # 新增
+│   │   │   ├── forceps.jpg            # 新增
+│   │   │   └── needle-holders.jpg     # 新增
+│   │   │
+│   │   ├── gauze-dressings/           # 纱布敷料（统一命名）
+│   │   │   ├── gauze-swabs.jpg
+│   │   │   ├── gauze-rolls.jpg        # 新增
+│   │   │   ├── gauze-balls.jpg
+│   │   │   ├── abdominal-pads.jpg
+│   │   │   ├── cotton-rolls.jpg       # 新增
+│   │   │   ├── cotton-balls.jpg       # 新增
+│   │   │   └── non-woven-sponges.jpg  # 新增
+│   │   │
+│   │   ├── protective-equipment/      # 防护用品（统一命名）
+│   │   │   ├── surgical-face-masks.jpg # 重命名
+│   │   │   ├── n95-ffp2-masks.jpg     # 新增
+│   │   │   ├── disposable-caps.jpg    # 新增
+│   │   │   ├── surgical-gowns.jpg
+│   │   │   ├── isolation-gowns.jpg    # 重命名（原 protective-coveralls.jpg）
+│   │   │   └── shoe-covers.jpg        # 新增
+│   │   │
+│   │   ├── injection-infusion/        # 注射输液（统一命名）
+│   │   │   ├── disposable-syringes.jpg
+│   │   │   ├── insulin-syringes.jpg   # 新增（原 dental-syringes.jpg可能需要复用
+│   │   │   ├── hypodermic-needles.jpg # 新增
+│   │   │   ├── iv-cannula.jpg         # 新增
+│   │   │   ├── infusion-sets.jpg
+│   │   │   └── blood-transfusion-sets.jpg # 新增
+│   │   │
+│   │   ├── dental-products/           # 牙科产品（新增）
+│   │   │   ├── dental-examination-kits.jpg
+│   │   │   ├── saliva-ejectors.jpg
+│   │   │   ├── dental-bibs.jpg
+│   │   │   ├── impression-trays.jpg
+│   │   │   ├── polishing-cups.jpg
+│   │   │   └── polishing-brushes.jpg
+│   │   │
+│   │   └── surgical-packs/            # 手术包（保留）
+│   │       └── surgical-packs.jpg
+│   │
+│   └── logo/
+│       └── v5logo.png

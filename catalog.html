@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse V5 Medical's complete catalog. Surgical sutures, packs, injection devices, and dental products. ISO 13485 Certified.">
+    <link rel="canonical" href="https://v5med.net/catalog.html">
+    <title>Product Catalog | V5 Medical LTD</title>
+    <link rel="icon" type="image/x-icon" href="images/icons/favicon.ico">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#1e40af', secondary: '#3b82f6', accent: '#2563eb' } }
+            }
+        }
+    </script>
+    <style>
+        .cat-link.active { background-color: #eff6ff; color: #1e40af; border-left: 3px solid #1e40af; padding-left: 0.75rem; font-weight: 600; }
+        .cat-link { border-left: 3px solid transparent; }
+        
+        /* 移动端水平滑动优化 */
+        .mobile-scroll {
+            -ms-overflow-style: none; scrollbar-width: none;
+            display: flex; overflow-x: auto; scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; padding-bottom: 4px;
+        }
+        .mobile-scroll::-webkit-scrollbar { display: none; }
+        
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background-color: #e5e7eb; border-radius: 4px; }
+        
+        .search-clear { display: none; }
+        .search-container.has-value .search-clear { display: block; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+        
+        .scroll-mask-right {
+            background: linear-gradient(to right, transparent, white);
+            position: absolute; right: 0; top: 0; bottom: 0; width: 24px; pointer-events: none; z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen font-sans">
+    
+    <h1 class="sr-only">Medical Product Catalog – Surgical Sutures, Packs & Devices | V5 Medical</h1>
+
+    <div id="loader" class="page-loader"><div class="loader-spinner"></div></div>
+    <script>setTimeout(() => { const l = document.getElementById('loader'); if(l) { l.style.opacity = '0'; setTimeout(() => l.style.display = 'none', 500); } }, 1500);</script>
+
+    <div id="v5-header"></div>
+
+    <main class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8"> 
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="md:hidden mb-6 sticky top-20 z-30 bg-gray-50 pt-2 pb-2 -mx-4 px-4 shadow-sm border-b border-gray-100">
+                <div class="relative search-container mb-3">
+                    <input type="text" id="mobile-search" placeholder="Search products..." 
+                           class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all bg-white"
+                           oninput="handleSearch(this.value)">
+                    <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    <button onclick="clearSearch()" class="search-clear absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times-circle"></i>
+                    </button>
+                </div>
+                
+                <div class="relative">
+                    <div class="flex gap-2 overflow-x-auto mobile-scroll pb-2" id="mobile-filters"></div>
+                    <div class="scroll-mask-right"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 lg:gap-10">
+                
+                <aside class="hidden md:block w-64 flex-shrink-0">
+                    <div class="sticky top-28 space-y-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col max-h-[calc(100vh-12rem)]">
+                            <h3 class="font-bold text-gray-900 mb-4 px-2 uppercase text-xs tracking-wider border-b border-gray-100 pb-2 flex-shrink-0">
+                                Product Categories
+                            </h3>
+                            <nav class="space-y-1 overflow-y-auto sidebar-scroll pr-1" id="desktop-sidebar">
+                                <div class="animate-pulse space-y-3 px-2">
+                                    <div class="h-5 bg-gray-100 rounded w-3/4"></div>
+                                    <div class="h-5 bg-gray-100 rounded w-full"></div>
+                                </div>
+                            </nav>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-5 border border-red-100">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-red-900 text-sm">Product Catalog</h3>
+                                    <p class="text-[10px] text-red-600">PDF • 3.2 MB</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-red-700 mb-4">Complete product catalog with specifications and pricing.</p>
+                            <a href="pdf/Catalog.pdf" target="_blank" rel="noopener noreferrer" class="block w-full bg-red-600 hover:bg-red-700 text-white text-center py-2 rounded-lg text-sm font-bold transition shadow-sm hover:-translate-y-0.5 transform">
+                                <i class="fas fa-eye mr-1"></i> View Online
+                            </a>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-5 border border-pink-100 mt-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-pink-900 text-sm">Phoera Cosmetics</h3>
+                                    <p class="text-[10px] text-pink-600">Price List • Apr 2026</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-pink-700 mb-4">Complete cosmetics price list with 71 products including makeup, brushes, and skincare.</p>
+                            <a href="pdf/Phoera_PriceList_Apr2026.pdf" target="_blank" rel="noopener noreferrer" class="block w-full bg-pink-600 hover:bg-pink-700 text-white text-center py-2 rounded-lg text-sm font-bold transition shadow-sm hover:-translate-y-0.5 transform">
+                                <i class="fas fa-eye mr-1"></i> View Online
+                            </a>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-5 border border-emerald-100 mt-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-emerald-900 text-sm">Tirzepatide Injection</h3>
+                                    <p class="text-[10px] text-emerald-600">Price List • Apr 2026</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-emerald-700 mb-4">Semaglutide, Tirzepatide & Retatrutide injection pricing. Multiple dosage options available.</p>
+                            <a href="pdf/Tirzepatide_Injection_Drug_Price_List_202604.pdf" target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center py-2 rounded-lg text-sm font-bold transition shadow-sm hover:-translate-y-0.5 transform">
+                                <i class="fas fa-eye mr-1"></i> View Online
+                            </a>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl p-5 border border-violet-100 mt-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="w-10 h-10 bg-violet-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-file-pdf text-white text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-violet-900 text-sm">High-Purity Series</h3>
+                                    <p class="text-[10px] text-violet-600">Price List • PDF • 635 KB</p>
+                                </div>
+                            </div>
+                            <p class="text-xs text-violet-700 mb-4">High-purity compound price list (English). Shareable short link: v5med.net/highpurity</p>
+                            <a href="pdf/V5_Medical_HighPurity_PriceList_EN.pdf" target="_blank" rel="noopener noreferrer" class="block w-full bg-violet-600 hover:bg-violet-700 text-white text-center py-2 rounded-lg text-sm font-bold transition shadow-sm hover:-translate-y-0.5 transform">
+                                <i class="fas fa-eye mr-1"></i> View Online
+                            </a>
+                        </div>
+
+                        <div class="bg-blue-50 rounded-xl p-5 border border-blue-100">
+                            <h3 class="font-bold text-blue-900 mb-2 text-sm">Need a Custom Quote?</h3>
+                            <p class="text-xs text-blue-700 mb-4">Our team responds within 24 hours.</p>
+                            <a href="contact.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-2 rounded-lg text-sm font-bold transition shadow-sm mb-2 hover:-translate-y-0.5 transform">Contact Sales</a>
+                            <a href="#" onclick="window.trackWhatsAppClick && window.trackWhatsAppClick(); window.open(window.V5Config.CONTACT.WHATSAPP.API_URL, '_blank')" class="block w-full bg-white text-green-600 border border-green-200 hover:bg-green-50 text-center py-2 rounded-lg text-sm font-bold transition hover:-translate-y-0.5 transform"><i class="fab fa-whatsapp mr-1"></i> WhatsApp</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="flex-1">
+                    <div class="hidden md:flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800" id="page-title">All Products</h2>
+                            <p class="text-xs text-gray-500 mt-1" id="result-count">Loading products...</p>
+                        </div>
+                        <div class="relative w-80 search-container">
+                            <input type="text" id="desktop-search" placeholder="Search by name, model..." 
+                                   class="w-full pl-10 pr-10 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-sm transition-all"
+                                   oninput="handleSearch(this.value)">
+                            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
+                            <button onclick="clearSearch()" class="search-clear absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                <i class="fas fa-times-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4 text-xs text-gray-500 mb-6 px-2">
+                        <span class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-1"></i> ISO 13485 Partner Factories</span>
+                        <span class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-1"></i> CE / FDA Supported</span>
+                        <span class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-1"></i> OEM / ODM Accepted</span>
+                        <span class="flex items-center"><i class="fas fa-globe text-blue-500 mr-1"></i> Exporting to 40+ Countries</span>
+                    </div>
+
+                    <div id="loading" class="text-center py-24">
+                        <div class="loader-spinner border-blue-600 border-t-transparent mx-auto mb-4"></div>
+                        <p class="text-gray-500 text-sm font-medium">Loading catalog...</p>
+                    </div>
+
+                    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in"></div>
+
+                    <div id="no-results" class="hidden text-center py-16 bg-white rounded-xl border-2 border-dashed border-gray-200">
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+                            <i class="fas fa-search text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900">No products found</h3>
+                        <p class="text-gray-500 text-sm mt-1">We couldn't find matches for "<span id="search-term-display"></span>"</p>
+                        <button onclick="resetFilters()" class="mt-4 text-blue-600 font-semibold hover:text-blue-800 text-sm underline">Clear filters & view all</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="v5-footer"></div>
+
+    <script src="js/config.js?v=2.8.3"></script>
+    <script src="js/layout.js?v=4.9.5"></script>
+    <script src="js/image-utils.js?v=3.0.2"></script>
+    <script src="js/seo-utils.js?v=3.1.3"></script>
+    <script src="js/complete-products.js?v=3.5.0"></script>
+    <script src="js/product-loader.js?v=2.0.2"></script>
+    <script src="js/main.js?v=2.3.3"></script>
+
+    <script>
+        // 🔥 核心修复：图片路径补全逻辑
+        function resolveImage(rawPath) {
+            // 如果为空，给一个默认图
+            if (!rawPath) return 'images/products/default-product.jpg';
+            
+            // 如果已经是网络图片，直接返回
+            if (rawPath.startsWith('http')) return rawPath;
+            
+            // 如果已经是正确的相对路径，直接返回
+            if (rawPath.startsWith('images/products/')) return rawPath;
+            
+            // 如果是 images/ 开头但没 products，尝试修正
+            if (rawPath.startsWith('images/')) return rawPath.replace('images/', 'images/products/');
+            
+            // 否则（只有文件名），强制加上前缀
+            return `images/products/${rawPath}`;
+        }
+
+        let allProducts = [], currentCategory = 'all', searchQuery = '', categoryCounts = {}, categoriesMap = {}, searchTimeout = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (!window.productLoader) throw new Error('ProductLoader missing');
+                const db = await window.productLoader.loadProducts();
+                allProducts = db.products || [];
+                categoriesMap = db.categories || {};
+                if (!allProducts.length) throw new Error('No products loaded');
+
+                console.log(`[Catalog] Initialized with ${allProducts.length} products`);
+                calculateCounts();
+                renderSidebar();
+                renderMobileFilters();
+                
+                const hash = window.location.hash.substring(1);
+                if (hash && (categoriesMap[hash] || hash === 'all')) currentCategory = hash;
+
+                applyFilters();
+                document.getElementById('loading').classList.add('hidden');
+            } catch (err) {
+                console.error('[Catalog] Error:', err);
+                document.getElementById('loading').innerHTML = `<div class="text-red-500 py-10">Unable to load products. <a href="javascript:location.reload()" class="underline">Refresh</a></div>`;
+            }
+        });
+
+        function calculateCounts() {
+            categoryCounts = { 'all': allProducts.length };
+            Object.keys(categoriesMap).forEach(k => categoryCounts[k] = 0);
+            allProducts.forEach(p => { if (p.category) categoryCounts[p.category] = (categoryCounts[p.category] || 0) + 1; });
+        }
+
+        function renderSidebar() {
+            const sidebar = document.getElementById('desktop-sidebar');
+            if (!sidebar) return;
+            let html = `<a href="#all" onclick="filterByCategory('all'); return false;" class="cat-link group flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${currentCategory === 'all' ? 'active' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}"><span>All Products</span><span class="bg-gray-100 text-gray-500 py-0.5 px-2 rounded-full text-xs font-semibold">${categoryCounts['all']}</span></a>`;
+            Object.keys(categoriesMap).forEach(key => {
+                if (categoryCounts[key] > 0) {
+                    const isActive = currentCategory === key;
+                    html += `<a href="#${key}" onclick="filterByCategory('${key}'); return false;" class="cat-link group flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-md transition-all duration-200 ${isActive ? 'active' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}"><span>${categoriesMap[key]}</span><span class="${isActive ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-500'} py-0.5 px-2 rounded-full text-xs font-semibold transition-colors">${categoryCounts[key]}</span></a>`;
+                }
+            });
+            sidebar.innerHTML = html;
+        }
+
+        function renderMobileFilters() {
+            const container = document.getElementById('mobile-filters');
+            if (!container) return;
+            const makeBtn = (id, label, count) => `<button onclick="filterByCategory('${id}')" class="flex-shrink-0 whitespace-nowrap px-4 py-2 rounded-full text-sm font-bold border transition-all duration-200 ${currentCategory === id ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-2 ring-blue-200' : 'bg-white text-gray-600 border-gray-300 hover:border-blue-400'}">${label} <span class="text-xs opacity-70 ml-1">(${count})</span></button>`;
+            
+            let html = makeBtn('all', 'All', categoryCounts['all']);
+            Object.keys(categoriesMap).forEach(key => { if (categoryCounts[key] > 0) html += makeBtn(key, categoriesMap[key], categoryCounts[key]); });
+            container.innerHTML = html;
+        }
+
+        function handleSearch(val) {
+            document.querySelectorAll('.search-container').forEach(el => el.classList.toggle('has-value', val.length > 0));
+            if (document.getElementById('mobile-search').value !== val) document.getElementById('mobile-search').value = val;
+            if (document.getElementById('desktop-search').value !== val) document.getElementById('desktop-search').value = val;
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => { searchQuery = val.toLowerCase().trim(); applyFilters(); }, 300);
+        }
+
+        function clearSearch() { handleSearch(''); }
+
+        function filterByCategory(cat) {
+            currentCategory = cat;
+            const title = cat === 'all' ? 'All Products' : categoriesMap[cat];
+            document.getElementById('page-title').textContent = title;
+            if (window.seoUtils) window.seoUtils.updatePage({ title: `${title} | V5 Medical Catalog`, description: `Browse our ${title.toLowerCase()} collection. ISO 13485 certified medical supplies.` });
+            renderSidebar();
+            renderMobileFilters();
+            applyFilters();
+            if(history.pushState) history.pushState(null, null, cat === 'all' ? 'catalog.html' : '#' + cat);
+        }
+
+        function applyFilters() {
+            const grid = document.getElementById('products-grid');
+            const noResults = document.getElementById('no-results');
+
+            const filtered = allProducts.filter(p => {
+                const matchCat = currentCategory === 'all' || p.category === currentCategory;
+                if (!searchQuery) return matchCat;
+                const q = searchQuery.toLowerCase();
+                const matchSearch = p.name.toLowerCase().includes(q) || (p.category && p.category.toLowerCase().includes(q)) || (p.short && p.short.toLowerCase().includes(q)) || (p.model && p.model.toLowerCase().includes(q));
+                return matchCat && matchSearch;
+            });
+
+            const countText = document.getElementById('result-count');
+            if (countText) countText.textContent = `Showing ${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                document.getElementById('search-term-display').textContent = searchQuery || currentCategory;
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                grid.innerHTML = filtered.map(renderProductCard).join('');
+            }
+        }
+
+        function resetFilters() { clearSearch(); filterByCategory('all'); }
+
+        function renderProductCard(product) {
+            // 🔥 使用 resolveImage 修复路径
+            const pImg = resolveImage(product.images?.[0]);
+            
+            const catLabel = categoriesMap[product.category] || 'Medical Supply';
+            const waText = encodeURIComponent(`Hello V5 Medical,\n\nI am interested in:\n• Product: ${product.name}\n• ID: ${product.id}\n\nPlease advise:\n• MOQ\n• Certification\n• FOB Price\n\nThank you.`);
+
+            return `
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full transform hover:-translate-y-1">
+                <a href="products/${product.id}.html" class="relative h-48 bg-gray-50 overflow-hidden block">
+                    <img src="${pImg}" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                         alt="${product.name}" loading="lazy"
+                         onerror="this.onerror=null;this.src='images/products/default-product.jpg'">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+                    <span class="absolute top-2 right-2 bg-white/90 backdrop-blur text-[10px] font-bold text-gray-600 px-2 py-1 rounded border border-gray-100 shadow-sm uppercase tracking-wide">
+                        ${catLabel}
+                    </span>
+                </a>
+                
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="font-bold text-lg text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                        <a href="products/${product.id}.html">${product.name}</a>
+                    </h3>
+                    
+                    <ul class="text-xs text-gray-500 mb-4 space-y-1 border-l-2 border-gray-200 pl-2">
+                        <li>OEM / Private Label Available</li>
+                        <li>CE / ISO 13485 (Partner Factory)</li>
+                    </ul>
+                    
+                    <div class="pt-4 mt-auto border-t border-gray-50 flex items-center justify-between gap-2">
+                        <a href="products/${product.id}.html" class="text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center">
+                            Details <i class="fas fa-arrow-right text-xs ml-1 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="https://wa.me/8615133008348?text=${waText}" target="_blank" 
+                           class="bg-gray-50 text-gray-700 border border-gray-200 hover:bg-green-500 hover:text-white hover:border-green-500 px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5"
+                           onclick="event.stopPropagation(); window.trackWhatsAppClick && window.trackWhatsAppClick()">
+                            <i class="fab fa-whatsapp text-sm"></i> Quote
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+        }
+    </script>
+    
+    <div id="google_translate_element" class="fixed top-4 right-4 z-50"></div>
+</body>
+</html>
+
+

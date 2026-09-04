@@ -1,0 +1,107 @@
+# ------------------------------
+# V5 Medical LTD Redirects Configuration
+# Last Updated: 2024-12-15
+# FIXED: Removed redirect loops
+# ------------------------------
+
+# ------------------------------
+# BASE REDIRECTS (Critical for SEO)
+# ------------------------------
+
+# Force HTTPS (SEO Best Practice)
+http://v5md.com/* https://v5md.com/:splat 301!
+http://www.v5md.com/* https://v5md.com/:splat 301!
+
+# Force non-www (Choose one option)
+www.v5md.com/* https://v5md.com/:splat 301!
+
+# ------------------------------
+# WHATSAPP CONTACT SHORTCUTS
+# ------------------------------
+
+# Main WhatsApp contact (with pre-filled message)
+/wa          https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+/whatsapp    https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+/message     https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20medical%20consumables.%20Please%20contact%20me. 302
+
+# Simple chat (without pre-filled message)
+/chat        https://api.whatsapp.com/send/?phone=447895047944 302
+/talk        https://api.whatsapp.com/send/?phone=447895047944 302
+
+# ------------------------------
+# TEAM MEMBERS WHATSAPP SHORTCUTS
+# ------------------------------
+
+# David Cheng - CEO Executive Assistant
+/david       https://api.whatsapp.com/send/?phone=8618015570289&text=Hi%20David%2C%20I%20am%20interested%20in%20V5%20Medical%20products.%20Please%20contact%20me. 302
+
+# Leo Bennett - Negotiation Officer
+/leo         https://api.whatsapp.com/send/?phone=8615133008348&text=Hi%20Leo%2C%20I%20am%20interested%20in%20V5%20Medical%20products.%20Please%20contact%20me. 302
+
+# Kellan Ford - Commander
+/kellan      https://api.whatsapp.com/send/?phone=8617365387650&text=Hi%20Kellan%2C%20I%20am%20interested%20in%20V5%20Medical%20products.%20Please%20contact%20me. 302
+
+# Support - CEO Main Line
+/support     https://api.whatsapp.com/send/?phone=8618012669897&text=Hi%20V5%20Medical%20Support%2C%20I%20need%20assistance. 302
+
+# Product-specific inquiries
+/sutures     https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20sutures.%20Please%20send%20me%20a%20quote. 302
+/packs       https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20surgical%20packs.%20Please%20send%20me%20a%20quote. 302
+/dental      https://api.whatsapp.com/send/?phone=447895047944&text=Hi%20V5%20Medical%2C%20I%20am%20interested%20in%20your%20dental%20consumables.%20Please%20send%20me%20a%20quote. 302
+
+# ------------------------------
+# DOWNLOAD SHORTCUTS
+# ------------------------------
+
+# Product Catalog
+/catalog-pdf /pdf/Catalog.pdf 302
+/pdf         /pdf/Catalog.pdf 302
+/download    /pdf/Catalog.pdf 302
+
+# Dental Kit
+/dental-kit  /pdf/quotations/Quotations%20for%20dental%20products.pdf 302
+/dentalpdf   /pdf/quotations/Quotations%20for%20dental%20products.pdf 302
+
+# Price List
+/pricelist   /pdf/price%20list.pdf 302
+/price       /pdf/price%20list.pdf 302
+
+# Colostomy Bag Quotation (shareable short link for customers)
+/colostomy   /pdf/V5MED%20Colostomy%20Bag%20Quotation%20-%20V5M1014A1%20.pdf 302
+
+# High-Purity Series Price List (shareable short link for customers)
+/highpurity  /pdf/V5_Medical_HighPurity_PriceList_EN.pdf 302
+
+# ------------------------------
+# MARKETING CAMPAIGN REDIRECTS
+# ------------------------------
+
+# Campaign tracking (for analytics)
+/campaign/uk https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uk_market 302
+/campaign/eu https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=eu_market 302
+/campaign/ae https://v5md.com/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uae_market 302
+
+# ------------------------------
+# CACHE CONTROL (Performance)
+# ------------------------------
+
+# Cache static assets for 1 year
+/*.ico       200!
+/*.css       200!
+/*.js        200!
+/images/*    200!
+
+# Cache PDFs for 1 month
+/pdf/*       200!
+/*.pdf       200!
+
+# Cache HTML files for 1 hour
+/*.html      200!
+
+# ------------------------------
+# ERROR HANDLING - MUST BE LAST!
+# ------------------------------
+
+# Custom 404 page - ONLY for truly missing files
+# DO NOT use wildcard /* as it catches everything!
+# Only specific 404 paths should redirect to 404.html

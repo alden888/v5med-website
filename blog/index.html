@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>V5 Medical Knowledge Hub</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+<link rel="canonical" href="https://v5med.net/blog/">
+<meta property="og:title" content="V5 Medical Knowledge Hub">
+<meta property="og:url" content="https://v5med.net/blog/">
+<meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* =========================================
+1. 全局设计系统 - 现代化视觉语言
+========================================= */
+:root {
+/* 主色调 - 专业医疗蓝 */
+--primary-50: #eff6ff;
+--primary-100: #dbeafe;
+--primary-200: #bfdbfe;
+--primary-300: #93c5fd;
+--primary-400: #60a5fa;
+--primary-500: #3b82f6;
+--primary-600: #2563eb;
+--primary-700: #1d4ed8;
+--primary-800: #1e40af;
+--primary-900: #1e3a8a;
+--primary-950: #172554;
+
+/* 辅助色 */
+--success-500: #22c55e;
+--success-600: #16a34a;
+--warning-500: #f59e0b;
+--danger-500: #ef4444;
+
+/* 中性色 */
+--neutral-50: #f8fafc;
+--neutral-100: #f1f5f9;
+--neutral-200: #e2e8f0;
+--neutral-300: #cbd5e1;
+--neutral-400: #94a3b8;
+--neutral-500: #64748b;
+--neutral-600: #475569;
+--neutral-700: #334155;
+--neutral-800: #1e293b;
+--neutral-900: #0f172a;
+
+/* 功能变量 */
+--header-height: 88px;
+--content-width: 1400px;
+--shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+--radius-sm: 4px;
+--radius-md: 8px;
+--radius-lg: 12px;
+--radius-full: 9999px;
+--transition-fast: 0.2s ease;
+--transition-normal: 0.3s ease;
+--transition-slow: 0.5s ease;
+}
+
+/* 基础重置与全局样式 */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+color: var(--neutral-700);
+padding-top: var(--header-height);
+background-color: var(--neutral-50);
+line-height: 1.6;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+/* =========================================
+2. 页眉设计 - 左侧淡蓝到右侧深蓝渐变
+========================================= */
+#v5-header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: var(--header-height);
+z-index: 1000;
+box-shadow: var(--shadow-md);
+background: linear-gradient(90deg,
+var(--primary-100) 0%,    /* 左侧淡蓝色 */
+var(--primary-200) 20%,   /* 过渡色 */
+var(--primary-600) 50%,   /* 中间色 */
+var(--primary-800) 80%,   /* 右侧过渡色 */
+var(--primary-900) 100%   /* 最右侧深蓝色 */
+);
+transition: all var(--transition-normal);
+}
+/* 滚动效果 */
+#v5-header.scroll-effect {
+background: linear-gradient(90deg,
+var(--primary-200) 0%,    /* 滚动时左侧颜色稍深 */
+var(--primary-300) 20%,
+var(--primary-700) 50%,
+var(--primary-900) 80%,
+var(--primary-950) 100%
+/* 滚动时右侧颜色更深 */
+);
+box-shadow: var(--shadow-lg);
+height: 76px;
+}
+.header-container {
+position: relative;
+width: 100%;
+max-width: var(--content-width);
+padding: 0 30px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 100%;
+margin: 0 auto;
+}
+/* Logo 区域 - 与左侧淡蓝背景协调 */
+.header-logo {
+display: flex;
+align-items: center;
+gap: 14px;
+text-decoration: none !important;
+z-index: 10;
+flex-shrink: 0;
+transition: transform var(--transition-fast);
+}
+.header-logo:hover {
+transform: scale(1.02);
+}
+.header-logo img {
+height: 44px;
+width: auto;
+border-radius: var(--radius-sm);
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+background: white;
+padding: 4px;
+}
+.logo-text {
+display: flex;
+flex-direction: column;
+white-space: nowrap;
+}
+
+.brand-name {
+font-size: 1.35rem;
+font-weight: 800;
+color: var(--primary-900) !important; /* 深色文字与淡蓝背景形成对比 */
+line-height: 1.2;
+text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+letter-spacing: -0.5px;
+}
+.brand-tag {
+font-size: 0.7rem;
+color: var(--primary-700) !important; /* 稍深的文字颜色 */
+font-weight: 600;
+text-transform: uppercase;
+margin-top: 2px;
+letter-spacing: 0.8px;
+}
+/* 导航菜单 - 居中优雅设计 */
+.header-nav {
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+gap: 36px;
+z-index: 10;
+}
+
+.nav-link {
+text-decoration: none !important;
+color: white !important; /* 白色文字在渐变背景中清晰可见 */
+font-weight: 500;
+font-size: 0.975rem;
+transition: all var(--transition-fast);
+position: relative;
+padding: 8px 0;
+white-space: nowrap;
+letter-spacing: -0.3px;
+text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.nav-link:hover {
+color: var(--primary-100) !important; /* 悬停时变为淡蓝色 */
+text-shadow: 0 0 12px rgba(255,255,255,0.3);
+}
+
+.nav-link.active {
+color: white !important;
+font-weight: 600;
+}
+
+/* 导航下划线动画 */
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0;
+height: 2px;
+background-color: white; /* 白色下划线 */
+transition: width var(--transition-normal);
+border-radius: 1px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+width: 100%;
+}
+/* 右侧按钮区 - 操作便捷性提升 */
+.header-actions {
+display: flex;
+align-items: center;
+gap: 18px;
+z-index: 10;
+flex-shrink: 0;
+}
+
+/* WhatsApp 按钮 - 品牌特色强化 */
+.btn-whatsapp {
+display: flex;
+align-items: center;
+gap: 10px;
+background-color: var(--success-500);
+color: white !important;
+padding: 10px 28px;
+border-radius: var(--radius-full);
+font-weight: 600;
+font-size: 0.95rem;
+text-decoration: none !important;
+box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+transition: all var(--transition-normal);
+border: 1px solid rgba(255,255,255,0.2);
+white-space: nowrap;
+position: relative;
+overflow: hidden;
+}
+
+.btn-whatsapp::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+transition: left 0.5s ease;
+}
+
+.btn-whatsapp:hover::before {
+left: 100%;
+}
+
+.btn-whatsapp:hover {
+background-color: var(--success-600);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.btn-whatsapp i {
+font-size: 1.3rem;
+
+}
+/* Google 翻译 - 精致化处理 */
+#google_translate_element {
+position: fixed !important;
+top: 24px !important;
+right: 24px !important;
+z-index: 9999 !important;
+display: block !important;
+visibility: visible !important;
+background: white !important;
+padding: 2px !important;
+border-radius: var(--radius-sm) !important;
+box-shadow: var(--shadow-sm) !important;
+transition: all var(--transition-fast) !important;
+}
+
+#google_translate_element:hover {
+box-shadow: var(--shadow-md) !important;
+}
+
+.goog-te-banner-frame { display: none !important; }
+body { top: 0px !important; }
+.goog-te-gadget {
+font-size: 12px !important;
+color: var(--neutral-700) !important;
+}
+.goog-te-gadget-simple {
+background-color: var(--neutral-100) !important;
+border: 1px solid var(--neutral-200) !important;
+padding: 3px 8px !important;
+border-radius: var(--radius-sm) !important;
+font-size: 12px !important;
+transition: all var(--transition-fast) !important;
+}
+.goog-te-gadget-simple:hover {
+background-color: var(--neutral-200) !important;
+border-color: var(--neutral-300) !important;
+}
+.goog-te-menu-value {
+color: var(--neutral-800) !important;
+}
+/* 移动端菜单按钮 - 交互感提升 */
+.mobile-menu-btn {
+display: none;
+color: white !important;
+background: transparent;
+border: none;
+font-size: 1.6rem;
+cursor: pointer;
+z-index: 10;
+transition: all var(--transition-fast);
+padding: 8px;
+border-radius: 50%;
+}
+
+.mobile-menu-btn:hover {
+background: rgba(255,255,255,0.1);
+transform: scale(1.1);
+}
+/* 移动端适配 - 响应式优化 */
+@media (max-width: 1100px) {
+.header-nav { display: none !important; }
+.mobile-menu-btn { display: block; }
+
+#google_translate_element {
+top: 26px !important;
+right: 70px !important;
+}
+.goog-te-gadget-simple {
+max-width: 40px !important;
+overflow: hidden;
+}
+}
+
+@media (max-width: 640px) {
+.btn-whatsapp span { display: none; }
+.btn-whatsapp {
+padding: 10px;
+width: 44px;
+height: 44px;
+justify-content: center;
+border-radius: 50%;
+}
+.header-container { padding: 0 15px; }
+.brand-name { font-size: 1.2rem; }
+.brand-tag { font-size: 0.65rem; }
+}
+/* 移动端下拉菜单 - 现代抽屉式设计 */
+.mobile-menu {
+display: none;
+position: fixed;
+top: var(--header-height);
+left: 0;
+width: 100%;
+background: white;
+box-shadow: var(--shadow-lg);
+z-index: 999;
+border-top: 1px solid var(--neutral-200);
+transform: translateY(-10px);
+opacity: 0;
+visibility: hidden;
+transition: all var(--transition-normal);
+max-height: calc(100vh - var(--header-height));
+overflow-y: auto;
+}
+
+.mobile-menu.active {
+display: block;
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+.mobile-menu .nav-link {
+display: block;
+color: var(--neutral-700) !important;
+padding: 16px 24px;
+border-bottom: 1px solid var(--neutral-100) !important;
+font-weight: 500;
+font-size: 1rem;
+text-shadow: none;
+}
+
+.mobile-menu .nav-link.active {
+color: var(--primary-600) !important;
+background: var(--primary-50);
+font-weight: 600;
+}
+
+.mobile-menu .nav-link:hover {
+background: var(--neutral-50);
+}
+
+.mobile-menu .nav-link::after {
+display: none;
+}
+/* =========================================
+3. Docsify 布局与内容区 - 阅读体验优化
+========================================= */
+.sidebar {
+top: var(--header-height) !important;
+padding-top: 24px !important;
+background-color: white;
+border-right: 1px solid var(--neutral-200);
+z-index: 900;
+box-shadow: var(--shadow-sm);
+}
+
+.sidebar-toggle {
+top: 100px !important;
+left: 24px !important;
+background: white !important;
+color: var(--primary-600) !important;
+border-radius: 50% !important;
+width: 40px !important;
+height: 40px !important;
+box-shadow: var(--shadow-md) !important;
+transition: all var(--transition-fast) !important;
+}
+
+.sidebar-toggle:hover {
+background: var(--primary-50) !important;
+transform: scale(1.1) !important;
+}
+/* 内容区域 - 卡片式设计 */
+.markdown-section {
+max-width: 960px;
+margin: 0 auto;
+padding: 48px 48px 120px;
+background: white;
+box-shadow: var(--shadow-md);
+border-radius: var(--radius-lg);
+min-height: calc(100vh - 120px);
+position: relative;
+overflow: hidden;
+}
+
+/* 内容区域装饰 */
+.markdown-section::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 4px;
+background: linear-gradient(90deg, var(--primary-500), var(--primary-700));
+border-top-left-radius: var(--radius-lg);
+border-top-right-radius: var(--radius-lg);
+}
+/* 文章头部样式 - 杂志级排版 */
+.article-header {
+margin-bottom: 48px;
+text-align: center;
+padding-bottom: 24px;
+border-bottom: 1px solid var(--neutral-200);
+position: relative;
+}
+
+.article-header::after {
+content: '';
+position: absolute;
+bottom: -1px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 3px;
+background: var(--primary-500);
+border-radius: 2px;
+}
+
+.article-title {
+font-size: 2.5rem !important;
+color: var(--primary-800) !important;
+margin-bottom: 20px !important;
+font-weight: 800 !important;
+border: none !important;
+line-height: 1.2 !important;
+letter-spacing: -0.5px;
+}
+
+.article-meta {
+display: flex;
+justify-content: center;
+gap: 24px;
+color: var(--neutral-500);
+font-size: 0.95rem;
+flex-wrap: wrap;
+margin-top: 16px;
+}
+
+.meta-item {
+display: flex;
+align-items: center;
+gap: 8px;
+padding: 4px 12px;
+background: var(--neutral-50);
+border-radius: var(--radius-full);
+border: 1px solid var(--neutral-100);
+}
+
+.meta-item i {
+color: var(--primary-500);
+font-size: 1rem;
+}
+
+.meta-category {
+color: var(--primary-700) !important;
+background: var(--primary-50) !important;
+padding: 4px 16px !important;
+border-radius: var(--radius-full);
+font-weight: 600;
+font-size: 0.85rem;
+border-color: var(--primary-100) !important;
+}
+
+.meta-category i {
+color: var(--primary-600) !important;
+}
+
+.article-description {
+font-size: 1.2rem !important;
+color: var(--neutral-600) !important;
+max-width: 800px;
+margin: 28px auto 0 !important;
+line-height: 1.7 !important;
+font-style: italic;
+font-weight: 400;
+}
+/* CTA 区域 - 转化优化 (更新样式) */
+.v5-cta-box {
+margin: 72px 0;
+padding: 56px;
+background: linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%);
+border: 1px solid var(--primary-200);
+border-radius: var(--radius-xl);
+text-align: center;
+box-shadow: var(--shadow-md);
+position: relative;
+overflow: hidden;
+}
+
+.v5-cta-box::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+opacity: 0.5;
+}
+
+.v5-cta-box h3 {
+font-size: 1.8rem !important;
+color: var(--primary-800) !important;
+margin-bottom: 16px !important;
+font-weight: 700 !important;
+position: relative;
+z-index: 1;
+}
+
+.v5-cta-box p {
+font-size: 1.1rem !important;
+color: var(--neutral-700) !important;
+margin-bottom: 24px !important;
+position: relative;
+z-index: 1;
+}
+
+/* 新增：Lead Magnet 专属高亮样式 */
+.cta-highlight-box {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-top: 24px;
+    border: 1px dashed var(--primary-300);
+    display: inline-block;
+    max-width: 500px;
+}
+.cta-highlight-box ul {
+    text-align: left;
+    margin-bottom: 20px;
+    color: var(--neutral-600);
+}
+.cta-highlight-box li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+.cta-highlight-box li i {
+    color: var(--success-500);
+    margin-right: 8px;
+}
+
+/* 按钮样式 - 现代扁平化设计 */
+.v5-btn {
+display: inline-block;
+background: var(--primary-600);
+color: white !important;
+padding: 14px 36px;
+border-radius: var(--radius-full);
+font-weight: 600;
+text-decoration: none;
+margin: 8px;
+transition: all var(--transition-normal);
+border: 1px solid transparent;
+font-size: 0.95rem;
+position: relative;
+overflow: hidden;
+z-index: 1;
+box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
+}
+
+.v5-btn::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+transition: left 0.5s ease;
+z-index: -1;
+}
+
+.v5-btn:hover::before {
+left: 100%;
+}
+
+.v5-btn:hover {
+background: var(--primary-700);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.v5-btn-secondary {
+background: white;
+color: var(--primary-600) !important;
+border: 1px solid var(--primary-400);
+box-shadow: none;
+}
+
+.v5-btn-secondary:hover {
+background: var(--primary-50);
+border-color: var(--primary-500);
+box-shadow: 0 2px 6px rgba(59, 130, 246, 0.1);
+}
+/* 页脚样式 */
+footer {
+text-align: center;
+margin-top: 48px;
+color: var(--neutral-500);
+font-size: 0.875rem;
+padding: 24px 0;
+border-top: 1px solid var(--neutral-200);
+}
+/* 移动端适配 */
+@media (max-width: 768px) {
+.markdown-section {
+padding: 32px 24px 80px;
+box-shadow: none;
+border-radius: 0;
+margin: 0;
+}
+
+.markdown-section::before {
+border-radius: 0;
+}
+
+.v5-btn {
+display: block;
+width: 100%;
+margin: 8px 0;
+}
+
+.article-title {
+font-size: 2rem !important;
+}
+
+.article-meta {
+gap: 12px;
+font-size: 0.9rem;
+}
+
+.v5-cta-box {
+padding: 40px 24px;
+margin: 48px 0;
+}
+}
+/* =========================================
+4. 全局动画与交互效果
+========================================= */
+.fade-in {
+animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.scale-hover {
+transition: transform var(--transition-fast);
+}
+
+.scale-hover:hover {
+transform: scale(1.03);
+}
+/* 平滑滚动 */
+html {
+scroll-behavior: smooth;
+}
+/* 滚动条样式 */
+::-webkit-scrollbar {
+width: 8px;
+height: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+background: var(--neutral-400);
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: var(--neutral-500);
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA4_ID_PLACEHOLDER"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js",
+new Date());
+gtag("config", "GA4_ID_PLACEHOLDER", {
+page_path: location.hash.replace("#/", "/blog/")
+});
+
+// 监听路由变化
+window.$docsify = {
+plugins: [
+function(hook) {
+hook.doneEach(function() {
+if (typeof gtag !== "undefined") {
+gtag("config", "GA4_ID_PLACEHOLDER", {
+page_path: location.hash.replace("#/", "/blog/")
+});
+}
+});
+}
+]
+}
+</script>
+</head>
+<body>
+<div id="v5-header">
+<div class="header-container">
+<a href="https://v5med.net/" class="header-logo">
+<img src="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5logo.png" alt="V5 Medical">
+<div class="logo-text">
+<span class="brand-name">V5 Medical</span>
+<span class="brand-tag">Global Supply Chain</span>
+</div>
+</a>
+<nav class="header-nav">
+<a href="https://v5med.net/" class="nav-link">Home</a>
+<a href="https://v5med.net/about.html" class="nav-link">About Us</a>
+<a href="https://v5med.net/catalog.html" class="nav-link">Products</a>
+<a href="#/" class="nav-link active">Blog</a>
+<a href="https://v5med.net/contact.html" class="nav-link">Contact</a>
+</nav>
+<div class="header-actions">
+<a href="https://wa.me/8615133008348" target="_blank" class="btn-whatsapp">
+<i class="fab fa-whatsapp"></i>
+<span>Contact</span>
+</a>
+<button class="mobile-menu-btn" id="mobile-menu-btn">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</div>
+<div class="mobile-menu" id="mobile-menu">
+<a href="https://v5med.net/" class="nav-link">Home</a>
+<a href="https://v5med.net/about.html" class="nav-link">About Us</a>
+<a href="https://v5med.net/catalog.html" class="nav-link">Products</a>
+<a href="#/" class="nav-link active">Blog</a>
+<a href="https://v5med.net/contact.html" class="nav-link">Contact</a>
+</div>
+</div>
+<div id="google_translate_element"></div>
+<div id="app">🚀 Loading Knowledge Hub...</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+if (window.google && window.google.translate) {
+new google.translate.TranslateElement({
+pageLanguage: 'en',
+includedLanguages: 'en,zh-CN,es,fr,de,ja,ko,ru,pt,ar,hi,tr',
+layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+autoDisplay: true
+}, 'google_translate_element');
+
+// 确保翻译元素可见
+setTimeout(function() {
+const translateElement = document.getElementById('google_translate_element');
+if (translateElement) {
+translateElement.style.display = 'block';
+translateElement.style.visibility = 'visible';
+}
+}, 300);
+}
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+window.$docsify = {
+basePath: 'https://raw.githubusercontent.com/alden888/v5md/main/blog/',
+encoding: 'utf-8',
+nameLink: 'https://v5med.net',
+homepage: 'README.md',
+loadSidebar: true,
+loadNavbar: false,
+subMaxLevel: 3,
+auto2top: true,
+coverpage: false,
+routerMode: 'hash',
+search: {
+maxAge: 86400000,
+paths: 'auto',
+placeholder: 'Search insights...',
+depth: 6,
+},
+plugins: [
+function(hook) {
+hook.beforeEach(function(content, url) {
+const yamlMatch = content.match(/^---\n([\s\S]+?)\n---/);
+let headerHtml = '';
+let cleanContent = content;
+if (yamlMatch) {
+const yamlStr = yamlMatch[1];
+const frontMatter = {};
+yamlStr.split('\n').forEach(line => {
+const parts = line.split(':');
+if (parts.length >= 2) {
+const key = parts[0].trim();
+let value = parts.slice(1).join(':').trim();
+value = value.replace(/^['"](.*)['"]$/, '$1');
+frontMatter[key] = value;
+}
+});
+headerHtml = `
+<div class="article-header fade-in">
+<h1 class="article-title">${frontMatter.title || 'Untitled'}</h1>
+<div class="article-meta">
+${frontMatter.author ? `<span class="meta-item"><i class="fas fa-user-circle"></i> ${frontMatter.author}</span>` : ''}
+${frontMatter.date ? `<span class="meta-item"><i class="far fa-calendar-alt"></i> ${frontMatter.date}</span>` : ''}
+${frontMatter.category ? `<span class="meta-item meta-category"><i class="fas fa-folder-open"></i> ${frontMatter.category}</span>` : ''}
+</div>
+${frontMatter.description ? `<p class="article-description">${frontMatter.description}</p>` : ''}
+</div>
+<hr style="margin: 30px 0; border:none; border-top:1px solid var(--neutral-200);">
+`;
+cleanContent = content.replace(/^---\n[\s\S]+?\n---/, '');
+}
+if (url && url.endsWith('.md')) {
+cleanContent = cleanContent
+.replace(/<script[\s\S]*?<\/script>/gi, '')
+.replace(/<style[\s\S]*?<\/style>/gi, '')
+.replace(/[\u0000-\u001F\u007F]/g, '')
+.replace(/^\*\*|^\#+/gm, '')
+.replace(/^\-\-\-/gm, '');
+}
+
+// 添加淡入动画类
+return headerHtml + `<div class="fade-in">${cleanContent}</div>`;
+});
+
+hook.afterEach(function(html) {
+// 🔥 升级版 Lead Magnet (获客磁铁)
+return html + `
+<div class="v5-cta-box fade-in">
+<h3><i class="fas fa-file-medical-alt" style="color:var(--primary-600)"></i> Stop Gambling with Compliance</h3>
+<p>Worried about your next Notified Body audit?</p>
+<div class="cta-highlight-box">
+    <ul>
+        <li><i class="fas fa-check"></i> <strong>ISO 13485 Audit Checklist</strong></li>
+        <li><i class="fas fa-check"></i> <strong>CE Technical File Template</strong></li>
+        <li><i class="fas fa-check"></i> <strong>Sterilization Validation Guide</strong></li>
+    </ul>
+</div>
+<div style="margin-top:24px;">
+    <a href="/contact.html?type=qa&subject=Request Audit Checklist PDF" class="v5-btn">Download Free Checklist &rarr;</a>
+    <a href="/contact.html?type=quote" class="v5-btn v5-btn-secondary">Request Product Quote</a>
+</div>
+<p style="font-size:0.8rem; color:var(--neutral-500); margin-top:16px;">
+    <i class="fas fa-user-shield"></i> Trusted by 50+ European Distributors
+</p>
+</div>
+<footer>
+&copy; 2025 V5 Medical | ISO 13485 Certified Framework
+</footer>
+`;
+});
+},
+function(hook) {
+hook.ready(function() {
+window.$docsify.router.on('navigate', function(path) {
+document.querySelectorAll('.sidebar-list li a').forEach(el => el.classList.remove('active'));
+const activeLink = document.querySelector(`.sidebar-list li a[href="#/${path}"]`);
+if (activeLink) activeLink.classList.add('active');
+});
+});
+}
+]
+}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const menuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const header = document.getElementById('v5-header');
+
+if (menuBtn && mobileMenu) {
+const newBtn = menuBtn.cloneNode(true);
+menuBtn.parentNode.replaceChild(newBtn, menuBtn);
+const icon = newBtn.querySelector('i');
+newBtn.addEventListener('click', (e) => {
+e.stopPropagation();
+mobileMenu.classList.toggle('active');
+const isActive = mobileMenu.classList.contains('active');
+
+if (isActive) {
+icon.classList.remove('fa-bars');
+icon.classList.add('fa-times');
+} else {
+icon.classList.remove('fa-times');
+icon.classList.add('fa-bars');
+}
+});
+document.addEventListener('click', (e) => {
+if (mobileMenu.classList.contains('active') &&
+!newBtn.contains(e.target) &&
+!mobileMenu.contains(e.target)) {
+mobileMenu.classList.remove('active');
+icon.classList.remove('fa-times');
+
+icon.classList.add('fa-bars');
+}
+});
+}
+// 滚动效果
+window.addEventListener('scroll', function() {
+if (window.scrollY > 50) {
+header.classList.add('scroll-effect');
+} else {
+header.classList.remove('scroll-effect');
+}
+});
+// 初始化时触发一次滚动检查
+setTimeout(() => {
+window.dispatchEvent(new Event('scroll'));
+}, 100);
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+// 确保Google翻译元素可见
+let translateCheckCount = 0;
+const translateCheckInterval = setInterval(() => {
+translateCheckCount++;
+const translateElement = document.getElementById('google_translate_element');
+
+if (translateElement) {
+translateElement.style.display = 'block';
+translateElement.style.visibility = 'visible';
+}
+
+if (translateCheckCount > 10) {
+clearInterval(translateCheckInterval);
+}
+}, 500);
+});
+</script>
+<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+</body>
+</html>
