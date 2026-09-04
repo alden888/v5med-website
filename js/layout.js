@@ -256,7 +256,7 @@ const V5Layout = (() => {
                                         <i class="fas fa-envelope mt-1 text-blue-500"></i>
                                         <div class="flex flex-col">
                                             <a href="mailto:sales@v5med.net" class="hover:text-white transition">sales@v5med.net</a>
-                                            <a href="mailto:v5med.net@gmail.com" class="text-xs text-gray-500 hover:text-gray-300 transition">v5med.net@gmail.com (Backup)</a>
+                                            <a href="mailto:v5mdus@gmail.com" class="text-xs text-gray-500 hover:text-gray-300 transition">v5mdus@gmail.com (Backup)</a>
                                         </div>
                                     </li>
                                 </ul>
