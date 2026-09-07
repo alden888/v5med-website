@@ -65,6 +65,18 @@
 </div>
 
 <div class="sidebar-category">
+  <span class="category-tag tag-peptide">Peptide Raw Materials</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-flask sidebar-icon text-purple-500"></i>
+      <a href="#/posts/peptide-sourcing-guide.md">
+        Peptide Sourcing Guide (China)
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
   <span class="category-tag tag-regulatory">Compliance (MDR)</span>
   <ul class="sidebar-list">
     <li class="sidebar-highlight">
