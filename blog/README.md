@@ -29,6 +29,8 @@
 ### ⛓️ **Sourcing Strategy**
 *How to buy safely in China.*
 
+- **[Peptide Raw Materials Sourcing Guide: Buy High-Purity APIs Safely](posts/peptide-sourcing-guide.md)** *5 quality gates for sourcing peptide APIs (Semaglutide, Tirzepatide, BPC-157, GHK-Cu, NAD+) from China. 39 SKUs, full analytical documentation (CoA, HPLC, MS), ISO 13485 certified.*
+
 - **[The "Integrator" Model vs. Factory Direct](posts/integrator-model.md)** *Who actually passes the audit? Why a Supply Chain Integrator offers better risk control than a single factory for multi-SKU procurement.*
   
 - **[MOQ vs. Unit Price: The Real Cost Curve](posts/moq-vs-price.md)** *Why fighting for the lowest price often increases your Total Landed Cost (TLC). Strategic negotiation tactics for long-term supply.*
