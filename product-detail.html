@@ -448,5 +448,17 @@
         function formatCategory(cat) { return cat ? cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ') : 'Medical'; }
     </script>
     <div id="google_translate_element" class="fixed top-4 right-4 z-50"></div>
+    
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,tr,fr,de,es,zh-CN,zh-TW,id,tl',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
 </body>
 </html>
