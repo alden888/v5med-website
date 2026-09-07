@@ -254,6 +254,17 @@ const categoryProfiles = {
             "Packaging": "Export cartons, custom printing",
             "Origin": "China"
         }
+    },
+    'peptide-raw-materials': {
+        certifications: ["GMP", "COA Available"],
+        desc: name => `${name} — research-grade peptide compound with Certificate of Analysis. Bulk supply for pharmaceutical formulation, cosmetic research, and laboratory use. OEM packaging available.`,
+        specifications: {
+            "Purity": "≥98% (HPLC verified)",
+            "Quality Standard": "GMP / COA",
+            "Packaging": "Foil pouch or glass vial, sealed",
+            "Storage": "2-8°C or room temp (compound-dependent)",
+            "Origin": "China"
+        }
     }
 };
 
