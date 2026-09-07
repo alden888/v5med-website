@@ -120,7 +120,12 @@
         @media (max-width: 768px) {
             .hero-section { padding-top: 3rem; padding-bottom: 2rem; }
         }
-    </style>
+    
+        /* 强制显示Google Translate小部件（覆盖Google内联style="display:none"） */
+        .goog-te-gadget.skiptranslate { display: block !important; visibility: visible !important; }
+        #google_translate_element .goog-te-gadget { display: block !important; visibility: visible !important; }
+        #google_translate_element { display: block !important; visibility: visible !important; }
+</style>
 </head>
 
 <body class="bg-v5gray text-gray-800 font-sans antialiased">

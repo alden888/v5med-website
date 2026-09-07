@@ -37,7 +37,12 @@
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
         details[open] summary ~ * { animation: fadeIn 0.3s ease-in-out; }
-    </style>
+    
+        /* 强制显示Google Translate小部件（覆盖Google内联style="display:none"） */
+        .goog-te-gadget.skiptranslate { display: block !important; visibility: visible !important; }
+        #google_translate_element .goog-te-gadget { display: block !important; visibility: visible !important; }
+        #google_translate_element { display: block !important; visibility: visible !important; }
+</style>
 </head>
 
 <body class="smooth-scroll font-sans text-gray-800 flex flex-col min-h-screen">
