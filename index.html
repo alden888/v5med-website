@@ -742,17 +742,15 @@
     <script>
         /* [P0-3 FIX] 全文唯一的 googleTranslateElementInit 定义 */
         function googleTranslateElementInit() {
-            if (window.google && window.google.translate) {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'en',
-                    includedLanguages: 'ar,tr,fr,de,es,zh-CN,zh-TW,id,tl',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    autoDisplay: false
-                }, 'google_translate_element');
-            }
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'ar,tr,fr,de,es,zh-CN,zh-TW,id,tl',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
         }
     </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async defer></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" defer></script>
 
     <!-- 页面级初始化（IIFE，不污染全局作用域） -->
     <script>
