@@ -77,6 +77,18 @@
 </div>
 
 <div class="sidebar-category">
+  <span class="category-tag tag-wound">Gauze & Wound Care</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-kit-medical sidebar-icon text-red-500"></i>
+      <a href="#/posts/gauze-wound-care-buying-guide.md">
+        Gauze & Wound Care B2B Buying Guide
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
   <span class="category-tag tag-regulatory">Compliance (MDR)</span>
   <ul class="sidebar-list">
     <li class="sidebar-highlight">

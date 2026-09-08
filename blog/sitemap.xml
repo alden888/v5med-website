@@ -25,6 +25,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://v5med.net/blog/posts/gauze-wound-care-buying-guide.html</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://v5med.net/blog/posts/integrator-model.html</loc>
         <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
@@ -57,6 +63,12 @@
     <url>
         <loc>https://v5med.net/blog/posts/payment-strategy-guide.html</loc>
         <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/peptide-sourcing-guide.html</loc>
+        <lastmod>2026-09-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
