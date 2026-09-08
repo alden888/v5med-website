@@ -89,6 +89,18 @@
 </div>
 
 <div class="sidebar-category">
+  <span class="category-tag tag-injection">Injection & Infusion</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-syringe sidebar-icon text-blue-600"></i>
+      <a href="#/posts/injection-infusion-procurement-guide.md">
+        Injection & Infusion B2B Procurement Guide
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
   <span class="category-tag tag-regulatory">Compliance (MDR)</span>
   <ul class="sidebar-list">
     <li class="sidebar-highlight">
