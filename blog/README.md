@@ -26,6 +26,19 @@
 
 - **[Sterilization Validation: EtO vs. Gamma](posts/sterilization-validation.md)** *Understanding bio-burden limits. Why auditors ask for your "Cycle Parameter Rationale" and why factory lab reports often fail scrutiny.*
 
+### ⚕️ **Product Procurement Guides**
+*B2B buying guides for hospitals, clinics, and distributors.*
+
+- **[Surgical Instruments: B2B Procurement Guide](posts/surgical-instruments-procurement-guide.md)** *Material grades (4Cr13Mo vs 304/316), passivation, QA inspection checklist, supplier verification. MOQ from 50 pcs per SKU.*
+
+- **[Medical Protective Equipment: B2B Procurement Guide](posts/protective-equipment-procurement-guide.md)** *Surgical masks, N95/FFP2, gowns, coveralls, caps, shoe covers. EN 14683/EN 149 specs, quality red flags.*
+
+- **[Dental Consumables & Examination Kits: B2B Procurement Guide](posts/dental-consumables-procurement-guide.md)** *Bibs, examination kits, impression trays, saliva ejectors, oral care kits. ISO 13485 sourcing for dental distributors.*
+
+- **[Injection & Infusion Products: B2B Procurement Guide](posts/injection-infusion-procurement-guide.md)** *Syringes, IV cannula, infusion sets, blood transfusion sets. CE/FDA documentation requirements.*
+
+- **[Medical Gauze & Wound Care: B2B Buying Guide](posts/gauze-wound-care-buying-guide.md)** *Gauze rolls, swabs, balls, abdominal pads, wound dressing kits. Absorbency specs and sterilization standards.*
+
 ### ⛓️ **Sourcing Strategy**
 *How to buy safely in China.*
 

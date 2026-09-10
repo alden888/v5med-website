@@ -101,6 +101,42 @@
 </div>
 
 <div class="sidebar-category">
+  <span class="category-tag tag-surgical">Surgical Instruments</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-scissors sidebar-icon text-gray-600"></i>
+      <a href="#/posts/surgical-instruments-procurement-guide.md">
+        Surgical Instruments B2B Procurement Guide
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
+  <span class="category-tag tag-dental">Dental Consumables</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-tooth sidebar-icon text-cyan-500"></i>
+      <a href="#/posts/dental-consumables-procurement-guide.md">
+        Dental Consumables B2B Procurement Guide
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
+  <span class="category-tag tag-ppe">Protective Equipment</span>
+  <ul class="sidebar-list">
+    <li class="sidebar-highlight">
+      <i class="fas fa-head-side-mask sidebar-icon text-green-600"></i>
+      <a href="#/posts/protective-equipment-procurement-guide.md">
+        PPE B2B Procurement Guide
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="sidebar-category">
   <span class="category-tag tag-regulatory">Compliance (MDR)</span>
   <ul class="sidebar-list">
     <li class="sidebar-highlight">
