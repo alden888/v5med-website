@@ -91,6 +91,7 @@ const V5Layout = (() => {
                 { id: 'home', href: 'index.html', txt: 'Home' },
                 { id: 'about', href: 'about.html', txt: 'About Us' },
                 { id: 'catalog', href: 'catalog.html', txt: 'Products' },
+                { id: 'events', href: 'events.html', txt: 'Events' },
                 { id: 'blog', href: 'blog/', txt: 'Blog' }, 
                 { id: 'contact', href: 'contact.html', txt: 'Contact' }
             ];
@@ -267,6 +268,7 @@ const V5Layout = (() => {
                                 <ul class="space-y-2 text-sm text-gray-400 mb-6">
                                     <li><a href="links.html" class="footer-link block text-blue-400 font-bold"><i class="fas fa-link mr-1"></i> Quick Links &amp; Price Lists</a></li>
                                     <li><a href="catalog.html" class="footer-link block">Product Catalog</a></li>
+                                    <li><a href="events.html" class="footer-link block">Trade Shows & Events</a></li>
                                     <li><a href="blog/" class="footer-link block">Compliance Knowledge Hub</a></li>
                                     <li><a href="payment.html" class="footer-link block text-green-400 font-bold"><i class="fas fa-credit-card mr-1"></i> Pay Invoice / Online</a></li>
                                     <li><a href="pdf/V5_Medical_Capability_Statement.pdf" target="_blank" class="footer-link block flex items-center gap-2"><i class="fas fa-file-pdf"></i> Capability Statement</a></li>
@@ -317,6 +319,7 @@ const V5Layout = (() => {
             const path = window.location.pathname;
             if (path.includes('catalog')) return 'catalog';
             if (path.includes('about')) return 'about';
+            if (path.includes('events')) return 'events';
             if (path.includes('contact')) return 'contact';
             if (path.includes('blog')) return 'blog';
             return 'home';
