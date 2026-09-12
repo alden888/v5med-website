@@ -91,6 +91,7 @@ const V5Layout = (() => {
                 { id: 'home', href: 'index.html', txt: 'Home' },
                 { id: 'about', href: 'about.html', txt: 'About Us' },
                 { id: 'catalog', href: 'catalog.html', txt: 'Products' },
+                { id: 'solutions', href: 'solutions.html', txt: 'Solutions' },
                 { id: 'events', href: 'events.html', txt: 'Events' },
                 { id: 'blog', href: 'blog/', txt: 'Blog' }, 
                 { id: 'contact', href: 'contact.html', txt: 'Contact' }
@@ -268,6 +269,7 @@ const V5Layout = (() => {
                                 <ul class="space-y-2 text-sm text-gray-400 mb-6">
                                     <li><a href="links.html" class="footer-link block text-blue-400 font-bold"><i class="fas fa-link mr-1"></i> Quick Links &amp; Price Lists</a></li>
                                     <li><a href="catalog.html" class="footer-link block">Product Catalog</a></li>
+                                    <li><a href="solutions.html" class="footer-link block">Industry Solutions</a></li>
                                     <li><a href="events.html" class="footer-link block">Trade Shows & Events</a></li>
                                     <li><a href="blog/" class="footer-link block">Compliance Knowledge Hub</a></li>
                                     <li><a href="payment.html" class="footer-link block text-green-400 font-bold"><i class="fas fa-credit-card mr-1"></i> Pay Invoice / Online</a></li>
