@@ -424,8 +424,8 @@
                           [P1-4 FIX] 添加 width/height 防 CLS + decoding="async" 避免阻塞主线程。
                           原始代码只有 loading="lazy"，缺少尺寸声明，图片加载时页面会抖动。
                         -->
-                        <img src="images/qa-team-on-site.jpg"
-                             onerror="this.src='images/factory-audit.jpg'"
+                        <img src="images/qa-team-on-site.webp"
+                             onerror="this.onerror=null;this.src='images/qa-team-on-site.jpg'"
                              class="relative rounded-xl shadow-2xl w-full object-cover h-[450px] transition duration-500 transform group-hover:scale-[1.01]"
                              alt="V5 Medical QA team conducting an on-site ISO 13485 factory audit"
                              width="800" height="450"
