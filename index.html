@@ -81,7 +81,7 @@
     <link rel="dns-prefetch" href="https://translate.google.com">
 
     <!-- [PERF ADD] Preload LCP 图片，让浏览器在解析 HTML 同时就开始下载 -->
-    <link rel="preload" as="image" href="images/hero-bg.jpg">
+    <link rel="preload" as="image" href="images/hero-bg.webp">
 
     <!-- CSS: Font Awesome 异步加载避免阻塞渲染 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -254,7 +254,7 @@
         <div class="relative min-h-[500px] md:min-h-[550px] flex items-center justify-center px-4 overflow-hidden bg-gray-900 group">
             <div class="absolute inset-0 z-0">
                 <!-- LCP 图片：fetchpriority="high" + decoding="sync"，宽高已声明防 CLS -->
-                <img src="images/hero-bg.jpg"
+                <img src="images/hero-bg.webp"
                      onerror="this.src='https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1920&q=80&auto=format&fit=crop'"
                      class="w-full h-full object-cover object-center hero-bg-image"
                      alt="V5 Medical certified medical consumables manufacturing facility"
