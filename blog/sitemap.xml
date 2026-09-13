@@ -19,6 +19,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://v5med.net/blog/posts/dental-consumables-procurement-guide.html</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://v5med.net/blog/posts/eu-mdr-2025.html</loc>
         <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
@@ -85,6 +91,12 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://v5med.net/blog/posts/protective-equipment-procurement-guide.html</loc>
+        <lastmod>2026-09-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://v5med.net/blog/posts/sterilization-validation.html</loc>
         <lastmod>2026-09-04</lastmod>
         <changefreq>monthly</changefreq>
@@ -93,6 +105,12 @@
     <url>
         <loc>https://v5med.net/blog/posts/supplier-verification.html</loc>
         <lastmod>2026-09-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/surgical-instruments-procurement-guide.html</loc>
+        <lastmod>2026-09-10</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
