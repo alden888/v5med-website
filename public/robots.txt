@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /api/
-
-Sitemap: https://v5med.net/sitemap.xml

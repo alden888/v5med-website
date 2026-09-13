@@ -1,13 +1,14 @@
 /**
  * V5 Medical Main Logic
  * Handles UI interactions, Google Translate, and Forms
- * @version 2.2.0 (Translate Styles Centralized)
+ * @version 2.2.1 (GA4 Placeholder Unified)
  */
 const V5Medical = (() => {
     const config = {
         loader: { timeout: 1500, fadeDuration: 300 },
         scroll: { navbarThreshold: 50, backToTopThreshold: 300 },
-        analytics: { trackingId: 'GA4_ID_PLACEHOLDER' },
+        // 当前未使用（站点 GA4 由 layout.js / build-static.py 注入），保留字段避免占位符误导
+        analytics: { trackingId: 'G-HVN50TM5EK' },
         translate: {
             pageLanguage: 'en',
             includedLanguages: 'en,ar,es,fr,ru,nl,de,it,pt,ja,ko,tr,pl,vi,hi,id,th,sv,zh-CN,zh-TW',
@@ -21,7 +22,7 @@ const V5Medical = (() => {
     // 1. Google Translate (集中管理)
     const initTranslate = () => {
         if (window.googleTranslateInitialized) return;
-        
+
         window.googleTranslateElementInit = () => {
             new google.translate.TranslateElement({
                 pageLanguage: config.translate.pageLanguage,
@@ -29,7 +30,7 @@ const V5Medical = (() => {
                 layout: google.translate.TranslateElement.InlineLayout[config.translate.layout],
                 autoDisplay: config.translate.autoDisplay
             }, 'google_translate_element');
-            
+
             // 样式注入：包含外观和定位
             const style = document.createElement('style');
             style.innerHTML = `
@@ -109,7 +110,7 @@ const V5Medical = (() => {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
             const originalHTML = btn.innerHTML;
-            
+
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
@@ -138,7 +139,7 @@ const V5Medical = (() => {
         safeExecute(initTranslate, 'Google Translate');
         safeExecute(initUI, 'UI Interactions');
         safeExecute(initForms, 'Forms');
-        
+
         // Loader removal fallback
         const loader = document.getElementById('loader');
         if (loader) {

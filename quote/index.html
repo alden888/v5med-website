@@ -9,12 +9,17 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="V5 Medical LTD">
     <link rel="icon" type="image/x-icon" href="https://v5med.net/images/icons/favicon.ico">
+    <!-- [FIX 2026-09-13] 补 canonical，og:url 从第三方域名修正为本站 -->
+    <link rel="canonical" href="https://v5med.net/quote/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Get a Quote — V5 Medical">
     <meta property="og:description" content="230+ SKUs · ISO 13485 Certified · 24-Hour Response">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://quote.12888.de">
+    <meta property="og:site_name" content="V5 Medical LTD">
+    <meta property="og:url" content="https://v5med.net/quote/">
+    <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png">
+    <meta name="twitter:card" content="summary_large_image">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -120,12 +125,25 @@
         @media (max-width: 768px) {
             .hero-section { padding-top: 3rem; padding-bottom: 2rem; }
         }
-    
+
         /* 强制显示Google Translate小部件（覆盖Google内联style="display:none"） */
         .goog-te-gadget.skiptranslate { display: block !important; visibility: visible !important; }
         #google_translate_element .goog-te-gadget { display: block !important; visibility: visible !important; }
         #google_translate_element { display: block !important; visibility: visible !important; }
 </style>
+
+    <!--
+      [FIX 2026-09-13] 新增 GA4（G-HVN50TM5EK，与 js/config.js 一致）。
+      原页面没有任何 GA 加载，但表单提交代码里调用了 gtag('event','generate_lead')，
+      转化事件永远不会上报。现在 gtag 存在，事件可正常发送。
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVN50TM5EK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-HVN50TM5EK', { anonymize_ip: true });
+    </script>
 </head>
 
 <body class="bg-v5gray text-gray-800 font-sans antialiased">
@@ -201,7 +219,7 @@
                 <p class="text-xs text-gray-400 mt-1" data-i18n="prod-3-desc">Absorbable / Non-absorbable</p>
             </div>
             <div class="text-center p-4 rounded-xl bg-gray-50 hover:shadow-md transition">
-                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-purple-50 flex items-center justify-center">
+                <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-purple-500 flex items-center justify-center">
                     <i class="fas fa-box-open text-purple-500 text-lg"></i>
                 </div>
                 <h3 class="font-semibold text-sm text-v5dark" data-i18n="prod-4-title">Medical PVC</h3>
@@ -572,6 +590,10 @@ function showError(fieldId, message) {
 }
 
 // ─── Submit to Worker Proxy (production) or direct ERP (local dev) ───
+// [FIX 2026-09-13] IS_LOCAL 之前从未定义 —— 引用即抛 ReferenceError，
+// 导致整个 script 块中断：浏览器语言自动检测 IIFE 永远不执行，
+// 控制台报错。此处补上定义（SUBMIT_URL 目前未被使用，保留以备 Worker 接入）。
+const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 const SUBMIT_URL = IS_LOCAL ? null : '/api/submit-quote'; // Worker proxy
 
 async function submitToBackend(data) {
@@ -587,10 +609,10 @@ async function submitToBackend(data) {
         `Description: ${data.description || 'N/A'}\n\n` +
         `Source: ${CONFIG.SOURCE}`
     );
-    
+
     // 打开邮件客户端
     window.location.href = `mailto:${CONFIG.SALES_EMAIL}?subject=${subject}&body=${body}`;
-    
+
     return 'email-sent';
 }
 

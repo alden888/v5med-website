@@ -2,14 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>V5 Medical Knowledge Hub</title>
+<title>Medical Consumables Blog & Compliance Knowledge Hub | V5 Medical</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<meta name="description" content="B2B procurement guides, ISO 13485 / CE compliance insights and sourcing strategies for medical consumables — surgical sutures, sterile packs, gauze, PPE, injection devices and pharmaceutical packaging.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 
 <link rel="canonical" href="https://v5med.net/blog/">
-<meta property="og:title" content="V5 Medical Knowledge Hub">
+<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+<meta property="og:title" content="Medical Consumables Blog & Compliance Knowledge Hub | V5 Medical">
+<meta property="og:description" content="B2B procurement guides, ISO 13485 / CE compliance insights and sourcing strategies for medical consumables.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="V5 Medical LTD">
 <meta property="og:url" content="https://v5med.net/blog/">
 <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5logo.png">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -746,30 +753,26 @@ border-radius: 4px;
 background: var(--neutral-500);
 }
 </style>
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA4_ID_PLACEHOLDER"></script>
+<!--
+  [FIX 2026-09-13] GA4 占位符修复 + $docsify 重复定义修复。
+  原代码问题：
+  1. gtag 的 ID 是字面量 "GA4_ID_PLACEHOLDER"（从未替换），
+     博客所有统计数据都发往一个不存在的属性，GA 完全失效。
+  2. window.$docsify 在 <head> 先定义一次（含 GA 路由追踪插件），
+     又在 body 被整体重新赋值 —— 第一个对象被覆盖，
+     GA 路由追踪插件从未生效。
+  修复：GA 配置统一为 G-HVN50TM5EK（与 js/config.js 一致），
+  路由追踪插件合并进 body 的 $docsify 主配置（见下方 plugins 数组）。
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVN50TM5EK"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag("js",
-new Date());
-gtag("config", "GA4_ID_PLACEHOLDER", {
-page_path: location.hash.replace("#/", "/blog/")
+gtag("js", new Date());
+gtag("config", "G-HVN50TM5EK", {
+page_path: location.hash.replace("#/", "/blog/"),
+anonymize_ip: true
 });
-
-// 监听路由变化
-window.$docsify = {
-plugins: [
-function(hook) {
-hook.doneEach(function() {
-if (typeof gtag !== "undefined") {
-gtag("config", "GA4_ID_PLACEHOLDER", {
-page_path: location.hash.replace("#/", "/blog/")
-});
-}
-});
-}
-]
-}
 </script>
 </head>
 <body>
@@ -830,10 +833,16 @@ translateElement.style.visibility = 'visible';
 }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 <script>
 window.$docsify = {
-basePath: 'https://raw.githubusercontent.com/alden888/v5md/main/blog/',
+/*
+  [FIX 2026-09-13] basePath 从旧仓库 v5md 改为当前仓库 v5med-website。
+  原配置从 alden888/v5md 拉取 Markdown —— 该仓库的博客已停止更新
+  （链接仍指向 v5md.com，缺 5 篇最新采购指南），
+  导致线上 Docsify 博客内容与本仓库生成的静态文章页不一致。
+*/
+basePath: 'https://raw.githubusercontent.com/alden888/v5med-website/main/blog/',
 encoding: 'utf-8',
 nameLink: 'https://v5med.net',
 homepage: 'README.md',
@@ -850,6 +859,16 @@ placeholder: 'Search insights...',
 depth: 6,
 },
 plugins: [
+function(hook) {
+/* [FIX 2026-09-13] GA4 hash 路由追踪（原在 <head> 的 $docsify 里，被覆盖丢失） */
+hook.doneEach(function() {
+if (typeof gtag !== "undefined") {
+gtag("config", "G-HVN50TM5EK", {
+page_path: location.hash.replace("#/", "/blog/")
+});
+}
+});
+},
 function(hook) {
 hook.beforeEach(function(content, url) {
 const yamlMatch = content.match(/^---\n([\s\S]+?)\n---/);

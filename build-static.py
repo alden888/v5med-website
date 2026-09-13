@@ -27,8 +27,20 @@ V5 Medical 静态 SEO 页面生成器 (build-static.py)
     sitemap.xml              主站点地图（自动更新 lastmod）
     blog/sitemap.xml         博客站点地图
 
-@version 1.1.0
-@updated 2026-08-22
+@version 1.2.0
+@updated 2026-09-13
+
+[v1.2.0 变更]
+- [FIX] GA_ID 从旧属性 G-JE15YSMC2W 更正为 G-HVN50TM5EK（与 js/config.js
+  2026-09-04 CEO 确认的独立 GA4 Property 一致）。此前全部生成页面向旧属性
+  上报，统计数据被写到错误的账号。重新运行本脚本即可修复全站静态页。
+- [FIX] write_sitemaps() 补录 solutions.html 与 events.html —— 两个页面
+  上线时由手工加入 sitemap，重新生成会被静默丢掉。
+- [SEO] render_page() 模板补全：favicon、og:image:alt、
+  twitter:title/description/image、theme-color（原 138 个生成页没有
+  favicon，SERP 不显示站点图标）。
+- [构建] markdown 库缺失时自动回退到 markdown-it-py（两者 API 不同，
+  内置 shim 保持调用不变）。
 
 [v1.1.0 变更]
 - load_products() 增加 fail-fast 校验：产品数量比对 metadata.totalProducts、
@@ -49,14 +61,30 @@ import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
-import markdown
+try:
+    import markdown
+except ImportError:  # [v1.2.0] 回退：markdown-it-py（Kimi Work 托管运行时自带）
+    from markdown_it import MarkdownIt
+
+    _mdit = MarkdownIt("commonmark").enable("table")  # gfm-like 需 linkify-it，避免依赖
+
+    class _MarkdownShim:
+        """与 python-markdown 的 markdown.markdown(text, extensions=...) 对齐的最小接口。"""
+
+        @staticmethod
+        def markdown(text, extensions=None):
+            return _mdit.render(text)
+
+    markdown = _MarkdownShim()
 
 # ---------------- 配置 ----------------
 BASE = "https://v5med.net"
 TODAY = datetime.date.today().isoformat()
 ROOT = Path(__file__).resolve().parent
 OG_IMAGE = "https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png"
-GA_ID = "G-JE15YSMC2W"
+# [v1.2.0 FIX] v5med.net 独立 GA4 Property（与 js/config.js ANALYTICS.GA4_ID 一致）。
+# 旧值 G-JE15YSMC2W 是早期博客专用属性，2026-09-04 起全站统一使用新属性。
+GA_ID = "G-HVN50TM5EK"
 
 # ---------------- 工具函数 ----------------
 _lastmod_cache = {}
@@ -350,13 +378,21 @@ def render_page(*, title, description, canonical, body, schemas=(), extra_head="
 <meta name="description" content="{esc(description)}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{esc(canonical)}">
+<!-- [v1.2.0] favicon：SERP 站点图标（原生成页缺失） -->
+<link rel="icon" type="image/x-icon" href="/images/icons/favicon.ico">
+<link rel="apple-touch-icon" href="/images/v5medlogo.png">
+<meta name="theme-color" content="#1e40af">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="{esc(og_type)}">
 <meta property="og:site_name" content="V5 Medical LTD">
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:image" content="{OG_IMAGE}">
+<meta property="og:image:alt" content="{esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(description)}">
+<meta name="twitter:image" content="{OG_IMAGE}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -757,10 +793,14 @@ def write_sitemaps(products, articles):
     # lastmod 取数据源/页面文件的最后提交日期，避免全站统一刷成构建日期
     products_lastmod = git_lastmod("js/complete-products.js")
     # 主 sitemap（payment.html 有 noindex，不收录）
+    # [v1.2.0 FIX] 补录 solutions.html / events.html（原手工加进 sitemap，
+    # 重新生成会被静默丢掉）
     entries = [
         url_entry(f"{BASE}/", "1.0", "weekly", lastmod=git_lastmod("index.html")),
         url_entry(f"{BASE}/about.html", "0.8", "monthly", lastmod=git_lastmod("about.html")),
         url_entry(f"{BASE}/catalog.html", "0.9", "weekly", lastmod=git_lastmod("catalog.html")),
+        url_entry(f"{BASE}/solutions.html", "0.8", "monthly", lastmod=git_lastmod("solutions.html")),
+        url_entry(f"{BASE}/events.html", "0.7", "monthly", lastmod=git_lastmod("events.html")),
         url_entry(f"{BASE}/contact.html", "0.8", "monthly", lastmod=git_lastmod("contact.html")),
         url_entry(f"{BASE}/links.html", "0.6", "monthly", lastmod=git_lastmod("links.html")),
         url_entry(f"{BASE}/privacy.html", "0.3", "yearly", lastmod=git_lastmod("privacy.html")),
@@ -811,7 +851,7 @@ def main():
 
     print("== 3/3 生成 sitemap ==")
     write_sitemaps(products, articles)
-    print(f"  sitemap.xml: {7 + len(CATEGORIES) + len(products)} 个 URL")
+    print(f"  sitemap.xml: {9 + len(CATEGORIES) + len(products)} 个 URL")
     print(f"  blog/sitemap.xml: {len(articles)} 个 URL")
     print("\n[OK] 构建完成")
 
