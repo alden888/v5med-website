@@ -1,0 +1,46 @@
+name = "v5med-lead-intake"
+main = "worker.js"
+compatibility_date = "2026-09-23"
+# 仅通过 v5med.net/api/* 暴露，避免 *.workers.dev 绕过路由与来源校验
+workers_dev = false
+routes = [{ pattern = "v5med.net/api/*", zone_name = "v5med.net" }]
+
+[vars]
+ERP_URL = "https://erp.12888.de"
+# 推荐：ERP 专用低权限账号 + API Key（wrangler secret put ERP_API_KEY / ERP_API_SECRET），
+# 配置后 Worker 不再使用下面的会话登录。
+ERP_USER = "Administrator"
+# Frappe Lead REST API (verified against erp.12888.de; /api/leads was a false assumption)
+ERP_LEAD_PATH = "/api/resource/Lead"
+# 附件改为私有：设置 secret ATTACHMENT_SIGNING_KEY 后，邮件里发 30 天有效的签名下载链接
+# （https://v5med.net/api/attachment?...），并在 R2 后台解绑 attachments.v5med.net 公网域名。
+# 仅在尚未配置签名密钥时，才回退使用下面的公网地址（旧方式，附件任何人可访问）。
+# R2_PUBLIC_BASE = "https://attachments.v5med.net"
+# v5med.net MX -> Feishu (不可用于 CF Send Email)；v5md.com 是 CF Email Routing ready 域，作为发件域
+EMAIL_FROM = "forms@v5md.com"
+# Send Email 收件人必须是 CF 已验证地址（团队 V5 业务 Gmail）
+SALES_EMAIL = "v5md.com@gmail.com"
+
+# Secrets (never commit):
+#   wrangler secret put ERP_API_KEY           # 推荐
+#   wrangler secret put ERP_API_SECRET        # 推荐
+#   wrangler secret put ERP_PWD               # 仅在未配置 API Key 时使用
+#   wrangler secret put ATTACHMENT_SIGNING_KEY   # openssl rand -hex 32
+#   wrangler secret put TURNSTILE_SECRET      # 可选；前端接入 Turnstile 组件后再设置
+
+[[r2_buckets]]
+binding = "CONTACT_ATTACHMENTS"
+bucket_name = "v5md-contact-attachments"
+
+[[send_email]]
+name = "SEND_EMAIL"
+# Send Email 仅可发往 CF 已验证地址；v5md.com@gmail.com 是团队 V5 业务邮箱（已验证）
+destination_address = "v5md.com@gmail.com"
+
+# 每个 IP 每 60 秒最多 5 次提交（Workers Rate Limiting）
+[[ratelimits]]
+name = "LEAD_RATE_LIMITER"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 5
+  period = 60

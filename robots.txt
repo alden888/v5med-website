@@ -20,9 +20,9 @@ Allow: /assets/
 
 # [STRATEGY] Block direct PDF access to encourage landing page visits,
 # except the public marketing catalog.
-# (Google 采用最长匹配优先：Allow /pdf/Catalog.pdf 优先于 Disallow: /pdf/)
+# (Google 采用最长匹配优先：Allow /pdf/catalog/Catalog.pdf 优先于 Disallow: /pdf/)
 Disallow: /pdf/
-Allow: /pdf/Catalog.pdf
+Allow: /pdf/catalog/Catalog.pdf
 
 # Block Cloudflare specific paths
 Disallow: /cdn-cgi/

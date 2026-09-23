@@ -15,7 +15,7 @@ class ImageUtils {
         // 1. Cloudflare R2 (生产环境首选)
         this.cdnBase = 'https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/';
         // 2. GitHub Raw (回退备选)
-        this.githubBase = 'https://raw.githubusercontent.com/alden888/v5md/main/';
+        this.githubBase = this.config.IMAGES.FALLBACK_BASE || 'https://raw.githubusercontent.com/alden888/v5med-website/main/';
     }
 
     /**

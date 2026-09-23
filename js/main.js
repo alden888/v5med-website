@@ -101,44 +101,11 @@ const V5Medical = (() => {
         }
     };
 
-    // 3. Forms
-    const initForms = () => {
-        const form = document.getElementById('inquiry-form');
-        if (!form) return;
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            const originalHTML = btn.innerHTML;
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    form.reset();
-                    alert('Inquiry sent successfully! We will contact you shortly.');
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (err) {
-                alert('Connection error. Please try WhatsApp instead.');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = originalHTML;
-            }
-        });
-    };
+    // 3. Forms: handled by js/lead-forms.js (legacy #inquiry-form handler removed 2026-09-23)
 
     const init = () => {
         safeExecute(initTranslate, 'Google Translate');
         safeExecute(initUI, 'UI Interactions');
-        safeExecute(initForms, 'Forms');
 
         // Loader removal fallback
         const loader = document.getElementById('loader');

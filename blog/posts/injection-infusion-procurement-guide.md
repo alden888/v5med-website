@@ -198,7 +198,7 @@ As a **medical supply chain integrator**, V5 Medical does not simply move boxes.
 - [Medical Gauze & Wound Care Buying Guide](gauze-wound-care-buying-guide.html)
 - [Peptide Raw Materials Sourcing Guide](peptide-sourcing-guide.html)
 - [Pharmaceutical Secondary Packaging Guide](pharmaceutical-secondary-packaging-guide.html)
-- [Download Product Catalog](/pdf/Catalog.pdf)
+- [Download Product Catalog](/pdf/catalog/Catalog.pdf)
 - [Request a Quote](/contact.html)
 
 ---

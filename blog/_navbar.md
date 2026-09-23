@@ -6,7 +6,7 @@
   * [Contact Teams](https://v5med.net/contact.html)
 
 * Downloads
-  * [📖 Product Catalog (PDF)](https://v5med.net/pdf/Catalog.pdf)
+  * [📖 Product Catalog (PDF)](https://v5med.net/pdf/catalog/Catalog.pdf)
   * [💰 Price List (PDF)](https://v5med.net/pdf/price%20list.pdf)
   * [🛡️ Capability Statement](https://v5med.net/pdf/V5_Medical_Capability_Statement.pdf)
 

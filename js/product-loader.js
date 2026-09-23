@@ -15,7 +15,7 @@ if (!window.ProductLoader) {
             this.config = window.V5Config?.PRODUCT_DB || {
                 TIMEOUT: 5000,
                 RETRY_ATTEMPTS: 2,
-                FILE_PATH: 'js/complete-products.js',
+                FILE_PATH: `/js/complete-products.js?v=${window.V5Config?.ASSET_VERSION || Date.now()}`,
                 GLOBAL_VAR: 'completeProductDatabase'
             };
         }
@@ -95,7 +95,7 @@ if (!window.ProductLoader) {
          */
         _loadDatabaseScript() {
             return new Promise((resolve, reject) => {
-                const src = this.config.FILE_PATH || 'js/complete-products.js';
+                const src = this.config.FILE_PATH || `/js/complete-products.js?v=${window.V5Config?.ASSET_VERSION || Date.now()}`;
                 console.log(`[ProductLoader] Dynamically loading script: ${src}`);
 
                 const script = document.createElement('script');

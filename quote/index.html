@@ -238,7 +238,9 @@
         </div>
 
         <div class="form-card rounded-2xl shadow-lg p-6 md:p-8" id="formContainer">
-            <form id="quoteForm" onsubmit="handleSubmit(event)" novalidate>
+            <form id="quoteForm" novalidate>
+                <!-- 诱饵字段：真人看不到，机器人填写后 Worker 静默丢弃 -->
+                <div aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
                 <!-- Company Name -->
                 <div class="mb-5">
                     <label for="company" class="block text-sm font-semibold text-gray-700 mb-1.5">
@@ -336,6 +338,8 @@
                     <span data-i18n="btn-submit">Submit Inquiry</span>
                 </button>
 
+                <p id="quote-form-status" class="mt-3 text-sm" role="status" aria-live="polite"></p>
+
                 <p class="text-center text-xs text-gray-400 mt-3" data-i18n="form-privacy">
                     Your information is secure and will only be used for quotation purposes.
                 </p>
@@ -352,7 +356,7 @@
                 <p class="text-gray-500 mb-2" data-i18n="success-desc">
                     We have received your request. Our sales team will contact you within 24 hours.
                 </p>
-                <p class="text-sm text-gray-400 mb-6" data-i18n="success-ref">
+                <p id="quote-reference" class="text-sm text-gray-400 mb-6" data-i18n="success-ref">
                     Reference ID will be sent to your email.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -360,7 +364,7 @@
                         class="inline-flex items-center gap-2 px-6 py-2.5 bg-green-500 text-white rounded-lg text-sm font-semibold hover:bg-green-600 transition">
                         <i class="fab fa-whatsapp"></i> WhatsApp Us
                     </a>
-                    <button onclick="resetForm()"
+                    <button type="button" id="quote-reset-button"
                         class="inline-flex items-center gap-2 px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition">
                         <i class="fas fa-redo"></i> <span data-i18n="btn-another">Submit Another Inquiry</span>
                     </button>
@@ -568,122 +572,7 @@ function setLang(lang) {
     document.documentElement.lang = lang === 'cn' ? 'zh-CN' : 'en';
 }
 
-// ─── Form Validation ───
-function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function showError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    field.style.borderColor = '#c41e3a';
-    // Remove old error
-    const old = field.parentNode.querySelector('.field-error');
-    if (old) old.remove();
-    const err = document.createElement('p');
-    err.className = 'field-error text-xs text-v5red mt-1';
-    err.textContent = message;
-    field.parentNode.appendChild(err);
-    field.addEventListener('input', () => {
-        field.style.borderColor = '#e5e7eb';
-        err.remove();
-    }, { once: true });
-}
-
-// ─── Submit to Worker Proxy (production) or direct ERP (local dev) ───
-// [FIX 2026-09-13] IS_LOCAL 之前从未定义 —— 引用即抛 ReferenceError，
-// 导致整个 script 块中断：浏览器语言自动检测 IIFE 永远不执行，
-// 控制台报错。此处补上定义（SUBMIT_URL 目前未被使用，保留以备 Worker 接入）。
-const IS_LOCAL = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-const SUBMIT_URL = IS_LOCAL ? null : '/api/submit-quote'; // Worker proxy
-
-async function submitToBackend(data) {
-    // 通过邮件发送到 sales@v5med.net
-    const subject = encodeURIComponent(`RFQ from ${data.company} - ${data.category}`);
-    const body = encodeURIComponent(
-        `New RFQ Submission\n\n` +
-        `Company: ${data.company}\n` +
-        `Contact: ${data.contact}\n` +
-        `Email: ${data.email}\n` +
-        `Phone: ${data.phone || 'N/A'}\n` +
-        `Product Category: ${data.category}\n` +
-        `Description: ${data.description || 'N/A'}\n\n` +
-        `Source: ${CONFIG.SOURCE}`
-    );
-
-    // 打开邮件客户端
-    window.location.href = `mailto:${CONFIG.SALES_EMAIL}?subject=${subject}&body=${body}`;
-
-    return 'email-sent';
-}
-
-// ─── Form Submit ───
-async function handleSubmit(e) {
-    e.preventDefault();
-    const t = I18N[currentLang];
-    const btn = document.getElementById('submitBtn');
-
-    // Clear old errors
-    document.querySelectorAll('.field-error').forEach(el => el.remove());
-    ['company','contact','email','category'].forEach(id => {
-        document.getElementById(id).style.borderColor = '#e5e7eb';
-    });
-
-    // Validate
-    let hasError = false;
-    const company = document.getElementById('company').value.trim();
-    const contact = document.getElementById('contact').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const category = document.getElementById('category').value;
-    const description = document.getElementById('description').value.trim();
-
-    if (!company) { showError('company', t['err-required']); hasError = true; }
-    if (!contact) { showError('contact', t['err-required']); hasError = true; }
-    if (!email || !validateEmail(email)) { showError('email', t['err-email']); hasError = true; }
-    if (!category) { showError('category', t['err-required']); hasError = true; }
-    if (hasError) return;
-
-    // Show loading
-    btn.disabled = true;
-    btn.innerHTML = `<div class="spinner"></div> <span>${t['loading']}</span>`;
-
-    try {
-        // Submit to ERP via proxy (production) or direct (local dev)
-        const leadId = await submitToBackend({ company, contact, email, phone, category, description });
-
-        console.log('Lead created:', leadId);
-
-        // Show success
-        document.getElementById('formContainer').classList.add('hidden');
-        document.getElementById('successMessage').classList.remove('hidden');
-
-        // Track conversion (optional)
-        if (typeof gtag === 'function') {
-            gtag('event', 'generate_lead', {
-                'event_category': 'quote_form',
-                'event_label': category,
-            });
-        }
-
-    } catch (err) {
-        console.error('Submit error:', err);
-        btn.disabled = false;
-        btn.innerHTML = `<i class="fas fa-paper-plane"></i> <span>${t['btn-submit']}</span>`;
-        alert(t['err-submit']);
-    }
-}
-
-function resetForm() {
-    document.getElementById('quoteForm').reset();
-    document.getElementById('formContainer').classList.remove('hidden');
-    document.getElementById('successMessage').classList.add('hidden');
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = false;
-    const t = I18N[currentLang];
-    btn.innerHTML = `<i class="fas fa-paper-plane"></i> <span>${t['btn-submit']}</span>`;
-    // Scroll to form
-    document.getElementById('quote-form').scrollIntoView({ behavior: 'smooth' });
-}
+window.V5QuoteContext = { getMessages: () => I18N[currentLang] };
 
 // ─── Init: detect browser language ───
 (function() {
@@ -693,6 +582,8 @@ function resetForm() {
     }
 })();
 </script>
+<script src="../js/security-utils.js?v=20260923.2" defer></script>
+<script src="../js/lead-forms.js?v=20260923.2" defer></script>
 
 </body>
 </html>

@@ -12,7 +12,7 @@ Details about the first point.
 * Fact A
 * Fact B
 
-> **Pro Tip:** Always verify the [ISO 13485 certificate](posts/iso-13485-guide.md) before placing an order.
+> **Pro Tip:** Always verify the [ISO 13485 certificate](/blog/posts/iso-13485-guide.html) before placing an order.
 
 ## Key Takeaway 2: [Sub-topic]
 Details about the second point. 

@@ -191,7 +191,7 @@ V5 Medical's QA team offers consultative audits for high-volume orders. Contact 
 * 📞 **Phone:** +86-0512-8781-1988
 
 **Related Articles:**
-* [Understanding ISO 13485 in Plain English](posts/iso-13485-guide.md)
-* [Why the "Integrator Model" Works](posts/integrator-model.md)
+* [Understanding ISO 13485 in Plain English](/blog/posts/iso-13485-guide.html)
+* [Why the "Integrator Model" Works](/blog/posts/integrator-model.html)
 
 > *Disclaimer: This article is for informational purposes only and does not constitute legal or regulatory advice. Always consult with qualified professionals for compliance matters.*

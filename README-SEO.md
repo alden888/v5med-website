@@ -13,18 +13,18 @@
 |---|---|
 | `robots.txt` | 合并冲突的爬虫分组（原独立 Googlebot 组导致全局 Disallow 对 Google 失效）；屏蔽 `/workbench/`；保留 PDF 策略（仅放行 Catalog.pdf） |
 | `_headers` | ① 新增 `/workbench/*` → `X-Robots-Tag: noindex, nofollow`；② **CSP 改为单行**（Cloudflare Pages 不支持多行 header，原 CSP 实际未生效）；③ CSP 补充 `googletagmanager.com`（原配置拦截了博客 GA4）和 GA/Translate 域名 |
-| `sitemap.xml` | 重新生成：去掉重复的 `/index.html`、去掉被 robots 屏蔽的 PDF、去掉不存在的 `/blog.html`；收录全部 51 个产品页 + 7 个分类页；lastmod 全部更新 |
-| `blog/sitemap.xml` | **新增**，8 篇文章独立 sitemap（robots.txt 早已声明但它不存在） |
+| `sitemap.xml` | 重新生成：去掉重复的 `/index.html`、去掉被 robots 屏蔽的 PDF、去掉不存在的 `/blog.html`；收录全部 107 个产品页 + 9 个分类页；lastmod 全部更新 |
+| `blog/sitemap.xml` | **新增**，22 篇文章独立 sitemap（robots.txt 早已声明但它不存在） |
 | `js/seo-utils.js` | 移除 Product schema 中违规的 `price: "0"` 占位 offers（B2B 询盘模式正确做法是省略）；移除无可见内容的 FAQ 自动注入 |
-| `blog/posts/*.html` | **新增 8 个静态文章页**：独立 title/description/canonical/OG/Article+面包屑 schema。原 Docsify hash 路由（`/blog/#/posts/x`）Google 无法索引，这是本次最重要的修复 |
+| `blog/posts/*.html` | **新增 22 个静态文章页**：独立 title/description/canonical/OG/Article+面包屑 schema。原 Docsify hash 路由（`/blog/#/posts/x`）Google 无法索引，这是本次最重要的修复 |
 
 ### 🟡 P1（关键词与结构）
 
 | 文件 | 改动 |
 |---|---|
 | `index.html` | ① title 改为 `Surgical Sutures & Medical Consumables Supplier \| V5 Medical`；② description 加入 ISO 13485/CE/FDA/OEM 关键词；③ H1 加入 "Certified Medical Consumables"；④ 新增**可见 FAQ 板块**（4 条）+ 匹配的静态 FAQPage schema；⑤ 博客卡片链接改为静态文章页；⑥ 5 个核心 JS 加 `defer`；⑦ 分类卡片链接指向新分类页 |
-| `products/*.html` | **新增 51 个静态产品页**：Product schema（无 price 违规）、面包屑、规格表、询盘 CTA |
-| `categories/*.html` | **新增 7 个分类落地页**：每个分类独立关键词 title（如 "Surgical Sutures Manufacturer & Supplier"）、SEO 文案、ItemList schema |
+| `products/*.html` | **新增 107 个静态产品页**：Product schema（无 price 违规）、面包屑、规格表、询盘 CTA |
+| `categories/*.html` | **新增 9 个分类落地页**：每个分类独立关键词 title（如 "Surgical Sutures Manufacturer & Supplier"）、SEO 文案、ItemList schema |
 | `product-detail.html` | 动态页 canonical 指向对应静态页（避免重复内容分散权重）；内链博客 hash 链接全部改为静态页 |
 | `js/layout.js` | 新增全站 GA4 自动注入（`G-JE15YSMC2W`，幂等）——**原主站所有页面没有 GA 统计**，只有博客有且被 CSP 拦截 |
 | `build-static.py` | **新增**，静态页面生成器。以后改完 `blog/posts/*.md` 或 `js/complete-products.js` 后运行 `python build-static.py` 即可重新生成全部静态页 + sitemap |

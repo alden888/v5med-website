@@ -20,3 +20,12 @@ dist/
 
 # Astro
 .astro/
+
+# 部署清单/审计文档仅存本地，禁止提交到仓库
+# [2026-09-23 P0] 含明文凭据的 checklist 曾泄露到远端分支，历史已重写清除
+docs/
+*.bak*
+
+# Wrangler 本地状态/缓存（含 Cloudflare Account ID，公开仓库 main 分支曾提交 .wrangler/cache）
+.wrangler/
+__pycache__/

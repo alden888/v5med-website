@@ -1,6 +1,6 @@
 # ------------------------------
 # V5 Medical LTD Redirects Configuration
-# Last Updated: 2024-12-15
+# Last Updated: 2026-09-23
 # FIXED: Removed redirect loops
 # ------------------------------
 
@@ -8,12 +8,9 @@
 # BASE REDIRECTS (Critical for SEO)
 # ------------------------------
 
-# Force HTTPS (SEO Best Practice)
-http://v5med.net/* https://v5med.net/:splat 301!
-http://www.v5med.net/* https://v5med.net/:splat 301!
-
-# Force non-www (Choose one option)
-www.v5med.net/* https://v5med.net/:splat 301!
+# [2026-09-23] Cloudflare Pages 的 _redirects 只支持相对路径，按域名/协议写的规则会被忽略。
+# 请在 Cloudflare 后台完成：SSL/TLS → Edge Certificates → Always Use HTTPS = On；
+# www → 裸域用 Rules → Redirect Rules（或 Bulk Redirects）配置 301。
 
 # ------------------------------
 # WHATSAPP CONTACT SHORTCUTS
@@ -54,9 +51,9 @@ www.v5med.net/* https://v5med.net/:splat 301!
 # ------------------------------
 
 # Product Catalog
-/catalog-pdf /pdf/Catalog.pdf 302
-/pdf         /pdf/Catalog.pdf 302
-/download    /pdf/Catalog.pdf 302
+/catalog-pdf /pdf/catalog/Catalog.pdf 302
+/pdf         /pdf/catalog/Catalog.pdf 302
+/download    /pdf/catalog/Catalog.pdf 302
 
 # Dental Kit
 /dental-kit  /pdf/quotations/Quotations%20for%20dental%20products.pdf 302
@@ -82,25 +79,16 @@ www.v5med.net/* https://v5med.net/:splat 301!
 /campaign/ae https://v5med.net/?utm_source=whatsapp&utm_medium=chat&utm_campaign=uae_market 302
 
 # ------------------------------
-# CACHE CONTROL (Performance)
+# CACHE CONTROL
 # ------------------------------
-
-# Cache static assets for 1 year
-/*.ico       200!
-/*.css       200!
-/*.js        200!
-/images/*    200!
-
-# Cache PDFs for 1 month
-/pdf/*       200!
-/*.pdf       200!
-
-# Cache HTML files for 1 hour
-/*.html      200!
+# [2026-09-23] 原 "/*.css 200!" 等规则缺少目标地址，不是合法的重定向规则；缓存统一在 _headers 中配置。
 
 # ------------------------------
 # ERROR HANDLING - MUST BE LAST!
 # ------------------------------
+
+# Repair historical links emitted by the former blog relative-path pattern.
+/blog/posts/posts/* /blog/posts/:splat 301
 
 # Custom 404 page - ONLY for truly missing files
 # DO NOT use wildcard /* as it catches everything!

@@ -86,6 +86,26 @@ OG_IMAGE = "https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png"
 # 旧值 G-JE15YSMC2W 是早期博客专用属性，2026-09-04 起全站统一使用新属性。
 GA_ID = "G-HVN50TM5EK"
 
+def asset_version():
+    """从全站配置读取唯一静态资源版本；发布 JS/CSS 时必须提升它。"""
+    config = (ROOT / "js" / "config.js").read_text(encoding="utf-8")
+    match = re.search(r"ASSET_VERSION:\s*['\"]([^'\"]+)['\"]", config)
+    if not match:
+        raise RuntimeError("js/config.js 缺少 ASSET_VERSION，无法安全发布 immutable 静态资源")
+    return match.group(1)
+
+def synchronise_asset_versions(version):
+    """将手写页的本地 ?v= 参数同步，避免一年 immutable 缓存命中旧脚本。"""
+    pattern = re.compile(r"(?P<prefix>(?:src|href)=['\"][^'\"]*[?&]v=)[^'\"]+(?P<quote>['\"])")
+    changed = 0
+    for page in ROOT.rglob("*.html"):
+        original = page.read_text(encoding="utf-8")
+        updated = pattern.sub(lambda match: f"{match.group('prefix')}{version}{match.group('quote')}", original)
+        if updated != original:
+            page.write_text(updated, encoding="utf-8")
+            changed += 1
+    print(f"  [assets] 已同步 {changed} 个页面到 ?v={version}")
+
 # ---------------- 工具函数 ----------------
 _lastmod_cache = {}
 
@@ -605,10 +625,59 @@ PRODUCT_RE = re.compile(
     r'\{\s*name:\s*"([^"]+)",\s*id:\s*"([^"]+)",\s*category:\s*"([^"]+)",\s*img:\s*"([^"]+)"\s*\}'
 )
 
+def image_real_size(path):
+    """解析图片真实像素尺寸（无 PIL 依赖）：
+    JPEG 走 SOF 段，PNG 走 IHDR。返回 (w, h) 或 None（非受支持格式/解析失败）。"""
+    try:
+        data = path.read_bytes()
+    except OSError:
+        return None
+    if data[:3] == b"\xff\xd8\xff":  # JPEG
+        i = 2
+        while i + 9 < len(data):
+            if data[i] != 0xFF:
+                i += 1
+                continue
+            marker = data[i + 1]
+            if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7:
+                i += 2
+                continue
+            seg_len = (data[i + 2] << 8) | data[i + 3]
+            if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+                          0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):  # SOF0-15
+                h = (data[i + 5] << 8) | data[i + 6]
+                w = (data[i + 7] << 8) | data[i + 8]
+                return (w, h)
+            i += 2 + seg_len
+        return None
+    if data[:8] == b"\x89PNG\r\n\x1a\n":  # PNG IHDR
+        w = int.from_bytes(data[16:20], "big")
+        h = int.from_bytes(data[20:24], "big")
+        return (w, h)
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":  # WebP
+        fmt = data[12:16]
+        if fmt == b"VP8X":
+            w = 1 + int.from_bytes(data[24:27], "little")
+            h = 1 + int.from_bytes(data[27:30], "little")
+            return (w, h)
+        if fmt == b"VP8L":
+            b0, b1, b2, b3 = data[21:25]
+            w = 1 + ((b1 & 0x3F) << 8 | b0)
+            h = 1 + ((b3 & 0x0F) << 10 | (b2 & 0x3F) << 8 | (b1 & 0xC0) >> 6)
+            return (w, h)
+        if fmt == b"VP8 " and len(data) > 18:  # lossy keyframe
+            w = int.from_bytes(data[14:16], "big") & 0x3FFF
+            h = int.from_bytes(data[16:18], "big") & 0x3FFF
+            return (w, h)
+        return None
+    return None
+
+MIN_IMAGE_EDGE_PX = 100  # 主图最短边下限：真实图片均 >=100px，占位/坏图在此之下
+
 def load_products():
     """从 js/complete-products.js 提取产品数据，并做 fail-fast 校验：
     1. 提取数量必须与 metadata.totalProducts 一致（防正则静默丢产品）；
-    2. 每个产品主图必须存在且 >1KB（防坏图/占位文本静默上线）。"""
+    2. 每个产品主图必须为有效 JPEG/PNG 且真实尺寸 >= 100px（防坏图/占位文本静默上线）。"""
     js = (ROOT / "js" / "complete-products.js").read_text(encoding="utf-8")
     products = [
         {"name": m[0], "id": m[1], "category": m[2], "img": m[3]}
@@ -632,8 +701,12 @@ def load_products():
         img = ROOT / p["img"]
         if not img.is_file():
             bad.append(f"  {p['id']}: 图片不存在 {p['img']}")
-        elif img.stat().st_size < 1024:
-            bad.append(f"  {p['id']}: 图片损坏/占位 ({img.stat().st_size}B) {p['img']}")
+            continue
+        size = image_real_size(img)
+        if size is None:
+            bad.append(f"  {p['id']}: 非有效JPEG/PNG或解析失败 ({img.stat().st_size}B) {p['img']}")
+        elif min(size) < MIN_IMAGE_EDGE_PX:
+            bad.append(f"  {p['id']}: 图片尺寸过小 {size[0]}x{size[1]} (要求>=100px) {p['img']}")
     if bad:
         raise RuntimeError("产品数据校验失败：\n" + "\n".join(bad))
     return products
@@ -853,6 +926,9 @@ def main():
     write_sitemaps(products, articles)
     print(f"  sitemap.xml: {9 + len(CATEGORIES) + len(products)} 个 URL")
     print(f"  blog/sitemap.xml: {len(articles)} 个 URL")
+
+    print("== 4/4 同步静态资源版本 ==")
+    synchronise_asset_versions(asset_version())
     print("\n[OK] 构建完成")
 
 if __name__ == "__main__":

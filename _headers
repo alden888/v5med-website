@@ -1,7 +1,12 @@
 # ------------------------------
 # V5 Medical LTD - Cloudflare Pages 响应头配置
 # 适配：Docsify 渲染、Stripe 支付、静态资源缓存、安全防护
-# Last updated: 2026-09-13
+# Last updated: 2026-09-23 (round 2: 过时安全头、.md 跨域、图片缓存)
+# 2026-09-23 安全审计（P2-3）：
+#   unsafe-eval 暂保留——站点 11 页使用 Tailwind Play CDN（cdn.tailwindcss.com）
+#   运行时需 eval 编译 tailwind.config；移除前置条件：替换为构建后本地 CSS。
+#   unsafe-inline 暂保留——全站 180 个内联 script 块，迁移计划见 docs/csp-migration-plan.md。
+#   表单提交已外置 js/lead-forms.js（addEventListener），security-utils.js 已增强清洗。
 # 2026-09-13 变更：CSP img-src 补充 raw.githubusercontent.com（config.js 图片回退源）、
 #   www.gstatic.com / translate.googleapis.com（Google 翻译界面图片）；
 #   新增 /*.webp 与 /*.avif 一年 immutable 缓存规则。
@@ -15,8 +20,8 @@
   X-Frame-Options: DENY
   # 防 MIME 类型嗅探：强制浏览器按声明的 Content-Type 解析资源
   X-Content-Type-Options: nosniff
-  # 防 XSS 攻击：启用浏览器内置 XSS 防护并拦截恶意脚本
-  X-XSS-Protection: 1; mode=block
+  # [2026-09-23] 旧版 XSS Auditor 已被所有浏览器移除，1; mode=block 反而可能引入信息泄露；按 OWASP 建议显式关闭，由 CSP 负责
+  X-XSS-Protection: 0
   # 来源策略：跨域时仅发送域名，保护隐私
   Referrer-Policy: strict-origin-when-cross-origin
   # 权限策略：仅开放 payment 权限（适配 Stripe 支付），其余敏感权限禁用
@@ -27,8 +32,7 @@
   X-Permitted-Cross-Domain-Policies: none
   # 下载保护：禁止 IE 自动打开下载文件
   X-Download-Options: noopen
-  # CT 证书透明度：强制验证证书，防伪造
-  Expect-CT: max-age=86400, enforce
+  # [2026-09-23] Expect-CT 已被浏览器废弃（CT 现为默认强制），移除
   # 品牌标识（自定义头，非标准但可用于标识站点）
   X-Company-Name: V5 Medical LTD
   X-Platform: Global Supply Chain
@@ -48,13 +52,11 @@
 /*.md
   Content-Type: text/markdown; charset=utf-8
   Cache-Control: public, max-age=0, must-revalidate
-  Access-Control-Allow-Origin: *
 
 # blog 子目录 .md 文件
 /blog/*.md
   Content-Type: text/markdown; charset=utf-8
   Cache-Control: public, max-age=0, must-revalidate
-  Access-Control-Allow-Origin: *
 
 # ==============================
 # 3. 缓存策略：按资源类型精细化配置
@@ -63,28 +65,30 @@
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
 
-# 静态资源（1年长期缓存）：Immutable 表示缓存后无需验证，最大化提速
+# 静态资源缓存
+# CSS/JS/字体：1 年 immutable —— 页面引用必须带 ?v=ASSET_VERSION（build-static.py 自动同步）
+# 图片：[2026-09-23] 改为 7 天 + 后台刷新。图片没有版本号，同路径替换图片时 immutable 会让老访客一年看到旧图
 /*.css
   Cache-Control: public, max-age=31536000, immutable
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 /*.png
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.jpg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.jpeg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.gif
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.svg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.ico
   Cache-Control: public, max-age=31536000, immutable
 # [ADD 2026-09-13] 现代图片格式同样享受一年长期缓存
 /*.webp
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.avif
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /*.woff
   Cache-Control: public, max-age=31536000, immutable
 /*.woff2

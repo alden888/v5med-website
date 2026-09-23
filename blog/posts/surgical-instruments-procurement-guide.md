@@ -144,8 +144,8 @@ As a **Medical Supply Chain Integrator**, V5 Medical manages the full surgical i
 ---
 
 ### Related Resources
-- [How to Audit a Chinese Medical Device Factory](posts/how-to-audit-a-chinese-medical-device-factory.html)
-- [Sterilization Validation: What Auditors Really Check](posts/sterilization-validation.html)
-- [PGA vs PGLA vs PDO: Absorbable Suture Comparison](posts/suture-material-comparison.html)
-- [Surgical Pack Sterilization Standards](posts/surgical-pack-sterilization.html)
-- [Understanding ISO 13485: Practical Guide](posts/iso-13485-guide.html)
+- [Supplier Verification Checklist](/blog/posts/supplier-verification.html)
+- [Sterilization Validation: What Auditors Really Check](/blog/posts/sterilization-validation.html)
+- [PGA vs PGLA vs PDO: Absorbable Suture Comparison](/blog/posts/suture-material-comparison.html)
+- [Surgical Pack Sterilization Standards](/blog/posts/surgical-pack-sterilization.html)
+- [Understanding ISO 13485: Practical Guide](/blog/posts/iso-13485-guide.html)
