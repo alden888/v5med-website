@@ -31,6 +31,24 @@ const V5Medical = (() => {
                 autoDisplay: config.translate.autoDisplay
             }, 'google_translate_element');
 
+            // [FIX 2026-09-23] 菜单可见性兜底：Google 有时把菜单 iframe 定位在屏幕外或被裁剪。
+            // 轮询校正一次：菜单弹出时强制 z-index 100000、限制最大宽度、允许滚动。
+            const fixMenu = () => {
+                const f = document.querySelector('iframe.goog-te-menu-frame');
+                if (f) {
+                    f.style.zIndex = '100000';
+                    f.style.maxWidth = '95vw';
+                    f.style.position = 'fixed';
+                    const inner = f.contentDocument && f.contentDocument.querySelector('.goog-te-menu2');
+                    if (inner) { inner.style.maxHeight = '70vh'; inner.style.overflowY = 'auto'; }
+                }
+            };
+            const gadget = document.querySelector('.goog-te-gadget-simple');
+            if (gadget) {
+                gadget.addEventListener('click', () => setTimeout(fixMenu, 350), { once: true });
+                setTimeout(fixMenu, 800);
+            }
+
             // 样式注入：包含外观和定位
             const style = document.createElement('style');
             style.innerHTML = `
@@ -73,6 +91,22 @@ const V5Medical = (() => {
                         white-space: nowrap !important;
                     }
                 }
+
+                /* [FIX 2026-09-23] 菜单点击后不弹出的根因修复：
+                   Google 官方 widget 的菜单 iframe (.goog-te-menu-frame) 默认 z-index 极低，
+                   被导航栏(z-50)/本组件(z-60)遮挡且 absolute 定位可能越界，
+                   此处强制置顶 + 修正定位，确保点击语言按钮后菜单可见。 */
+                iframe.goog-te-menu-frame {
+                    z-index: 100000 !important;
+                    position: fixed !important;
+                    top: auto !important;
+                    max-width: 95vw !important;
+                }
+                .goog-te-menu2 {
+                    max-height: 70vh !important;
+                    overflow-y: auto !important;
+                }
+                .goog-te-gadget-simple { cursor: pointer !important; }
             `;
             document.head.appendChild(style);
         };

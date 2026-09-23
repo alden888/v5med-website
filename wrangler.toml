@@ -10,7 +10,6 @@ ERP_URL = "https://erp.12888.de"
 # 推荐：ERP 专用低权限账号 + API Key（wrangler secret put ERP_API_KEY / ERP_API_SECRET），
 # 配置后 Worker 不再使用下面的会话登录。
 # [2026-09-23] 已改用 API Key，下面的会话登录兜底停用；同时请执行 wrangler secret delete ERP_PWD
-# ERP_USER = "Administrator"
 # Frappe Lead REST API (verified against erp.12888.de; /api/leads was a false assumption)
 ERP_LEAD_PATH = "/api/resource/Lead"
 # 附件改为私有：设置 secret ATTACHMENT_SIGNING_KEY 后，邮件里发 30 天有效的签名下载链接

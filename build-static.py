@@ -415,9 +415,8 @@ def render_page(*, title, description, canonical, body, schemas=(), extra_head="
 <meta name="twitter:title" content="{esc(title)}">
 <meta name="twitter:description" content="{esc(description)}">
 <meta name="twitter:image" content="{OG_IMAGE}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/inter/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/inter.css?v={asset_version()}">
 <style>{PAGE_CSS}</style>
 {schema_html}
 {ga_snippet()}

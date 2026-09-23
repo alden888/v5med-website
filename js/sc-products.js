@@ -805,34 +805,7 @@ const scProductData = [
       "Europe",
       "Latin America"
     ]
-  },
-  {
-    "id": "v5-pep-011",
-    "name": "CJC-1295 no DAC API",
-    "category": "peptide-raw-materials",
-    "short": "CJC-1295 no DAC \u2014 high-purity pharmaceutical grade peptide for research and clinical applications.",
-    "description": "CJC-1295 no DAC \u2014 high-purity pharmaceutical grade peptide for research and clinical applications.",
-    "price": "Contact for Price",
-    "availability": "In Stock",
-    "stockLevel": "High",
-    "certifications": [
-      "GMP",
-      "ISO 9001",
-      "COA",
-      "HPLC tested"
-    ],
-    "images": [
-      "images/products/v5-pep-011-main.jpg",
-      "images/products/default-product.jpg"
-    ],
-    "specifications": {
-      "form": "Lyophilized powder",
-      "storage": "-20\u00b0C, protect from light",
-      "shelf_life": "24 months",
-      "dose_per_vial": "5.0mg",
-      "vials_per_box": "10"
-    },
-    "moq": "1 box (10 vials)",
+  },    "moq": "1 box (10 vials)",
     "lead_time": {
       "sample": "3-5 business days",
       "bulk": "15-20 business days"
@@ -1075,34 +1048,7 @@ const scProductData = [
       "Europe",
       "Latin America"
     ]
-  },
-  {
-    "id": "v5-pep-018",
-    "name": "BPC API",
-    "category": "peptide-raw-materials",
-    "short": "BPC \u2014 high-purity pharmaceutical grade peptide for research and clinical applications.",
-    "description": "BPC \u2014 high-purity pharmaceutical grade peptide for research and clinical applications.",
-    "price": "Contact for Price",
-    "availability": "In Stock",
-    "stockLevel": "High",
-    "certifications": [
-      "GMP",
-      "ISO 9001",
-      "COA",
-      "HPLC tested"
-    ],
-    "images": [
-      "images/products/v5-pep-018-main.jpg",
-      "images/products/default-product.jpg"
-    ],
-    "specifications": {
-      "form": "Lyophilized powder",
-      "storage": "-20\u00b0C, protect from light",
-      "shelf_life": "24 months",
-      "dose_per_vial": "15710.0mg",
-      "vials_per_box": "10"
-    },
-    "moq": "1 box (10 vials)",
+  },    "moq": "1 box (10 vials)",
     "lead_time": {
       "sample": "3-5 business days",
       "bulk": "15-20 business days"

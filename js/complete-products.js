@@ -13,7 +13,7 @@ const completeProductDatabase = {
     metadata: {
         version: '4.0.0',
         lastUpdated: '2026-09-04',
-        totalProducts: 107
+        totalProducts: 105
     },
     
     categories: {
@@ -119,14 +119,12 @@ const productData = [
     { name: "Bacteriostatic Water (BAC Water)", id: "v5-pep-008", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "BPC157 API", id: "v5-pep-009", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "CJC-1295 (without DAC) API", id: "v5-pep-010", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
-    { name: "CJC-1295 no DAC API", id: "v5-pep-011", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "GHK-CU API", id: "v5-pep-012", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "DSIP API", id: "v5-pep-013", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "Epithalon API", id: "v5-pep-014", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "Gonadorelin (GT/GTT) API", id: "v5-pep-015", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "IGF-1 LR3 API", id: "v5-pep-016", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "Ipamorelin API", id: "v5-pep-017", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
-    { name: "BPC API", id: "v5-pep-018", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "KPV API", id: "v5-pep-019", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "Kisspeptin-10 API", id: "v5-pep-020", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },
     { name: "LC Lipolytic API", id: "v5-pep-021", category: "peptide-raw-materials", img: "images/products/default-product.jpg" },

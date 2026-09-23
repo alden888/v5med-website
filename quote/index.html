@@ -40,7 +40,7 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 
         * { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -131,6 +131,8 @@
         #google_translate_element .goog-te-gadget { display: block !important; visibility: visible !important; }
         #google_translate_element { display: block !important; visibility: visible !important; }
 </style>
+    <link rel="preload" href="../fonts/inter/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../fonts/inter.css?v=20260923.5">
 
     <!--
       [FIX 2026-09-13] 新增 GA4（G-HVN50TM5EK，与 js/config.js 一致）。
@@ -138,7 +140,7 @@
       转化事件永远不会上报。现在 gtag 存在，事件可正常发送。
     -->
     <!-- GA4 仅在访客同意后加载（js/consent.js） -->
-    <script src="/js/consent.js?v=20260923.4" data-ga-id="G-HVN50TM5EK"></script>
+    <script src="/js/consent.js?v=20260923.5" data-ga-id="G-HVN50TM5EK"></script>
 </head>
 
 <body class="bg-v5gray text-gray-800 font-sans antialiased">
@@ -581,8 +583,8 @@ window.V5QuoteContext = { getMessages: () => I18N[currentLang] };
     }
 })();
 </script>
-<script src="../js/security-utils.js?v=20260923.4" defer></script>
-<script src="../js/lead-forms.js?v=20260923.4" defer></script>
+<script src="../js/security-utils.js?v=20260923.5" defer></script>
+<script src="../js/lead-forms.js?v=20260923.5" defer></script>
 
 </body>
 </html>
