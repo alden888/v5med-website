@@ -2,8 +2,13 @@
  * V5 Medical Layout Engine
  * (Unified Layout Manager)
  * Dynamically renders Header, Footer, and Floating elements.
- * @version 4.9.6 (Update: GA4 Consent Mode + Cookie Banner, GDPR)
+ * @version 4.9.7 (Update: consent delegated to js/consent.js + Cookie settings link)
  * @updated 2026-09-23
+ *
+ * [CHANGELOG 4.9.7]
+ * - Cookie 同意逻辑抽到 js/consent.js，静态生成页/博客/询盘页共用同一实现；
+ *   仅授权 analytics_storage（广告信号保持 denied）；localStorage 异常容错；
+ *   页脚新增 "Cookie settings" 可随时撤回同意。
  *
  * [CHANGELOG 4.9.6]
  * - [GDPR] GA4 改为 Consent Mode v2：默认 denied，仅在访客点击
@@ -48,75 +53,20 @@ const V5Layout = (() => {
         }
 
         /**
-         * [GDPR] GA4 统计注入（Consent Mode v2 + Cookie Banner）
-         * 默认 denied：未获同意不加载 gtag、不采集。Accept 后加载并 update granted。
+         * [GDPR] GA4 统计注入：委托给 js/consent.js（全站统一的 Cookie 同意实现）。
+         * 未获同意前不加载 gtag；仅授权 analytics_storage；页脚 "Cookie settings" 可撤回。
          */
         _loadAnalytics() {
             const GA_ID = (window.V5Config && window.V5Config.ANALYTICS && window.V5Config.ANALYTICS.GA4_ID) || 'G-HVN50TM5EK';
-            window.dataLayer = window.dataLayer || [];
-            if (!window.gtag) {
-                window.gtag = function () { window.dataLayer.push(arguments); };
+            if (window.V5Consent) {
+                window.V5Consent.init(GA_ID);
+                return;
             }
-            // Consent Mode v2：默认全部 denied（除功能/安全存储）
-            window.gtag('consent', 'default', {
-                ad_storage: 'denied',
-                ad_user_data: 'denied',
-                ad_personalization: 'denied',
-                analytics_storage: 'denied',
-                functionality_storage: 'granted',
-                personalization_storage: 'denied',
-                security_storage: 'granted',
-                wait_for_update: 500
-            });
-
-            const choice = localStorage.getItem('v5_cookie_consent');
-            if (choice === 'accepted') {
-                window.gtag('consent', 'update', {
-                    ad_storage: 'granted', ad_user_data: 'granted',
-                    ad_personalization: 'granted', analytics_storage: 'granted'
-                });
-                this._loadGtagScript(GA_ID);
-            } else if (choice !== 'declined') {
-                // 首次访问：显示 banner 等待选择
-                this._showCookieBanner(GA_ID);
-            }
-            // declined：不加载、不再打扰
-        }
-
-        _loadGtagScript(GA_ID) {
-            if (document.querySelector(`script[src*="${GA_ID}"]`)) return;
+            const version = (window.V5Config && window.V5Config.ASSET_VERSION) || '';
             const s = document.createElement('script');
-            s.async = true;
-            s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+            s.src = `/js/consent.js?v=${version}`;
+            s.onload = () => window.V5Consent && window.V5Consent.init(GA_ID);
             document.head.appendChild(s);
-            window.gtag('js', new Date());
-            window.gtag('config', GA_ID, { anonymize_ip: true });
-        }
-
-        _showCookieBanner(GA_ID) {
-            if (document.getElementById('v5-cookie-banner')) return;
-            const banner = document.createElement('div');
-            banner.id = 'v5-cookie-banner';
-            banner.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0f172a;color:#e2e8f0;padding:14px 20px;font-family:system-ui,-apple-system,sans-serif;font-size:13px;line-height:1.5;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 -2px 12px rgba(0,0,0,.35);border-top:2px solid #3b82f6';
-            banner.innerHTML = `<span style="flex:1;min-width:250px;padding-right:8px">We use cookies to analyse anonymous site traffic (Google Analytics, IP anonymised). You can accept or decline. <a href="privacy.html" style="color:#60a5fa;text-decoration:underline">Privacy Policy</a></span>
-                <div style="display:flex;gap:8px;flex-shrink:0">
-                    <button type="button" data-v5-ck="decline" style="background:transparent;color:#cbd5e1;border:1px solid #475569;border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px">Decline</button>
-                    <button type="button" data-v5-ck="accept" style="background:#3b82f6;color:#fff;border:1px solid #3b82f6;border-radius:6px;padding:7px 16px;cursor:pointer;font-size:13px;font-weight:600">Accept</button>
-                </div>`;
-            document.body.appendChild(banner);
-            banner.querySelector('[data-v5-ck="accept"]').addEventListener('click', () => {
-                localStorage.setItem('v5_cookie_consent', 'accepted');
-                window.gtag('consent', 'update', {
-                    ad_storage: 'granted', ad_user_data: 'granted',
-                    ad_personalization: 'granted', analytics_storage: 'granted'
-                });
-                this._loadGtagScript(GA_ID);
-                banner.remove();
-            });
-            banner.querySelector('[data-v5-ck="decline"]').addEventListener('click', () => {
-                localStorage.setItem('v5_cookie_consent', 'declined');
-                banner.remove();
-            });
         }
 
         injectStyles() {
@@ -351,6 +301,7 @@ const V5Layout = (() => {
                             <div class="flex gap-6">
                                 <a href="contact.html" class="hover:text-gray-400">Contact Us</a>
                                 <a href="privacy.html" class="hover:text-gray-400">Privacy Policy</a>
+                                <a href="#" data-v5-cookie-settings class="hover:text-gray-400">Cookie settings</a>
                             </div>
                         </div>
                     </div>

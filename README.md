@@ -280,6 +280,7 @@ curl -s https://v5med.net/api/submit-quote -H 'Origin: https://v5med.net' -H 'Co
 - **XSS Protection**: Input sanitization
 - **Form Security**: Origin check, honeypot fields, per-IP rate limiting, field whitelist, attachment magic-byte check
 - **Payment**: Bank details not published (anti-fraud)
+- **Privacy / GDPR**: `js/consent.js` is the single cookie-consent implementation (Consent Mode v2). GA4 loads only after "Accept", only `analytics_storage` is granted, and every footer has a "Cookie settings" link to withdraw. Never add an inline gtag snippet to a page — include `<script src="/js/consent.js?v=…" data-ga-id="G-…"></script>` instead (static pages) or rely on `js/layout.js`.
 
 ---
 

@@ -10,11 +10,17 @@
 
     const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
 
+    const originalButtonContent = new WeakMap();
+
     function setButtonLoading(button, loading, label) {
         if (!button) return;
-        if (!button.dataset.defaultLabel) button.dataset.defaultLabel = button.textContent.trim();
+        // Keep the original markup (icon + label) so it can be restored after loading.
+        if (!originalButtonContent.has(button)) {
+            originalButtonContent.set(button, [...button.childNodes].map((node) => node.cloneNode(true)));
+        }
         button.disabled = loading;
-        button.textContent = loading ? label : button.dataset.defaultLabel;
+        if (loading) button.textContent = label;
+        else button.replaceChildren(...originalButtonContent.get(button).map((node) => node.cloneNode(true)));
     }
 
     async function requestJson(url, options) {

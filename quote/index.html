@@ -137,13 +137,8 @@
       原页面没有任何 GA 加载，但表单提交代码里调用了 gtag('event','generate_lead')，
       转化事件永远不会上报。现在 gtag 存在，事件可正常发送。
     -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVN50TM5EK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HVN50TM5EK', { anonymize_ip: true });
-    </script>
+    <!-- GA4 仅在访客同意后加载（js/consent.js） -->
+    <script src="/js/consent.js?v=20260923.4" data-ga-id="G-HVN50TM5EK"></script>
 </head>
 
 <body class="bg-v5gray text-gray-800 font-sans antialiased">
@@ -342,6 +337,10 @@
 
                 <p class="text-center text-xs text-gray-400 mt-3" data-i18n="form-privacy">
                     Your information is secure and will only be used for quotation purposes.
+                </p>
+                <p class="text-center text-xs text-gray-400 mt-1">
+                    <a href="/privacy.html" class="underline hover:text-gray-600">Privacy Policy</a> &middot;
+                    <a href="#" data-v5-cookie-settings class="underline hover:text-gray-600">Cookie settings</a>
                 </p>
             </form>
         </div>
@@ -582,8 +581,8 @@ window.V5QuoteContext = { getMessages: () => I18N[currentLang] };
     }
 })();
 </script>
-<script src="../js/security-utils.js?v=20260923.3" defer></script>
-<script src="../js/lead-forms.js?v=20260923.3" defer></script>
+<script src="../js/security-utils.js?v=20260923.4" defer></script>
+<script src="../js/lead-forms.js?v=20260923.4" defer></script>
 
 </body>
 </html>

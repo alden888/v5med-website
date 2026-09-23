@@ -26,6 +26,10 @@ const MAX_JSON_BYTES = 64 * 1024;
 const SIGNED_LINK_TTL_SECONDS = 30 * 24 * 60 * 60;
 const DEFAULT_ORIGINS = ["https://v5med.net", "https://www.v5med.net"];
 const PUBLIC_BASE_URL = "https://v5med.net";
+// A slow ERP must not hold the visitor's request open; on timeout the sales e-mail
+// fallback ([ERP FAILED]) still captures the inquiry.
+const ERP_TIMEOUT_MS = 8000;
+const TURNSTILE_TIMEOUT_MS = 5000;
 
 // MIME type → leading "magic" bytes. The browser-declared type alone is not trusted.
 const ATTACHMENT_SIGNATURES = {
@@ -124,7 +128,9 @@ async function checkTurnstile(request, env, token) {
   body.append("response", token);
   const ip = request.headers.get("CF-Connecting-IP");
   if (ip) body.append("remoteip", ip);
-  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body });
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST", body, signal: AbortSignal.timeout(TURNSTILE_TIMEOUT_MS),
+  });
   const outcome = await res.json().catch(() => ({}));
   if (!outcome.success) throw new ClientError("Verification failed. Please reload the page and try again.", 400);
 }
@@ -195,6 +201,7 @@ async function erpAuthHeaders(env) {
 
   const loginRes = await fetch(`${env.ERP_URL}/api/method/login`, {
     method: "POST",
+    signal: AbortSignal.timeout(ERP_TIMEOUT_MS),
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `usr=${encodeURIComponent(env.ERP_USER)}&pwd=${encodeURIComponent(env.ERP_PWD)}`,
   });
@@ -204,7 +211,7 @@ async function erpAuthHeaders(env) {
 
   const headers = { Cookie: `sid=${sessionId}` };
   const logout = () =>
-    fetch(`${env.ERP_URL}/api/method/logout`, { method: "POST", headers }).catch(() => {});
+    fetch(`${env.ERP_URL}/api/method/logout`, { method: "POST", headers, signal: AbortSignal.timeout(3000) }).catch(() => {});
   return { headers, logout };
 }
 
@@ -247,6 +254,7 @@ async function createErpLead(env, payload) {
   const post = (body) =>
     fetch(endpoint, {
       method: "POST",
+      signal: AbortSignal.timeout(ERP_TIMEOUT_MS),
       headers: { ...auth, "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(body),
     });
@@ -254,7 +262,7 @@ async function createErpLead(env, payload) {
   try {
     const lead = mapLeadPayload(payload);
     let response = await post(lead);
-    if (!response.ok && response.status < 500) {
+    if (!response.ok && [400, 409, 417, 422].includes(response.status)) {
       // Safety net: if this ERP rejects the notes child table, keep the lead without it.
       console.warn("ERP rejected lead with notes, retrying without", response.status, (await response.text()).slice(0, 300));
       const { notes, ...withoutNotes } = lead;

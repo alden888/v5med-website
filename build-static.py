@@ -365,12 +365,14 @@ def site_footer():
 <footer class="site">
   <p>&copy; {year} V5 Medical LTD &middot; ISO 13485 Certified Supply Chain &middot;
   <a href="/contact.html" style="color:#93c5fd">Contact</a> &middot;
-  <a href="/privacy.html" style="color:#93c5fd">Privacy</a></p>
+  <a href="/privacy.html" style="color:#93c5fd">Privacy</a> &middot;
+  <a href="#" data-v5-cookie-settings style="color:#93c5fd">Cookie settings</a></p>
 </footer>"""
 
 def ga_snippet():
-    return f"""<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}',{{anonymize_ip:true}});</script>"""
+    # [2026-09-23 GDPR] GA4 只在访客点击 Accept 后加载（js/consent.js，Consent Mode v2），
+    # 与 layout.js 页面共用同一 Cookie 同意实现。
+    return f'<script src="/js/consent.js?v={asset_version()}" data-ga-id="{GA_ID}"></script>'
 
 def esc(s):
     return html_lib.escape(str(s), quote=True)
@@ -672,7 +674,11 @@ def image_real_size(path):
         return None
     return None
 
-MIN_IMAGE_EDGE_PX = 100  # 主图最短边下限：真实图片均 >=100px，占位/坏图在此之下
+MIN_IMAGE_EDGE_PX = 100
+PLACEHOLDER_IMG = "images/products/default-product.jpg"
+
+def is_placeholder(p):
+    return p["img"] == PLACEHOLDER_IMG  # 主图最短边下限：真实图片均 >=100px，占位/坏图在此之下
 
 def load_products():
     """从 js/complete-products.js 提取产品数据，并做 fail-fast 校验：
@@ -709,6 +715,9 @@ def load_products():
             bad.append(f"  {p['id']}: 图片尺寸过小 {size[0]}x{size[1]} (要求>=100px) {p['img']}")
     if bad:
         raise RuntimeError("产品数据校验失败：\n" + "\n".join(bad))
+    placeholders = [p["id"] for p in products if is_placeholder(p)]
+    if placeholders:
+        print(f"  [warn] {len(placeholders)} 个 SKU 仍使用占位图 {PLACEHOLDER_IMG}（不写入 JSON-LD / 图片 sitemap）")
     return products
 
 def product_description(p, cat):
@@ -768,7 +777,8 @@ def render_product_page(p, cat):
             "description": desc,
             "sku": p["id"],
             "mpn": p["id"].upper(),
-            "image": [img_abs],
+            # 占位图不作为产品图提交给搜索引擎（53 个 SKU 共用同一张图会被视为低质量）
+            **({} if is_placeholder(p) else {"image": [img_abs]}),
             "category": cat_name,
             "brand": {"@type": "Brand", "name": "V5 Medical"},
             "manufacturer": {"@type": "Organization", "name": "V5 Medical LTD", "url": BASE},
@@ -884,7 +894,8 @@ def write_sitemaps(products, articles):
                                  lastmod=products_lastmod))
     for p in products:
         entries.append(url_entry(f"{BASE}/products/{p['id']}.html", "0.8", "monthly",
-                                 image=f"{BASE}/{p['img']}", lastmod=products_lastmod))
+                                 image=None if is_placeholder(p) else f"{BASE}/{p['img']}",
+                                 lastmod=products_lastmod))
 
     main = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

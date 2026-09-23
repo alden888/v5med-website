@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="css/style.css?v=20260923.3">
+    <link rel="stylesheet" href="css/style.css?v=20260923.4">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -172,13 +172,8 @@
     </script>
 
     <!-- GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HVN50TM5EK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HVN50TM5EK');
-    </script>
+    <!-- GA4 仅在访客同意后加载（js/consent.js） -->
+    <script src="/js/consent.js?v=20260923.4" data-ga-id="G-HVN50TM5EK"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
@@ -482,6 +477,7 @@
                         <li><a href="events.html" class="hover:text-white">Events</a></li>
                         <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                         <li><a href="privacy.html" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" data-v5-cookie-settings class="hover:text-white">Cookie settings</a></li>
                     </ul>
                 </div>
                 <div>

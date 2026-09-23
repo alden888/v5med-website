@@ -16,7 +16,7 @@ const V5Config = (() => {
     return {
         // 发布任意 JS/CSS 时必须递增此值，然后运行 python3 build-static.py。
         // 构建脚本会将所有本地 ?v= 参数同步为该值，确保 immutable 缓存可失效。
-        ASSET_VERSION: '20260923.3',
+        ASSET_VERSION: '20260923.4',
         ENV: { IS_PRODUCTION: isProduction, IS_LOCAL: isLocal },
         
         // 品牌域名

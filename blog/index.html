@@ -764,16 +764,9 @@ background: var(--neutral-500);
   修复：GA 配置统一为 G-HVN50TM5EK（与 js/config.js 一致），
   路由追踪插件合并进 body 的 $docsify 主配置（见下方 plugins 数组）。
 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HVN50TM5EK"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag("js", new Date());
-gtag("config", "G-HVN50TM5EK", {
-page_path: location.hash.replace("#/", "/blog/"),
-anonymize_ip: true
-});
-</script>
+<!-- [2026-09-23 GDPR] GA4 仅在访客同意后加载（js/consent.js） -->
+<script>window.V5_GA_CONFIG = { page_path: location.hash.replace("#/", "/blog/") };</script>
+<script src="/js/consent.js?v=20260923.4" data-ga-id="G-HVN50TM5EK"></script>
 </head>
 <body>
 <div id="v5-header">
@@ -862,7 +855,7 @@ plugins: [
 function(hook) {
 /* [FIX 2026-09-13] GA4 hash 路由追踪（原在 <head> 的 $docsify 里，被覆盖丢失） */
 hook.doneEach(function() {
-if (typeof gtag !== "undefined") {
+if (window.V5Consent && window.V5Consent.status() === "accepted" && typeof gtag === "function") {
 gtag("config", "G-HVN50TM5EK", {
 page_path: location.hash.replace("#/", "/blog/")
 });
