@@ -30,5 +30,5 @@ Explain how V5 solves this problem. "As a supply chain integrator, we ensure..."
 ---
 
 ### Related Resources
-* [Download Capability Statement](/pdf/V5_Medical_Capability_Statement.pdf)
+* [Download Capability Statement](/pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf)
 * [View Product Catalog](/catalog.html)

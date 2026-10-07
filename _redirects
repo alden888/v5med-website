@@ -51,6 +51,9 @@
 # ------------------------------
 
 # Product Catalog
+# Capability Statement: fixed legacy URL always points at the current revision
+/pdf/V5_Medical_Capability_Statement.pdf /pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf 302
+
 /catalog-pdf /pdf/catalog/Catalog.pdf 302
 /pdf         /pdf/catalog/Catalog.pdf 302
 /download    /pdf/catalog/Catalog.pdf 302

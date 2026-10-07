@@ -134,7 +134,7 @@ V5 Medical treats packaging as what it is: **a core quality and regulatory funct
 
 **Next Steps:**
 
-- 📄 **[Download Capability Statement](/pdf/V5_Medical_Capability_Statement.pdf)** — For tender qualification & due diligence
+- 📄 **[Download Capability Statement](/pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf)** — For tender qualification & due diligence
 - 🌐 **[View Product Catalog](/catalog.html)** — Syringes, sutures, drapes, and custom kits
 - 📧 **[Contact QA Team](mailto:info@v5med.net?subject=Packaging%20Solutions%20Inquiry)** — Discuss your device, target market, and sterilization requirements
 - 📱 **[WhatsApp](https://wa.me/8615133008348)** — Urgent inquiries

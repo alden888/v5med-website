@@ -8,7 +8,7 @@
 * Downloads
   * [📖 Product Catalog (PDF)](https://v5med.net/pdf/catalog/Catalog.pdf)
   * [💰 Price List (PDF)](https://v5med.net/pdf/price%20list.pdf)
-  * [🛡️ Capability Statement](https://v5med.net/pdf/V5_Medical_Capability_Statement.pdf)
+  * [🛡️ Capability Statement](https://v5med.net/pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf)
 
 * Language
   * [English](/)

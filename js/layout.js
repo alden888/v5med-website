@@ -276,12 +276,13 @@ const V5Layout = (() => {
                                 <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Resources</h4>
                                 <ul class="space-y-2 text-sm text-gray-400 mb-6">
                                     <li><a href="links.html" class="footer-link block text-blue-400 font-bold"><i class="fas fa-link mr-1"></i> Quick Links &amp; Price Lists</a></li>
+                                    <li><a href="/verification" class="footer-link block text-blue-400 font-bold"><i class="fas fa-shield-halved mr-1"></i> Company &amp; Quality Verification</a></li>
                                     <li><a href="catalog.html" class="footer-link block">Product Catalog</a></li>
                                     <li><a href="solutions.html" class="footer-link block">Industry Solutions</a></li>
                                     <li><a href="events.html" class="footer-link block">Trade Shows & Events</a></li>
                                     <li><a href="blog/" class="footer-link block">Compliance Knowledge Hub</a></li>
                                     <li><a href="payment.html" class="footer-link block text-green-400 font-bold"><i class="fas fa-credit-card mr-1"></i> Pay Invoice / Online</a></li>
-                                    <li><a href="pdf/V5_Medical_Capability_Statement.pdf" target="_blank" class="footer-link block flex items-center gap-2"><i class="fas fa-file-pdf"></i> Capability Statement</a></li>
+                                    <li><a href="pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf" target="_blank" class="footer-link block flex items-center gap-2"><i class="fas fa-file-pdf"></i> Capability Statement</a></li>
                                 </ul>
                                 
                                 <div class="flex gap-3 flex-wrap">

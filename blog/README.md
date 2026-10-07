@@ -147,7 +147,7 @@
 
 | **Official Documents** | **Quick Access** |
 | :--- | :--- |
-| 📄 **[Download Capability Statement (PDF)](https://v5med.net/pdf/V5_Medical_Capability_Statement.pdf)**<br>*For tender qualification & due diligence* | 🌐 **[Product Catalog](https://v5med.net/catalog.html)** |
+| 📄 **[Download Capability Statement (PDF)](https://v5med.net/pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf)**<br>*For tender qualification & due diligence* | 🌐 **[Product Catalog](https://v5med.net/catalog.html)** |
 | 🔒 **[Request ISO 13485 Certificate](https://v5med.net/contact.html?type=qa)**<br>*Full technical file available upon NDA* | 🏢 **[About Our Structure](https://v5med.net/about.html)** |
 
 ---

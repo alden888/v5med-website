@@ -166,5 +166,5 @@ Every peptide order from V5 Medical includes:
 - [Supplier Verification Checklist](/blog/posts/supplier-verification.html)
 - [ISO 13485 Practical Guide](/blog/posts/iso-13485-guide.html)
 - [The Integrator Model vs. Factory Direct](/blog/posts/integrator-model.html)
-- [Download Capability Statement (PDF)](/pdf/V5_Medical_Capability_Statement.pdf)
+- [Download Capability Statement (PDF)](/pdf/V5_Medical_Capability_Statement_V5-CS-001_20261007.pdf)
 - [View Product Catalog](/catalog.html)
