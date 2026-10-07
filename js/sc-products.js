@@ -805,17 +805,6 @@ const scProductData = [
       "Europe",
       "Latin America"
     ]
-  },    "moq": "1 box (10 vials)",
-    "lead_time": {
-      "sample": "3-5 business days",
-      "bulk": "15-20 business days"
-    },
-    "export_markets": [
-      "Southeast Asia",
-      "Middle East",
-      "Europe",
-      "Latin America"
-    ]
   },
   {
     "id": "v5-pep-012",
@@ -1038,17 +1027,6 @@ const scProductData = [
       "available_doses": "2.0-10.0mg"
     },
     "moq": "1 box (10 vials)",
-    "lead_time": {
-      "sample": "3-5 business days",
-      "bulk": "15-20 business days"
-    },
-    "export_markets": [
-      "Southeast Asia",
-      "Middle East",
-      "Europe",
-      "Latin America"
-    ]
-  },    "moq": "1 box (10 vials)",
     "lead_time": {
       "sample": "3-5 business days",
       "bulk": "15-20 business days"
