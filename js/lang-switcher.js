@@ -19,6 +19,8 @@
         ['hi', 'हिन्दी'], ['ja', '日本語'], ['ko', '한국어'], ['zh-CN', '简体中文'], ['zh-TW', '繁體中文']
     ];
     var HOST_ID = 'v5-gt-host';
+    // Optional placement set on the script tag: data-pos="plain" (no hamburger to avoid) or "bottom-left".
+    var POS = (document.currentScript && document.currentScript.dataset.pos) || '';
 
     function currentLang() {
         var m = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]*\/([^;]+)/);
@@ -64,7 +66,7 @@
     function injectStyle() {
         var style = document.createElement('style');
         style.textContent = [
-            '#v5-lang{position:fixed;top:22px;right:20px;z-index:70;font-family:inherit}',
+            '#v5-lang{position:fixed;top:22px;right:20px;z-index:1200;font-family:inherit}',
             '#v5-lang-btn{display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;cursor:pointer;',
             'background:rgba(15,23,42,.55);border:1px solid rgba(255,255,255,.35);color:#fff;font-size:12px;font-weight:700;line-height:1;backdrop-filter:blur(6px)}',
             '#v5-lang-btn:hover{background:rgba(15,23,42,.75)}',
@@ -77,6 +79,9 @@
             '#v5-lang-menu button:hover,#v5-lang-menu button:focus-visible{background:#eff6ff;outline:none}',
             '#v5-lang-menu button[aria-current="true"]{background:#dbeafe;color:#1e40af;font-weight:700}',
             '@media (max-width:768px){#v5-lang{top:18px;right:60px}#v5-lang-btn{padding:6px 9px;font-size:11px}}',
+            '#v5-lang.v5-lang--plain{top:14px;right:14px}',
+            '#v5-lang.v5-lang--bottom-left{top:auto;right:auto;bottom:20px;left:20px}',
+            '#v5-lang.v5-lang--bottom-left #v5-lang-menu{top:auto;bottom:calc(100% + 8px);right:auto;left:0}',
             /* Google engine stays mounted but invisible; its banner and tooltips are suppressed. */
             '#' + HOST_ID + '{position:absolute!important;left:-9999px!important;top:0!important;width:1px;height:1px;overflow:hidden}',
             'iframe.skiptranslate,.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame{display:none!important}',
@@ -97,7 +102,7 @@
 
         var wrap = document.createElement('div');
         wrap.id = 'v5-lang';
-        wrap.className = 'notranslate';
+        wrap.className = 'notranslate' + (POS ? ' v5-lang--' + POS : '');
         wrap.setAttribute('translate', 'no');
         wrap.innerHTML =
             '<button type="button" id="v5-lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="v5-lang-menu" aria-label="Select language">' +

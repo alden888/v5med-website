@@ -307,6 +307,8 @@ a{color:var(--blue);text-decoration:none}
 a:hover{text-decoration:underline}
 .topbar{background:linear-gradient(90deg,#dbeafe,#2563eb,#1e3a8a);padding:14px 0;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .topbar-inner{max-width:1080px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+/* keep the nav clear of the fixed language button */
+@media (max-width:1280px){{.topbar-inner{{padding-right:88px}}}}
 .brand{font-weight:800;font-size:1.15rem;color:#172554}
 .brand span{display:block;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#dbeafe;font-weight:600}
 .nav{display:flex;gap:18px;flex-wrap:wrap}
@@ -441,6 +443,7 @@ def render_page(*, title, description, canonical, body, schemas=(), extra_head="
 {body}
 </main>
 {site_footer()}
+<script src="/js/lang-switcher.js?v={asset_version()}" data-pos="plain" defer></script>
 </body>
 </html>
 """
