@@ -65,7 +65,7 @@ const V5Config = (() => {
             LOGO: 'https://v5med.net/images/v5logo.png',
             SAME_AS: [
                 'https://v5med.net',
-                'https://www.linkedin.com/company/v5medical'
+                'https://www.linkedin.com/company/v5med'
             ]
         }
     };
