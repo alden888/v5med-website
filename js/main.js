@@ -31,22 +31,22 @@ const V5Medical = (() => {
                 autoDisplay: config.translate.autoDisplay
             }, 'google_translate_element');
 
-            // [FIX 2026-09-23] 菜单可见性兜底：Google 有时把菜单 iframe 定位在屏幕外或被裁剪。
-            // 轮询校正一次：菜单弹出时强制 z-index 100000、限制最大宽度、允许滚动。
-            const fixMenu = () => {
+            // Google 自己负责计算菜单 iframe 的坐标。这里只提升层级，避免被固定页眉遮住；
+            // 不要覆盖 position/top，也不要读取跨域 iframe 的内部文档。
+            const raiseMenu = () => {
                 const f = document.querySelector('iframe.goog-te-menu-frame');
                 if (f) {
-                    f.style.zIndex = '100000';
+                    f.style.zIndex = '2147483647';
                     f.style.maxWidth = '95vw';
-                    f.style.position = 'fixed';
-                    const inner = f.contentDocument && f.contentDocument.querySelector('.goog-te-menu2');
-                    if (inner) { inner.style.maxHeight = '70vh'; inner.style.overflowY = 'auto'; }
                 }
             };
-            const gadget = document.querySelector('.goog-te-gadget-simple');
-            if (gadget) {
-                gadget.addEventListener('click', () => setTimeout(fixMenu, 350), { once: true });
-                setTimeout(fixMenu, 800);
+            const translateElement = document.getElementById('google_translate_element');
+            if (translateElement) {
+                translateElement.addEventListener('click', () => {
+                    // Google 在点击后才插入菜单 iframe；两次检查覆盖不同网络速度。
+                    setTimeout(raiseMenu, 0);
+                    setTimeout(raiseMenu, 300);
+                });
             }
 
             // 样式注入：包含外观和定位
@@ -92,19 +92,10 @@ const V5Medical = (() => {
                     }
                 }
 
-                /* [FIX 2026-09-23] 菜单点击后不弹出的根因修复：
-                   Google 官方 widget 的菜单 iframe (.goog-te-menu-frame) 默认 z-index 极低，
-                   被导航栏(z-50)/本组件(z-60)遮挡且 absolute 定位可能越界，
-                   此处强制置顶 + 修正定位，确保点击语言按钮后菜单可见。 */
+                /* Google 的内联坐标必须保留；只确保菜单压过固定页眉。 */
                 iframe.goog-te-menu-frame {
-                    z-index: 100000 !important;
-                    position: fixed !important;
-                    top: auto !important;
+                    z-index: 2147483647 !important;
                     max-width: 95vw !important;
-                }
-                .goog-te-menu2 {
-                    max-height: 70vh !important;
-                    overflow-y: auto !important;
                 }
                 .goog-te-gadget-simple { cursor: pointer !important; }
             `;
@@ -115,6 +106,10 @@ const V5Medical = (() => {
             const script = document.createElement('script');
             script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
             script.async = true;
+            script.onerror = () => {
+                window.googleTranslateInitialized = false;
+                console.warn('[Main] Google Translate failed to load.');
+            };
             document.body.appendChild(script);
         }
         window.googleTranslateInitialized = true;
