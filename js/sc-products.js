@@ -435,8 +435,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -474,8 +474,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -513,8 +513,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -552,8 +552,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -591,8 +591,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -629,8 +629,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -668,8 +668,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -706,8 +706,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -745,8 +745,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -784,8 +784,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -833,8 +833,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -872,8 +872,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -911,8 +911,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -950,8 +950,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -988,8 +988,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1026,8 +1026,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1076,8 +1076,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1115,8 +1115,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1154,8 +1154,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1192,8 +1192,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1231,8 +1231,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1269,8 +1269,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1308,8 +1308,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1346,8 +1346,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1384,8 +1384,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1423,8 +1423,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1462,8 +1462,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1501,8 +1501,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1540,8 +1540,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1579,8 +1579,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1618,8 +1618,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1656,8 +1656,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1695,8 +1695,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1734,8 +1734,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1772,8 +1772,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1811,8 +1811,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
@@ -1849,8 +1849,8 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/default-product.jpg",
-      "images/products/default-product.jpg"
+      "images/products/v5-pep-001-main.jpg",
+      "images/products/v5-pep-001-main.jpg"
     ],
     "specifications": {
       "form": "Lyophilized powder",
