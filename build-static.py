@@ -696,8 +696,8 @@ def render_blog_navigation(articles):
         readme_lines.extend([f"### {category}", ""])
         sidebar_lines.extend([f'<div class="sidebar-category">', f'  <span class="category-tag">{esc(category)}</span>', "  <ul class=\"sidebar-list\">"])
         for article in rows:
-            readme_lines.append(f"- [{article['title']}](#/posts/{article['slug']}.md) — {article['date']}")
-            sidebar_lines.append(f'    <li><a href="#/posts/{article["slug"]}.md">{esc(article["title"])}</a></li>')
+            readme_lines.append(f"- [{article['title']}](/blog/posts/{article['slug']} ':ignore :target=_self') — {article['date']}")
+            sidebar_lines.append(f'    <li><a href="/blog/posts/{article["slug"]}">{esc(article["title"])}</a></li>')
         readme_lines.append("")
         sidebar_lines.extend(["  </ul>", "</div>"])
     replace_marked_block(ROOT / "blog" / "README.md", "<!-- KNOWLEDGE-BASE:START -->", "<!-- KNOWLEDGE-BASE:END -->", "\n".join(readme_lines), "# V5 Medical Supply Chain Intelligence")

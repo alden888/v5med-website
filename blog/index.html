@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+/* Article hash routes (/blog/#/posts/<slug>.md) open the static article page instead of the Docsify reader. */
+(function () {
+  function toStatic() {
+    var m = location.hash.match(/^#\/(?:posts\/)+([\w-]+?)(?:\.md|\.html)?(?:\?.*)?$/);
+    if (m) location.replace('/blog/posts/' + m[1]);
+  }
+  toStatic();
+  window.addEventListener('hashchange', toStatic);
+})();
+</script>
 <meta charset="UTF-8">
 <title>Medical Consumables Blog & Compliance Knowledge Hub | V5 Medical</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
