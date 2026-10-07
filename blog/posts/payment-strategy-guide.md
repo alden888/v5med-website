@@ -56,7 +56,7 @@ You might ask: *"Why can't I pay $50,000 via Credit Card?"*
 
 | Order Type | Speed | Payment Method | Beneficiary |
 | :--- | :--- | :--- | :--- |
-| **Sample / Trial** (<$500) | **Instant** | **Credit Card** (Via Website) | V5 Medical LTD (UK) |
+| **Sample / Trial** (<$500) | **Instant** | **Credit Card** (Via Website) | V5 Medical (UK) |
 | **Bulk Production** (>$500) | **2-5 Days** | **Bank Wire (T/T)** | Suzhou V5 Medical (China) |
 
 ### 🔄 The "Blog-to-Portal" Workflow

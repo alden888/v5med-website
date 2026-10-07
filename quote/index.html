@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get a Quote — V5 Medical | Medical Consumables Supplier</title>
-    <meta name="description" content="Request a quotation for GLP-1 pen needles, syringes, surgical sutures, and 230+ medical consumables from V5 Medical. ISO 13485 certified. 24-hour response.">
+    <meta name="description" content="Request a quotation for GLP-1 pen needles, syringes, surgical sutures, and 230+ medical consumables from V5 Medical, sourced from ISO 13485 certified manufacturers. 24-hour response.">
     <meta name="keywords" content="medical consumables quote, GLP-1 pen needles, syringes, surgical sutures, medical supplier, V5 Medical">
     <meta name="robots" content="index, follow">
-    <meta name="author" content="V5 Medical LTD">
+    <meta name="author" content="V5 Medical">
     <link rel="icon" type="image/x-icon" href="https://v5med.net/images/icons/favicon.ico">
     <!-- [FIX 2026-09-13] 补 canonical，og:url 从第三方域名修正为本站 -->
     <link rel="canonical" href="https://v5med.net/quote/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Get a Quote — V5 Medical">
-    <meta property="og:description" content="230+ SKUs · ISO 13485 Certified · 24-Hour Response">
+    <meta property="og:description" content="230+ SKUs · ISO 13485 Certified Manufacturers · 24-Hour Response">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="V5 Medical LTD">
+    <meta property="og:site_name" content="V5 Medical">
     <meta property="og:url" content="https://v5med.net/quote/">
     <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -132,7 +132,7 @@
         #google_translate_element { display: block !important; visibility: visible !important; }
 </style>
     <link rel="preload" href="../fonts/inter/inter-latin-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="../fonts/inter.css?v=20261007.1">
+    <link rel="stylesheet" href="../fonts/inter.css?v=20261007.2">
 
     <!--
       [FIX 2026-09-13] 新增 GA4（G-HVN50TM5EK，与 js/config.js 一致）。
@@ -140,7 +140,7 @@
       转化事件永远不会上报。现在 gtag 存在，事件可正常发送。
     -->
     <!-- GA4 仅在访客同意后加载（js/consent.js） -->
-    <script src="/js/consent.js?v=20261007.1" data-ga-id="G-HVN50TM5EK"></script>
+    <script src="/js/consent.js?v=20261007.2" data-ga-id="G-HVN50TM5EK"></script>
 </head>
 
 <body class="bg-v5gray text-gray-800 font-sans antialiased">
@@ -180,7 +180,7 @@
             <span class="text-v5red" data-i18n="hero-title-2">Quotation in 24 Hours</span>
         </h1>
         <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="hero-desc">
-            230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Factory-direct pricing with ISO 13485 certification.
+            230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Sourced from ISO 13485 certified manufacturers.
         </p>
 
         <a href="#quote-form" class="inline-block btn-primary text-white px-8 py-3.5 rounded-lg text-sm font-bold shadow-lg">
@@ -317,6 +317,39 @@
                     </select>
                 </div>
 
+                <!-- RFQ details (optional) -->
+                <details class="mb-5 border border-gray-200 rounded-xl px-4 py-3">
+                    <summary class="text-sm font-semibold text-gray-700 cursor-pointer">Add RFQ details for a faster, complete quotation (optional)</summary>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label for="rfq-destination" class="block text-sm font-semibold text-gray-700 mb-1.5">Destination country</label>
+                        <input type="text" id="rfq-destination" data-rfq-label="Destination country" placeholder="e.g. Philippines" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                    <div>
+                        <label for="rfq-market" class="block text-sm font-semibold text-gray-700 mb-1.5">Registration market</label>
+                        <input type="text" id="rfq-market" data-rfq-label="Registration market" placeholder="Where the product will be registered or sold" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                    <div>
+                        <label for="rfq-volume" class="block text-sm font-semibold text-gray-700 mb-1.5">Annual volume</label>
+                        <input type="text" id="rfq-volume" data-rfq-label="Annual volume" placeholder="e.g. 50,000 sets / year" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                    <div>
+                        <label for="rfq-delivery" class="block text-sm font-semibold text-gray-700 mb-1.5">Target delivery date</label>
+                        <input type="text" id="rfq-delivery" data-rfq-label="Target delivery date" placeholder="e.g. end of March" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                        <div>
+                            <label for="rfq-incoterms" class="block text-sm font-semibold text-gray-700 mb-1.5">Incoterms</label>
+                            <select id="rfq-incoterms" data-rfq-label="Incoterms" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition bg-white">
+                                <option value="">Not decided</option><option>EXW</option><option>FOB</option><option>CIF</option><option>DAP</option><option>DDP</option>
+                            </select>
+                        </div>
+                    <div>
+                        <label for="rfq-documents" class="block text-sm font-semibold text-gray-700 mb-1.5">Documents required</label>
+                        <input type="text" id="rfq-documents" data-rfq-label="Documents required" placeholder="e.g. ISO 13485 certificate, CE DoC, test report" class="input-focus w-full px-4 py-3 border border-gray-200 rounded-xl text-sm transition">
+                    </div>
+                    </div>
+                </details>
+
                 <!-- Description -->
                 <div class="mb-6">
                     <label for="description" class="block text-sm font-semibold text-gray-700 mb-1.5">
@@ -385,7 +418,7 @@
                     <i class="fas fa-award text-v5red"></i>
                 </div>
                 <div>
-                    <h3 class="font-semibold text-sm text-v5dark mb-1" data-i18n="why-1-title">ISO 13485 Certified</h3>
+                    <h3 class="font-semibold text-sm text-v5dark mb-1" data-i18n="why-1-title">ISO 13485 Certified Manufacturers</h3>
                     <p class="text-xs text-gray-500" data-i18n="why-1-desc">Full quality management system for medical devices. CE and FDA documentation available.</p>
                 </div>
             </div>
@@ -421,7 +454,7 @@
             <span class="text-gray-500 text-xs">12888.de</span>
         </div>
         <p class="text-xs">
-            © 2026 V5 Medical LTD. All rights reserved.<br>
+            © 2026 V5 Medical All rights reserved.<br>
             <span data-i18n="footer-address">No. 168, Luying Road, Kunshan, Jiangsu, China</span> ·
             <a href="mailto:sales@v5med.net" class="text-gray-400 hover:text-white transition">sales@v5med.net</a>
         </p>
@@ -442,7 +475,7 @@ const I18N = {
         'badge-countries': '40+ Countries',
         'hero-title-1': 'Get Your Medical Consumables',
         'hero-title-2': 'Quotation in 24 Hours',
-        'hero-desc': '230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Factory-direct pricing with ISO 13485 certification.',
+        'hero-desc': '230+ SKUs including GLP-1 pen needles, syringes, surgical sutures, and more. Sourced from ISO 13485 certified manufacturers.',
         'hero-cta': 'Request a Quote',
         'products-title': 'Our Core Product Lines',
         'prod-1-title': 'GLP-1 Pen Needles',
@@ -482,7 +515,7 @@ const I18N = {
         'success-desc': 'We have received your request. Our sales team will contact you within 24 hours.',
         'success-ref': 'Reference ID will be sent to your email.',
         'why-title': 'Why Choose V5 Medical',
-        'why-1-title': 'ISO 13485 Certified',
+        'why-1-title': 'ISO 13485 Certified Manufacturers',
         'why-1-desc': 'Full quality management system for medical devices. CE and FDA documentation available.',
         'why-2-title': 'Factory Direct',
         'why-2-desc': 'Own manufacturing facility in Kunshan, China. Competitive pricing with no middlemen.',
@@ -538,7 +571,7 @@ const I18N = {
         'success-desc': '我们已收到您的请求，销售团队将在24小时内联系您。',
         'success-ref': '参考编号将发送至您的邮箱。',
         'why-title': '为什么选择V5 Medical',
-        'why-1-title': 'ISO 13485认证',
+        'why-1-title': 'ISO 13485认证工厂',
         'why-1-desc': '完整的医疗器械质量管理体系，可提供CE和FDA文档。',
         'why-2-title': '工厂直供',
         'why-2-desc': '昆山自有工厂，无中间商，价格更有竞争力。',
@@ -583,8 +616,8 @@ window.V5QuoteContext = { getMessages: () => I18N[currentLang] };
     }
 })();
 </script>
-<script src="../js/security-utils.js?v=20261007.1" defer></script>
-<script src="../js/lead-forms.js?v=20261007.1" defer></script>
+<script src="../js/security-utils.js?v=20261007.2" defer></script>
+<script src="../js/lead-forms.js?v=20261007.2" defer></script>
 
 </body>
 </html>

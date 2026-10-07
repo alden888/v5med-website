@@ -230,9 +230,9 @@ const V5Layout = (() => {
                                     Strategic Supply Chain Integrator.<br>Bridging Chinese Manufacturing with Global Compliance.
                                 </p>
                                 <div class="border-l-2 border-blue-600 pl-3 py-1">
-                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Legal Manufacturer</p>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Operating Entity</p>
                                     <p class="text-xs text-white font-medium">Suzhou V5 Medical Technology Co., Ltd.</p>
-                                    <p class="text-[10px] text-blue-400">ISO 13485:2016 Certified</p>
+                                    <p class="text-[10px] text-blue-400">Supply chain integrator &middot; <a href="/verification" class="underline hover:text-white">Company &amp; quality verification</a></p>
                                 </div>
                             </div>
 
@@ -266,7 +266,7 @@ const V5Layout = (() => {
                                         <i class="fas fa-envelope mt-1 text-blue-500"></i>
                                         <div class="flex flex-col">
                                             <a href="mailto:sales@v5med.net" class="hover:text-white transition">sales@v5med.net</a>
-                                            <a href="mailto:v5mdus@gmail.com" class="text-xs text-gray-500 hover:text-gray-300 transition">v5mdus@gmail.com (Backup)</a>
+                                            <a href="mailto:v5med.net@gmail.com" class="text-xs text-gray-500 hover:text-gray-300 transition">v5med.net@gmail.com (Backup)</a>
                                         </div>
                                     </li>
                                 </ul>
@@ -300,6 +300,7 @@ const V5Layout = (() => {
                             </div>
                             <div class="flex gap-6">
                                 <a href="contact.html" class="hover:text-gray-400">Contact Us</a>
+                                <a href="/verification" class="hover:text-gray-400">Company &amp; Quality Verification</a>
                                 <a href="privacy.html" class="hover:text-gray-400">Privacy Policy</a>
                                 <a href="#" data-v5-cookie-settings class="hover:text-gray-400">Cookie settings</a>
                             </div>

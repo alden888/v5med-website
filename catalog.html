@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse V5 Medical's complete catalog. Surgical sutures, packs, injection devices, and dental products. ISO 13485 Certified.">
+    <meta name="description" content="Browse V5 Medical's complete catalog. Surgical sutures, packs, injection devices, and dental products, sourced from ISO 13485 certified manufacturers.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://v5med.net/catalog">
-    <title>Product Catalog | V5 Medical LTD</title>
+    <title>Product Catalog | V5 Medical</title>
 
     <!-- SEO: Open Graph -->
-    <meta property="og:title" content="Product Catalog | V5 Medical LTD">
-    <meta property="og:description" content="Browse V5 Medical's complete catalog. Surgical sutures, packs, injection devices, and dental products. ISO 13485 Certified.">
+    <meta property="og:title" content="Product Catalog | V5 Medical">
+    <meta property="og:description" content="Browse V5 Medical's complete catalog. Surgical sutures, packs, injection devices, and dental products, sourced from ISO 13485 certified manufacturers.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://v5med.net/catalog">
     <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png">
@@ -32,7 +32,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=20261007.1">
+    <link rel="stylesheet" href="css/style.css?v=20261007.2">
     
     <script>
         tailwind.config = {
@@ -221,12 +221,12 @@
 
     <div id="v5-footer"></div>
 
-    <script src="js/config.js?v=20261007.1"></script>
-    <script src="js/layout.js?v=20261007.1"></script>
-    <script src="js/image-utils.js?v=20261007.1"></script>
-    <script src="js/seo-utils.js?v=20261007.1"></script>
-    <script src="js/product-loader.js?v=20261007.1"></script>
-    <script src="js/main.js?v=20261007.1"></script>
+    <script src="js/config.js?v=20261007.2"></script>
+    <script src="js/layout.js?v=20261007.2"></script>
+    <script src="js/image-utils.js?v=20261007.2"></script>
+    <script src="js/seo-utils.js?v=20261007.2"></script>
+    <script src="js/product-loader.js?v=20261007.2"></script>
+    <script src="js/main.js?v=20261007.2"></script>
 
     <script>
         // 🔥 核心修复：图片路径补全逻辑
@@ -316,7 +316,7 @@
             currentCategory = cat;
             const title = cat === 'all' ? 'All Products' : categoriesMap[cat];
             document.getElementById('page-title').textContent = title;
-            if (window.seoUtils) window.seoUtils.updatePage({ title: `${title} | V5 Medical Catalog`, description: `Browse our ${title.toLowerCase()} collection. ISO 13485 certified medical supplies.` });
+            if (window.seoUtils) window.seoUtils.updatePage({ title: `${title} | V5 Medical Catalog`, description: `Browse our ${title.toLowerCase()} collection. Medical supplies from ISO 13485 certified manufacturers.` });
             renderSidebar();
             renderMobileFilters();
             applyFilters();

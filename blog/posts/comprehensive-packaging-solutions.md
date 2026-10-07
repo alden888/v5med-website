@@ -141,4 +141,4 @@ V5 Medical treats packaging as what it is: **a core quality and regulatory funct
 
 ---
 
-*© 2025 V5 Medical LTD | Comprehensive Packaging Solutions for Global Healthcare Markets*
+*© 2025 V5 Medical | Comprehensive Packaging Solutions for Global Healthcare Markets*

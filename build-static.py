@@ -376,7 +376,7 @@ def site_footer():
     year = datetime.date.today().year
     return f"""
 <footer class="site">
-  <p>&copy; {year} V5 Medical LTD &middot; ISO 13485 Certified Supply Chain &middot;
+  <p>&copy; {year} Suzhou V5 Medical Technology Co., Ltd. &middot; Supply chain integrator &middot; <a href="/verification" style="color:#93c5fd">Company &amp; Quality Verification</a> &middot;
   <a href="/contact.html" style="color:#93c5fd">Contact</a> &middot;
   <a href="/privacy.html" style="color:#93c5fd">Privacy</a> &middot;
   <a href="#" data-v5-cookie-settings style="color:#93c5fd">Cookie settings</a></p>
@@ -393,7 +393,7 @@ def esc(s):
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + '</script>'
 
-def cta_box(title="Stop Gambling with Compliance", text="Get a comprehensive ISO 13485 audit report sample and a quotation for your target SKUs."):
+def cta_box(title="Stop Gambling with Compliance", text="Get a quotation for your target SKUs together with the manufacturer documentation available for each item."):
     return f"""
 <div class="cta">
   <h2>{esc(title)}</h2>
@@ -420,7 +420,7 @@ def render_page(*, title, description, canonical, body, schemas=(), extra_head="
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:type" content="{esc(og_type)}">
-<meta property="og:site_name" content="V5 Medical LTD">
+<meta property="og:site_name" content="V5 Medical">
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:image" content="{OG_IMAGE}">
 <meta property="og:image:alt" content="{esc(title)}">
@@ -590,7 +590,7 @@ def process_blog_posts():
                 "author": {"@type": "Organization", "name": author},
                 "publisher": {
                     "@type": "Organization",
-                    "name": "V5 Medical LTD",
+                    "name": "V5 Medical",
                     "logo": {"@type": "ImageObject", "url": OG_IMAGE},
                 },
                 "datePublished": date,
@@ -678,7 +678,7 @@ def render_blog_navigation(articles):
 </section>'''
     replace_marked_block(ROOT / "blog" / "index.html", "<!-- BLOG-INDEX:START -->", "<!-- BLOG-INDEX:END -->", blog_content, '<div id="app">🚀 Loading Knowledge Hub...</div>')
 
-    latest = ordered[:3]
+    latest = [a for a in ordered if a["category"] != "Company News"][:3]
     home_cards = "\n".join(
         f'''<a href="/blog/posts/{esc(article["slug"])}" class="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300">
   <div class="flex items-center justify-between mb-4"><span class="text-xs font-bold bg-blue-900/30 text-blue-300 px-2 py-1 rounded uppercase tracking-wider">{esc(article["category"])}</span><span class="text-xs text-gray-400">{esc(article["date"])}</span></div>
@@ -874,7 +874,7 @@ def render_product_page(p, cat):
     desc = product_description(p, cat)
     canonical = route(f"products/{p['id']}")
     img_abs = f"{BASE}/{p['img']}"
-    title = f"{p['name']} | ISO 13485 Certified | V5 Medical"
+    title = f"{p['name']} | Supplier & Exporter | V5 Medical"
 
     crumbs = f"""
 <nav class="crumbs" aria-label="Breadcrumb">
@@ -907,13 +907,22 @@ def render_product_page(p, cat):
   </div>
   <h2 style="margin-top:34px;font-size:1.25rem;color:#1e3a8a">Specifications</h2>
   <table class="spec-table">{spec_rows}</table>
+  <h2 style="margin-top:34px;font-size:1.25rem;color:#1e3a8a">Procurement &amp; Documentation</h2>
+  <table class="spec-table">
+    <tr><th>Supplier role</th><td>V5 Medical acts as supply chain integrator and exporter. It is not the legal manufacturer of this item unless stated on the quotation.</td></tr>
+    <tr><th>Manufacturer</th><td>Named on the quotation for the confirmed specification.</td></tr>
+    <tr><th>Certificates</th><td>Held by the manufacturer. Copies showing holder, scope and validity are supplied with the quotation or on request.</td></tr>
+    <tr><th>MOQ &amp; lead time</th><td>Confirmed at quotation; subject to specification, artwork and order quantity.</td></tr>
+    <tr><th>Samples</th><td>Available on request before bulk production.</td></tr>
+    <tr><th>How to verify</th><td><a href="/verification">Company &amp; Quality Verification</a></td></tr>
+  </table>
   <p style="margin-top:22px;font-size:.9rem;color:var(--muted)">
     Looking for other items? Browse all
     <a href="/categories/{p['category']}">{esc(cat_name)}</a> or the full
     <a href="/catalog">product catalog</a>.
   </p>
 </div>
-{cta_box(f"Need {p['name']} in bulk?", "Send us your target specifications and annual volume — we reply with a quotation and free ISO 13485 audit report sample.")}"""
+{cta_box(f"Need {p['name']} in bulk?", "Send us your target specifications and annual volume — we reply with a quotation and the documentation available for the item.")}"""
 
     schemas = [
         {
@@ -927,7 +936,6 @@ def render_product_page(p, cat):
             **({} if is_placeholder(p) else {"image": [img_abs]}),
             "category": cat_name,
             "brand": {"@type": "Brand", "name": "V5 Medical"},
-            "manufacturer": {"@type": "Organization", "name": "V5 Medical LTD", "url": BASE},
             "additionalProperty": [
                 {"@type": "PropertyValue", "name": "Certification", "value": c} for c in cat["certs"]
             ],
@@ -1033,6 +1041,7 @@ def write_sitemaps(products, articles):
         url_entry(route("events"), "0.7", "monthly", lastmod=git_lastmod("events.html")),
         url_entry(route("contact"), "0.8", "monthly", lastmod=git_lastmod("contact.html")),
         url_entry(route("links"), "0.6", "monthly", lastmod=git_lastmod("links.html")),
+        url_entry(route("verification"), "0.6", "monthly", lastmod=git_lastmod("verification.html")),
         url_entry(route("privacy"), "0.3", "yearly", lastmod=git_lastmod("privacy.html")),
         url_entry(f"{BASE}/blog/", "0.9", "weekly", lastmod=git_lastmod("blog/index.html")),
     ]

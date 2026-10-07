@@ -43,4 +43,4 @@ category: "Company News"
 * [View Product Catalog](/catalog.html)
 * [Contact Our Team](/contact.html)
 
-*© 2026 V5 Medical LTD | Company News Hub*
+*© 2026 V5 Medical | Company News Hub*

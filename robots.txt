@@ -1,4 +1,4 @@
-# V5 Medical LTD Robots.txt
+# V5 Medical Robots.txt
 # Optimized for SEO & Security
 # Website: https://v5med.net
 # Last updated: 2026-08-22

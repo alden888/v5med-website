@@ -119,6 +119,13 @@
 
             setButtonLoading(button, true, messages.loading || 'Submitting...');
             const payload = Object.fromEntries(new FormData(form).entries());
+            // Optional RFQ detail inputs carry no name; fold them into the description so the Worker field whitelist is unchanged.
+            const rfqDetails = Array.from(form.querySelectorAll('[data-rfq-label]'))
+                .filter((field) => field.value.trim())
+                .map((field) => `${field.dataset.rfqLabel}: ${field.value.trim()}`);
+            if (rfqDetails.length) {
+                payload.description = [payload.description || '', '--- RFQ details ---', ...rfqDetails].filter(Boolean).join('\n');
+            }
             payload.source = 'v5med.net/quote';
             payload.page = window.location.pathname + window.location.search;
             const productParam = new URLSearchParams(window.location.search).get('product');

@@ -162,4 +162,4 @@ Don't let compliance risks slow down your sales.
 
 ---
 
-*© 2026 V5 Medical LTD | Supply Chain Intelligence Hub*
+*© 2026 V5 Medical | Supply Chain Intelligence Hub*

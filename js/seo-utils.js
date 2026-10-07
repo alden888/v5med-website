@@ -61,7 +61,7 @@ class EnhancedSEOUtils {
             },
             "manufacturer": {
                 "@type": "Organization",
-                "name": "V5 Medical LTD",
+                "name": "V5 Medical",
                 "url": "https://v5med.net"
             }
         };
@@ -112,7 +112,7 @@ class EnhancedSEOUtils {
         return {
             "@context": "https://schema.org",
             "@type": "MedicalBusiness",
-            "name": "V5 Medical LTD",
+            "name": "V5 Medical",
             "image": "https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png",
             "address": {
                 "@type": "PostalAddress",
