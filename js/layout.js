@@ -41,6 +41,15 @@ const V5Layout = (() => {
             this.currentPage = this._detectPage();
         }
 
+        loadLanguageSwitcher() {
+            if (window.V5LangSwitcher || document.querySelector('script[src*="lang-switcher.js"]')) return;
+            const version = (window.V5Config && window.V5Config.ASSET_VERSION) || '';
+            const script = document.createElement('script');
+            script.src = '/js/lang-switcher.js' + (version ? '?v=' + version : '');
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+
         init() {
             this.injectStyles();
             this.renderHeader();
@@ -50,6 +59,7 @@ const V5Layout = (() => {
             this._loadAnalytics();
             window.dispatchEvent(new Event('v5-layout-ready'));
             console.log('[Layout] Initialized v4.9.3 (GA4 Auto-Injection)');
+            this.loadLanguageSwitcher();
         }
 
         /**

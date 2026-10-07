@@ -9,111 +9,11 @@ const V5Medical = (() => {
         scroll: { navbarThreshold: 50, backToTopThreshold: 300 },
         // 当前未使用（站点 GA4 由 layout.js / build-static.py 注入），保留字段避免占位符误导
         analytics: { trackingId: 'G-HVN50TM5EK' },
-        translate: {
-            pageLanguage: 'en',
-            includedLanguages: 'en,ar,es,fr,ru,nl,de,it,pt,ja,ko,tr,pl,vi,hi,id,th,sv,zh-CN,zh-TW',
-            layout: 'SIMPLE',
-            autoDisplay: false
-        }
     };
 
     const safeExecute = (func, name) => { try { func(); } catch (e) { console.warn(`[Main] ${name} error:`, e); } };
 
-    // 1. Google Translate (集中管理)
-    const initTranslate = () => {
-        if (window.googleTranslateInitialized) return;
-
-        window.googleTranslateElementInit = () => {
-            new google.translate.TranslateElement({
-                pageLanguage: config.translate.pageLanguage,
-                includedLanguages: config.translate.includedLanguages,
-                layout: google.translate.TranslateElement.InlineLayout[config.translate.layout],
-                autoDisplay: config.translate.autoDisplay
-            }, 'google_translate_element');
-
-            // Google 自己负责计算菜单 iframe 的坐标。这里只提升层级，避免被固定页眉遮住；
-            // 不要覆盖 position/top，也不要读取跨域 iframe 的内部文档。
-            const raiseMenu = () => {
-                const f = document.querySelector('iframe.goog-te-menu-frame');
-                if (f) {
-                    f.style.zIndex = '2147483647';
-                    f.style.maxWidth = '95vw';
-                }
-            };
-            const translateElement = document.getElementById('google_translate_element');
-            if (translateElement) {
-                translateElement.addEventListener('click', () => {
-                    // Google 在点击后才插入菜单 iframe；两次检查覆盖不同网络速度。
-                    setTimeout(raiseMenu, 0);
-                    setTimeout(raiseMenu, 300);
-                });
-            }
-
-            // 样式注入：包含外观和定位
-            const style = document.createElement('style');
-            style.innerHTML = `
-                /* 组件外观 */
-                .goog-te-gadget { font-family: inherit !important; color: white !important; }
-                .goog-te-gadget-simple {
-                    background-color: rgba(255,255,255,0.15) !important;
-                    border: 1px solid rgba(255,255,255,0.3) !important;
-                    padding: 6px 12px !important;
-                    border-radius: 99px !important;
-                }
-                .goog-te-gadget-simple span { color: white !important; font-weight: 600 !important; }
-                .goog-te-gadget-icon { display: none !important; }
-                .goog-te-banner-frame { display: none !important; }
-                body { top: 0 !important; }
-
-                /* 强制固定定位 & 层级 (Z-60 高于导航栏 Z-50) */
-                #google_translate_element {
-                    position: fixed !important;
-                    z-index: 60 !important;
-                }
-
-                /* 桌面端定位 */
-                @media (min-width: 769px) {
-                    #google_translate_element { top: 22px !important; right: 20px !important; }
-                }
-
-                /* 移动端定位：避开右侧汉堡菜单 */
-                @media (max-width: 768px) {
-                    #google_translate_element {
-                        top: 20px !important;
-                        right: 60px !important; /* 向左移，给汉堡菜单留空间 */
-                    }
-                    .goog-te-gadget-simple {
-                        max-width: 130px !important;
-                        padding: 4px 8px !important;
-                        font-size: 11px !important;
-                        overflow: hidden !important;
-                        text-overflow: ellipsis !important;
-                        white-space: nowrap !important;
-                    }
-                }
-
-                /* Google 的内联坐标必须保留；只确保菜单压过固定页眉。 */
-                iframe.goog-te-menu-frame {
-                    z-index: 2147483647 !important;
-                    max-width: 95vw !important;
-                }
-                .goog-te-gadget-simple { cursor: pointer !important; }
-            `;
-            document.head.appendChild(style);
-        };
-
-        if (!document.querySelector('script[src*="translate.google.com"]')) {
-            const script = document.createElement('script');
-            script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-            script.async = true;
-            script.onerror = () => {
-                window.googleTranslateInitialized = false;
-                console.warn('[Main] Google Translate failed to load.');
-            };
-            document.body.appendChild(script);
-        }
-        window.googleTranslateInitialized = true;
-    };
+    // 1. Language switching lives in js/lang-switcher.js (loaded by js/layout.js).
 
     // 2. UI Interactions
     const initUI = () => {
@@ -133,7 +33,6 @@ const V5Medical = (() => {
     // 3. Forms: handled by js/lead-forms.js (legacy #inquiry-form handler removed 2026-09-23)
 
     const init = () => {
-        safeExecute(initTranslate, 'Google Translate');
         safeExecute(initUI, 'UI Interactions');
 
         // Loader removal fallback
