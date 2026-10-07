@@ -1,3 +1,7 @@
+---
+date: "2026-09-23"
+---
+
 # [Article Title: Include Main Keyword Here]
 
 > **Summary:** A 2-sentence summary of the article for quick reading. Includes secondary keywords like "supply chain" or "ISO 13485".

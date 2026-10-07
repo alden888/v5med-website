@@ -1,3 +1,7 @@
+---
+date: "2025-12-16"
+---
+
 # Peptide Raw Materials Sourcing Guide: How to Buy High-Purity APIs Safely from China
 
 > **Author:** V5 Medical Peptide Division  
@@ -154,7 +158,7 @@ Every peptide order from V5 Medical includes:
 - **Request a Quote:** [Smart Quote Form](https://v5med.net/contact.html?type=quote)
 - **Request CoA Samples:** [Contact QA Team](https://v5med.net/contact.html?type=qa)
 - **View Full Peptide Catalog:** [Peptide Products](https://v5med.net/categories/peptide-raw-materials.html)
-- **Urgent Inquiry:** [WhatsApp Us](https://wa.me/447895047944)
+- **Urgent Inquiry:** [WhatsApp Us](https://wa.me/8615133008348)
 
 ---
 

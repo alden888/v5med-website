@@ -1,3 +1,7 @@
+---
+date: "2025-12-26"
+---
+
 # Injection & Infusion Products: A B2B Procurement Guide for Hospitals and Distributors
 
 > **Author:** V5 Medical Supply Chain Division  

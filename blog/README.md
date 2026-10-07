@@ -1,4 +1,90 @@
 # V5 Medical Supply Chain Intelligence
+<!-- KNOWLEDGE-BASE:START -->
+## Knowledge Base
+
+### Packaging Solutions
+
+- [How to Deliver a Pharmaceutical Packaging Kit Order Right: Lessons from a 57,000-Set Vaccine Packaging Shipment](#/posts/pharma-packaging-order-delivery-playbook.md) — 2026-10-07
+- [Pharmaceutical Secondary Packaging: A Buyer's Guide to Cartons, Leaflets, Security Labels & Blister Trays](#/posts/pharmaceutical-secondary-packaging-guide.md) — 2026-07-19
+
+### Company News
+
+- [June 2026 Greeting Card — Summer Partnership](#/posts/june-greeting-card.md) — 2026-06-01
+
+### Supply Chain & Procurement Strategy
+
+- [Mastering MOQ Negotiations in Medical Device Procurement (2025 Guide)](#/posts/moq-negotiation-guide.md) — 2025-12-30
+
+### Protective Equipment / Infection Control
+
+- [Medical Protective Equipment: A B2B Procurement Guide for Hospitals and Distributors](#/posts/protective-equipment-procurement-guide.md) — 2025-12-29
+
+### Sourcing Strategy
+
+- [Payment Strategy 2026: Accelerating Your Supply Chain from Sample to Bulk](#/posts/payment-strategy-guide.md) — 2025-12-28
+
+### Medical Packaging
+
+- [Tyvek vs Medical Paper: When Buyers Choose Wrong](#/posts/tyvek-vs-paper.md) — 2025-12-27
+
+### Injection & Infusion Devices / B2B Procurement
+
+- [Injection & Infusion Products: A B2B Procurement Guide for Hospitals and Distributors](#/posts/injection-infusion-procurement-guide.md) — 2025-12-26
+
+### Medical Materials / Surgical Supplies
+
+- [PGA vs PGLA vs PDO: A Comprehensive Comparison of Absorbable Suture Materials](#/posts/suture-material-comparison.md) — 2025-12-24
+
+### Supply Chain Solutions | Packaging Engineering
+
+- [Comprehensive Packaging Solutions for Global Pharmaceutical & Medical Device Clients](#/posts/comprehensive-packaging-solutions.md) — 2025-12-23
+
+### Supply Chain Strategy
+
+- [How to Audit a Chinese Medical Device Factory: The Complete Checklist](#/posts/supplier-verification.md) — 2025-12-21
+- [MOQ vs Unit Price: The Real Cost Curve](#/posts/moq-vs-price.md) — 2025-12-19
+- [Trading Company That Passed EU Audit – How?](#/posts/integrator-model.md) — 2025-12-08
+
+### Regulatory Compliance / EU Market Access
+
+- [EU MDR Compliance Essentials (2025): What Medical Device Distributors Must Know](#/posts/eu-mdr-2025.md) — 2025-12-20
+
+### Peptide Raw Materials / Supply Chain Strategy
+
+- [Peptide Raw Materials Sourcing Guide: How to Buy High-Purity APIs Safely from China](#/posts/peptide-sourcing-guide.md) — 2025-12-16
+
+### Quality & Regulatory Compliance
+
+- [Understanding ISO 13485: A Practical Guide for Medical Device Sourcing (2025)](#/posts/iso-13485-guide.md) — 2025-12-15
+
+### Dental Products / Examination Consumables
+
+- [Dental Consumables & Examination Kits: A B2B Procurement Guide for Clinics and Distributors](#/posts/dental-consumables-procurement-guide.md) — 2025-12-13
+
+### Quality Control / Sterilization
+
+- [Surgical Pack Sterilization Standards](#/posts/surgical-pack-sterilization.md) — 2025-12-12
+
+### Regulatory Compliance / Market Access
+
+- [CE Marking Process for Medical Devices](#/posts/ce-marking-process.md) — 2025-12-09
+
+### Sterilization / Validation
+
+- [Sterilization Validation: What Auditors Really Check](#/posts/sterilization-validation.md) — 2025-12-06
+
+### Regulatory Compliance / CE Marking
+
+- [Why Your CE Fails at Notified Body Review: The Real Reasons](#/posts/ce-audit-failure.md) — 2025-12-04
+
+### Gauze & Dressings / Wound Care
+
+- [Medical Gauze & Wound Care Products: A B2B Buying Guide for Hospitals and Distributors](#/posts/gauze-wound-care-buying-guide.md) — 2025-12-03
+
+### Insights
+
+- [Surgical Instruments: A B2B Procurement Guide for Hospitals and Distributors](#/posts/surgical-instruments-procurement-guide.md) — 2025-12-02
+<!-- KNOWLEDGE-BASE:END -->
 
 > **For Procurement Managers & RA Specialists** > We bridge the gap between "Factory Output" and "Regulatory Compliance".
 
@@ -72,7 +158,7 @@ Don't let compliance risks slow down your sales.
 
 * **Need a Quote?** [Start Inquiry (Smart Form)](https://v5med.net/contact.html?type=quote)
 * **Need Regulatory Support?** [Contact QA Team](https://v5med.net/contact.html?type=qa)
-* **Urgent?** [WhatsApp Us](https://wa.me/447895047944)
+* **Urgent?** [WhatsApp Us](https://wa.me/8615133008348)
 
 ---
 

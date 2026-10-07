@@ -29,3 +29,4 @@ docs/
 # Wrangler 本地状态/缓存（含 Cloudflare Account ID，公开仓库 main 分支曾提交 .wrangler/cache）
 .wrangler/
 __pycache__/
+.venv/

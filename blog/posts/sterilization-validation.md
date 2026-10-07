@@ -1,3 +1,7 @@
+---
+date: "2025-12-06"
+---
+
 # Sterilization Validation: What Auditors Really Check
 
 > **Author:** V5 Medical Quality Assurance Team  

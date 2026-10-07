@@ -1,3 +1,7 @@
+---
+date: "2025-12-27"
+---
+
 # Tyvek vs Medical Paper: When Buyers Choose Wrong
 
 > **Category:** Medical Packaging  

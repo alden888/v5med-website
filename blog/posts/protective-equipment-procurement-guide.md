@@ -1,3 +1,7 @@
+---
+date: "2025-12-29"
+---
+
 # Medical Protective Equipment: A B2B Procurement Guide for Hospitals and Distributors
 
 **Author:** V5 Medical Supply Chain Team  

@@ -1,3 +1,7 @@
+---
+date: "2025-12-08"
+---
+
 # Trading Company That Passed EU Audit – How?
 
 > **Category:** Supply Chain Strategy  

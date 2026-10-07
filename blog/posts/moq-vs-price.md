@@ -1,3 +1,7 @@
+---
+date: "2025-12-19"
+---
+
 # MOQ vs Unit Price: The Real Cost Curve
 
 > **Category:** Supply Chain Strategy  

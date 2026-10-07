@@ -9,7 +9,7 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=20260923.5">
+    <link rel="stylesheet" href="css/style.css?v=20261007.1">
     
     <script>
         tailwind.config = {
@@ -239,11 +239,11 @@
 
     <div id="v5-footer"></div>
 
-    <script src="js/config.js?v=20260923.5" defer></script>
-    <script src="js/layout.js?v=20260923.5" defer></script>
-    <script src="js/seo-utils.js?v=20260923.5" defer></script>
-    <script src="js/product-loader.js?v=20260923.5" defer></script>
-    <script src="js/main.js?v=20260923.5" defer></script>
+    <script src="js/config.js?v=20261007.1" defer></script>
+    <script src="js/layout.js?v=20261007.1" defer></script>
+    <script src="js/seo-utils.js?v=20261007.1" defer></script>
+    <script src="js/product-loader.js?v=20261007.1" defer></script>
+    <script src="js/main.js?v=20261007.1" defer></script>
 
     <script>
         function resolveImage(rawPath) {
@@ -281,7 +281,7 @@
             if (window.seoUtils) window.seoUtils.updatePage({ title: `${product.name} Manufacturer | V5 Medical`, description: `Wholesale ${product.name}. ISO 13485 & CE.`, image: product.images[0] });
 
             /*
-              [SEO FIX] canonical 指向对应的静态产品页 /products/<id>.html。
+              [SEO FIX] canonical 指向对应的静态产品页 /products/<id>。
               本页为 JS 动态渲染（?id=xxx），与静态页内容重复；
               canonical 将权重汇聚到可被爬虫完整读取的静态版本，
               避免重复内容分散排名。同时静态页互链回本页不影响用户体验。
@@ -292,7 +292,14 @@
                 canon.rel = 'canonical';
                 document.head.appendChild(canon);
             }
-            canon.href = `https://v5med.net/products/${product.id}.html`;
+            canon.href = `https://v5med.net/products/${product.id}`;
+            let ogUrl = document.querySelector('meta[property="og:url"]');
+            if (!ogUrl) {
+                ogUrl = document.createElement('meta');
+                ogUrl.setAttribute('property', 'og:url');
+                document.head.appendChild(ogUrl);
+            }
+            ogUrl.content = canon.href;
 
             document.getElementById('loading-state').classList.add('hidden');
             document.getElementById('product-content').classList.remove('hidden');

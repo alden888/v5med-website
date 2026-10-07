@@ -1,3 +1,7 @@
+---
+date: "2025-12-21"
+---
+
 # How to Audit a Chinese Medical Device Factory: The Complete Checklist
 
 > **Author:** Wells Wan, Head of Quality & Regulatory Affairs  

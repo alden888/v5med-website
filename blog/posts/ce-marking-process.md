@@ -1,3 +1,7 @@
+---
+date: "2025-12-09"
+---
+
 # CE Marking Process for Medical Devices  
 ## A Practical MDR Guide for Manufacturers & Exporters (2025)
 

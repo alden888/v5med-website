@@ -1,3 +1,7 @@
+---
+date: "2025-12-30"
+---
+
 # Mastering MOQ Negotiations in Medical Device Procurement (2025 Guide)
 
 **Author:** V5 Medical Procurement Team  

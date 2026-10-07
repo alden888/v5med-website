@@ -58,6 +58,7 @@ import json
 import html as html_lib
 import datetime
 import subprocess
+import sys
 from pathlib import Path
 from urllib.parse import quote
 
@@ -85,6 +86,18 @@ OG_IMAGE = "https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png"
 # [v1.2.0 FIX] v5med.net 独立 GA4 Property（与 js/config.js ANALYTICS.GA4_ID 一致）。
 # 旧值 G-JE15YSMC2W 是早期博客专用属性，2026-09-04 起全站统一使用新属性。
 GA_ID = "G-HVN50TM5EK"
+
+def whatsapp_number():
+    """Read the sole WhatsApp contact number from the shared client config."""
+    config = (ROOT / "js" / "config.js").read_text(encoding="utf-8")
+    match = re.search(r"WHATSAPP:\s*\{[\s\S]*?NUMBER:\s*['\"](\d+)['\"]", config)
+    if not match:
+        raise RuntimeError("js/config.js 缺少 CONTACT.WHATSAPP.NUMBER，无法生成询盘链接")
+    return match.group(1)
+
+def route(path):
+    """Canonical public route; Cloudflare redirects the matching .html asset."""
+    return f"{BASE}/{path.lstrip('/').removesuffix('.html')}"
 
 def asset_version():
     """从全站配置读取唯一静态资源版本；发布 JS/CSS 时必须提升它。"""
@@ -385,7 +398,7 @@ def cta_box(title="Stop Gambling with Compliance", text="Get a comprehensive ISO
 <div class="cta">
   <h2>{esc(title)}</h2>
   <p>{esc(text)}</p>
-  <a class="btn btn-green" href="https://wa.me/447895047944" rel="noopener">WhatsApp Us &rarr;</a>
+  <a class="btn btn-green" href="https://wa.me/{whatsapp_number()}" rel="noopener">WhatsApp Us &rarr;</a>
   <a class="btn" href="/contact.html?type=quote">Request a Quote &rarr;</a>
 </div>"""
 
@@ -539,10 +552,10 @@ def process_blog_posts():
             convert_docsify_alerts(body_md),
             extensions=["tables", "fenced_code", "sane_lists"],
         )
-        # 文章内 .md 互链改为静态 .html 绝对路径（Docsify 相对链接在静态页会 404）
-        body_html = re.sub(r'href="(?:posts/)?([\w-]+)\.md"', r'href="/blog/posts/\1.html"', body_html)
+        # Docsify 相对 Markdown 链接改为公开静态路由。
+        body_html = re.sub(r'href="(?:posts/)?([\w-]+)\.md"', r'href="/blog/posts/\1"', body_html)
 
-        canonical = f"{BASE}/blog/posts/{slug}.html"
+        canonical = route(f"blog/posts/{slug}")
         # 支持 frontmatter 自定义 meta_title（控制在 ~60 字符以内最佳）
         page_title = meta.get("meta_title") or f"{title} | V5 Medical Blog"
         if len(page_title) > 65:
@@ -616,10 +629,122 @@ def process_blog_posts():
                           canonical=canonical, body=body, schemas=schemas,
                           og_type="article")
         (posts_dir / f"{slug}.html").write_text(out, encoding="utf-8")
-        articles.append({"slug": slug, "title": title, "date": date,
+        articles.append({"slug": slug, "title": title, "category": category or "Insights",
+                         "description": trunc(plain_text(description), 180), "date": date,
                          "modified": modified, "canonical": canonical})
         print(f"  [blog] {slug}.html  ({title[:50]})")
     return articles
+
+def replace_marked_block(path, start, end, content, anchor):
+    """Replace a generated block in a hand-authored page, keeping rebuilds idempotent."""
+    source = path.read_text(encoding="utf-8")
+    block = f"{start}\n{content.rstrip()}\n{end}"
+    pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.S)
+    if pattern.search(source):
+        updated = pattern.sub(block, source)
+    else:
+        if anchor not in source:
+            raise RuntimeError(f"未找到 {path.relative_to(ROOT)} 的注入锚点: {anchor}")
+        updated = source.replace(anchor, f"{anchor}\n{block}", 1)
+    path.write_text(updated, encoding="utf-8")
+
+def sorted_articles(articles):
+    return sorted(articles, key=lambda article: article["date"], reverse=True)
+
+def render_blog_navigation(articles):
+    ordered = sorted_articles(articles)
+    cards = "\n".join(
+        f'''<article class="static-blog-card">
+  <p class="static-blog-meta">{esc(article["category"])} · {esc(article["date"])}</p>
+  <h2><a href="/blog/posts/{esc(article["slug"])}">{esc(article["title"])}</a></h2>
+  <p>{esc(article["description"])}</p>
+  <a class="static-blog-link" href="/blog/posts/{esc(article["slug"])}">Read article →</a>
+</article>''' for article in ordered
+    )
+    blog_content = f'''<style>
+.static-blog-index {{ max-width: 1120px; margin: 32px auto; padding: 0 24px 48px; }}
+.static-blog-index h1 {{ color: #0f2d52; }}
+.static-blog-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }}
+.static-blog-card {{ border: 1px solid #d7e1ea; border-radius: 10px; padding: 20px; background: #fff; }}
+.static-blog-card h2 {{ font-size: 1.05rem; margin: 8px 0; }}
+.static-blog-card p {{ color: #516070; line-height: 1.55; }}
+.static-blog-meta {{ color: #198754 !important; font-size: .82rem; font-weight: 700; }}
+.static-blog-link {{ color: #0b5cab; font-weight: 700; }}
+</style>
+<section class="static-blog-index" aria-labelledby="static-blog-index-heading">
+  <h1 id="static-blog-index-heading">Knowledge Base</h1>
+  <p>Browse procurement, packaging and compliance guidance in a crawlable article index.</p>
+  <div class="static-blog-grid">{cards}</div>
+</section>'''
+    replace_marked_block(ROOT / "blog" / "index.html", "<!-- BLOG-INDEX:START -->", "<!-- BLOG-INDEX:END -->", blog_content, '<div id="app">🚀 Loading Knowledge Hub...</div>')
+
+    latest = ordered[:3]
+    home_cards = "\n".join(
+        f'''<a href="/blog/posts/{esc(article["slug"])}" class="group block bg-gray-800 rounded-xl p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+  <div class="flex items-center justify-between mb-4"><span class="text-xs font-bold bg-blue-900/30 text-blue-300 px-2 py-1 rounded uppercase tracking-wider">{esc(article["category"])}</span><span class="text-xs text-gray-400">{esc(article["date"])}</span></div>
+  <h3 class="text-lg font-bold text-gray-100 group-hover:text-blue-300 transition leading-snug">{esc(article["title"])}</h3>
+</a>''' for article in latest
+    )
+    replace_home_latest_posts(home_cards)
+
+    grouped = {}
+    for article in ordered:
+        grouped.setdefault(article["category"], []).append(article)
+    readme_lines = ["## Knowledge Base", ""]
+    sidebar_lines = []
+    for category, rows in grouped.items():
+        readme_lines.extend([f"### {category}", ""])
+        sidebar_lines.extend([f'<div class="sidebar-category">', f'  <span class="category-tag">{esc(category)}</span>', "  <ul class=\"sidebar-list\">"])
+        for article in rows:
+            readme_lines.append(f"- [{article['title']}](#/posts/{article['slug']}.md) — {article['date']}")
+            sidebar_lines.append(f'    <li><a href="#/posts/{article["slug"]}.md">{esc(article["title"])}</a></li>')
+        readme_lines.append("")
+        sidebar_lines.extend(["  </ul>", "</div>"])
+    replace_marked_block(ROOT / "blog" / "README.md", "<!-- KNOWLEDGE-BASE:START -->", "<!-- KNOWLEDGE-BASE:END -->", "\n".join(readme_lines), "# V5 Medical Supply Chain Intelligence")
+    replace_marked_block(ROOT / "blog" / "_sidebar.md", "<!-- KNOWLEDGE-BASE:START -->", "<!-- KNOWLEDGE-BASE:END -->", "\n".join(sidebar_lines), "</div>")
+
+def replace_home_latest_posts(cards):
+    """Replace the card grid inside the section identified by blog-heading only."""
+    path = ROOT / "index.html"
+    source = path.read_text(encoding="utf-8")
+    start, end = "<!-- HOME-LATEST-POSTS:START -->", "<!-- HOME-LATEST-POSTS:END -->"
+    # Repair older builds that placed this block in another grid before locating the blog section.
+    source = re.sub(re.escape(start) + r".*?" + re.escape(end), "", source, flags=re.S)
+    section_match = re.search(
+        r'<section\b[^>]*aria-labelledby="blog-heading"[^>]*>.*?</section>', source, re.S
+    )
+    if not section_match:
+        raise RuntimeError("未找到 index.html 中 aria-labelledby=blog-heading 的博客区块")
+    section = section_match.group(0)
+    grid_match = re.search(
+        r'(?P<open><div class="grid md:grid-cols-3 gap-6">).*?\n(?P<grid_indent>[ \t]*)</div>\n(?P<container_indent>[ \t]*)</div>\n(?P<section_indent>[ \t]*)</section>',
+        section,
+        re.S,
+    )
+    if not grid_match:
+        raise RuntimeError("未找到 blog-heading 区块内的卡片网格")
+    block = f"{start}\n{cards.rstrip()}\n{end}"
+    closing = (f"\n{grid_match.group('grid_indent')}</div>"
+               f"\n{grid_match.group('container_indent')}</div>"
+               f"\n{grid_match.group('section_indent')}</section>")
+    section = section[:grid_match.start()] + grid_match.group("open") + "\n" + block + closing + section[grid_match.end():]
+    path.write_text(source[:section_match.start()] + section + source[section_match.end():], encoding="utf-8")
+
+RELATED_ARTICLES = {
+    "pharmaceutical-packaging": [
+        ("Pharmaceutical Secondary Packaging Guide", "/blog/posts/pharmaceutical-secondary-packaging-guide"),
+        ("Pharma Packaging Kit Order Delivery Playbook", "/blog/posts/pharma-packaging-order-delivery-playbook"),
+    ],
+}
+
+def render_related_articles(slug):
+    articles = RELATED_ARTICLES.get(slug, [])
+    if not articles:
+        return ""
+    links = "".join(f'<li><a href="{href}">{esc(title)}</a></li>' for title, href in articles)
+    return f'''<section class="card" aria-labelledby="related-articles-heading">
+  <h2 id="related-articles-heading">Related articles</h2><ul>{links}</ul>
+</section>'''
 
 # ---------------- 产品 / 分类页 ----------------
 PRODUCT_RE = re.compile(
@@ -719,20 +844,42 @@ def load_products():
         print(f"  [warn] {len(placeholders)} 个 SKU 仍使用占位图 {PLACEHOLDER_IMG}（不写入 JSON-LD / 图片 sitemap）")
     return products
 
+def synchronise_sc_product_images(products):
+    """Keep legacy SC data on the same valid image fallback as the canonical product data."""
+    path = ROOT / "js" / "sc-products.js"
+    source = path.read_text(encoding="utf-8")
+    fallback = {product["id"]: product["img"] for product in products}
+    changed = 0
+    for product_id, img in fallback.items():
+        record = re.compile(
+            r'("id":\s*"' + re.escape(product_id) + r'"[\s\S]*?"images":\s*\[\s*")([^"]+)(")'
+        )
+        def replace(match):
+            nonlocal changed
+            current = match.group(2)
+            if (ROOT / current).is_file():
+                return match.group(0)
+            changed += 1
+            return match.group(1) + img + match.group(3)
+        source = record.sub(replace, source, count=1)
+    if changed:
+        path.write_text(source, encoding="utf-8")
+    print(f"  [assets] SC product image fallbacks synchronized: {changed}")
+
 def product_description(p, cat):
     return f"V5 Medical supplies {p['name']}. " + cat["desc"].replace("{name}", p["name"])
 
 def render_product_page(p, cat):
     cat_name = cat["name"]
     desc = product_description(p, cat)
-    canonical = f"{BASE}/products/{p['id']}.html"
+    canonical = route(f"products/{p['id']}")
     img_abs = f"{BASE}/{p['img']}"
     title = f"{p['name']} | ISO 13485 Certified | V5 Medical"
 
     crumbs = f"""
 <nav class="crumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a> &rsaquo; <a href="/catalog.html">Products</a> &rsaquo;
-  <a href="/categories/{p['category']}.html">{esc(cat_name)}</a> &rsaquo; <span>{esc(p['name'])}</span>
+  <a href="/">Home</a> &rsaquo; <a href="/catalog">Products</a> &rsaquo;
+  <a href="/categories/{p['category']}">{esc(cat_name)}</a> &rsaquo; <span>{esc(p['name'])}</span>
 </nav>"""
 
     spec_rows = "\n".join(
@@ -753,8 +900,8 @@ def render_product_page(p, cat):
       <p>{esc(desc)}</p>
       <p style="margin-top:14px"><strong>Price:</strong> Contact for a quotation (flexible MOQ for trial orders)</p>
       <p style="margin-top:18px">
-        <a class="btn" href="/contact.html?type=quote&amp;product={esc(p['id'])}">Request Quote &rarr;</a>
-        <a class="btn btn-green" href="https://wa.me/447895047944?text={quote('Hi V5 Medical, I am interested in ' + p['name'] + '.')}" rel="noopener">WhatsApp</a>
+        <a class="btn" href="/contact?type=quote&amp;product={esc(p['id'])}">Request Quote &rarr;</a>
+        <a class="btn btn-green" href="https://wa.me/{whatsapp_number()}?text={quote('Hi V5 Medical, I am interested in ' + p['name'] + '.')}" rel="noopener">WhatsApp</a>
       </p>
     </div>
   </div>
@@ -762,8 +909,8 @@ def render_product_page(p, cat):
   <table class="spec-table">{spec_rows}</table>
   <p style="margin-top:22px;font-size:.9rem;color:var(--muted)">
     Looking for other items? Browse all
-    <a href="/categories/{p['category']}.html">{esc(cat_name)}</a> or the full
-    <a href="/catalog.html">product catalog</a>.
+    <a href="/categories/{p['category']}">{esc(cat_name)}</a> or the full
+    <a href="/catalog">product catalog</a>.
   </p>
 </div>
 {cta_box(f"Need {p['name']} in bulk?", "Send us your target specifications and annual volume — we reply with a quotation and free ISO 13485 audit report sample.")}"""
@@ -790,8 +937,8 @@ def render_product_page(p, cat):
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE}/"},
-                {"@type": "ListItem", "position": 2, "name": "Products", "item": f"{BASE}/catalog.html"},
-                {"@type": "ListItem", "position": 3, "name": cat_name, "item": f"{BASE}/categories/{p['category']}.html"},
+                {"@type": "ListItem", "position": 2, "name": "Products", "item": route("catalog")},
+                {"@type": "ListItem", "position": 3, "name": cat_name, "item": route(f"categories/{p['category']}")},
                 {"@type": "ListItem", "position": 4, "name": p["name"], "item": canonical},
             ],
         },
@@ -804,16 +951,16 @@ def render_product_page(p, cat):
 def render_category_page(slug, products):
     cat = CATEGORIES[slug]
     items = [p for p in products if p["category"] == slug]
-    canonical = f"{BASE}/categories/{slug}.html"
+    canonical = route(f"categories/{slug}")
     description = trunc(cat["blurb"], 155)
 
     crumbs = f"""
 <nav class="crumbs" aria-label="Breadcrumb">
-  <a href="/">Home</a> &rsaquo; <a href="/catalog.html">Products</a> &rsaquo; <span>{esc(cat['name'])}</span>
+  <a href="/">Home</a> &rsaquo; <a href="/catalog">Products</a> &rsaquo; <span>{esc(cat['name'])}</span>
 </nav>"""
 
     cards = "\n".join(
-        f"""<a class="pcard" href="/products/{p['id']}.html">
+        f"""<a class="pcard" href="/products/{p['id']}">
   <h3>{esc(p['name'])}</h3>
   <p>ISO 13485 &middot; CE &middot; OEM available</p>
 </a>""" for p in items
@@ -826,6 +973,7 @@ def render_category_page(slug, products):
   <p style="color:#475569">{esc(cat['blurb'])}</p>
   <div class="grid">{cards}</div>
 </div>
+{render_related_articles(slug)}
 {cta_box(f"Sourcing {cat['name']} in bulk?", "Get tiered pricing, free samples and a full technical documentation package for your market.")}"""
 
     schemas = [
@@ -836,7 +984,7 @@ def render_category_page(slug, products):
             "numberOfItems": len(items),
             "itemListElement": [
                 {"@type": "ListItem", "position": i + 1,
-                 "name": p["name"], "url": f"{BASE}/products/{p['id']}.html"}
+                 "name": p["name"], "url": route(f"products/{p['id']}")}
                 for i, p in enumerate(items)
             ],
         },
@@ -845,7 +993,7 @@ def render_category_page(slug, products):
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": f"{BASE}/"},
-                {"@type": "ListItem", "position": 2, "name": "Products", "item": f"{BASE}/catalog.html"},
+                {"@type": "ListItem", "position": 2, "name": "Products", "item": route("catalog")},
                 {"@type": "ListItem", "position": 3, "name": cat["name"], "item": canonical},
             ],
         },
@@ -879,20 +1027,20 @@ def write_sitemaps(products, articles):
     # 重新生成会被静默丢掉）
     entries = [
         url_entry(f"{BASE}/", "1.0", "weekly", lastmod=git_lastmod("index.html")),
-        url_entry(f"{BASE}/about.html", "0.8", "monthly", lastmod=git_lastmod("about.html")),
-        url_entry(f"{BASE}/catalog.html", "0.9", "weekly", lastmod=git_lastmod("catalog.html")),
-        url_entry(f"{BASE}/solutions.html", "0.8", "monthly", lastmod=git_lastmod("solutions.html")),
-        url_entry(f"{BASE}/events.html", "0.7", "monthly", lastmod=git_lastmod("events.html")),
-        url_entry(f"{BASE}/contact.html", "0.8", "monthly", lastmod=git_lastmod("contact.html")),
-        url_entry(f"{BASE}/links.html", "0.6", "monthly", lastmod=git_lastmod("links.html")),
-        url_entry(f"{BASE}/privacy.html", "0.3", "yearly", lastmod=git_lastmod("privacy.html")),
+        url_entry(route("about"), "0.8", "monthly", lastmod=git_lastmod("about.html")),
+        url_entry(route("catalog"), "0.9", "weekly", lastmod=git_lastmod("catalog.html")),
+        url_entry(route("solutions"), "0.8", "monthly", lastmod=git_lastmod("solutions.html")),
+        url_entry(route("events"), "0.7", "monthly", lastmod=git_lastmod("events.html")),
+        url_entry(route("contact"), "0.8", "monthly", lastmod=git_lastmod("contact.html")),
+        url_entry(route("links"), "0.6", "monthly", lastmod=git_lastmod("links.html")),
+        url_entry(route("privacy"), "0.3", "yearly", lastmod=git_lastmod("privacy.html")),
         url_entry(f"{BASE}/blog/", "0.9", "weekly", lastmod=git_lastmod("blog/index.html")),
     ]
     for slug in CATEGORIES:
-        entries.append(url_entry(f"{BASE}/categories/{slug}.html", "0.9", "weekly",
+        entries.append(url_entry(route(f"categories/{slug}"), "0.9", "weekly",
                                  lastmod=products_lastmod))
     for p in products:
-        entries.append(url_entry(f"{BASE}/products/{p['id']}.html", "0.8", "monthly",
+        entries.append(url_entry(route(f"products/{p['id']}"), "0.8", "monthly",
                                  image=None if is_placeholder(p) else f"{BASE}/{p['img']}",
                                  lastmod=products_lastmod))
 
@@ -920,11 +1068,14 @@ def main():
     (ROOT / "products").mkdir(exist_ok=True)
     (ROOT / "categories").mkdir(exist_ok=True)
 
-    print("== 1/3 生成博客静态文章页 ==")
+    print("== 1/4 生成博客静态文章页 ==")
     articles = process_blog_posts()
 
-    print("== 2/3 生成产品页 & 分类页 ==")
+    render_blog_navigation(articles)
+
+    print("== 2/4 生成产品页 & 分类页 ==")
     products = load_products()
+    synchronise_sc_product_images(products)
     for p in products:
         render_product_page(p, CATEGORIES[p["category"]])
     print(f"  [products] {len(products)} 个产品页")
@@ -932,13 +1083,17 @@ def main():
         render_category_page(slug, products)
     print(f"  [categories] {len(CATEGORIES)} 个分类页")
 
-    print("== 3/3 生成 sitemap ==")
+    print("== 3/4 生成 sitemap ==")
     write_sitemaps(products, articles)
     print(f"  sitemap.xml: {9 + len(CATEGORIES) + len(products)} 个 URL")
     print(f"  blog/sitemap.xml: {len(articles)} 个 URL")
 
     print("== 4/4 同步静态资源版本 ==")
     synchronise_asset_versions(asset_version())
+    print("== 资源校验 ==")
+    result = subprocess.run([sys.executable, str(ROOT / "scripts" / "check-assets.py")], cwd=ROOT)
+    if result.returncode:
+        raise RuntimeError("资源校验失败，构建已中止")
     print("\n[OK] 构建完成")
 
 if __name__ == "__main__":

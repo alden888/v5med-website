@@ -1,3 +1,7 @@
+---
+date: "2025-12-02"
+---
+
 # Surgical Instruments: A B2B Procurement Guide for Hospitals and Distributors
 
 > **Summary:** How to source high-quality surgical instruments from China — material grades, passivation, quality checks, and supplier verification for B2B buyers in Europe, the Middle East, and Africa.

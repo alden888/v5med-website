@@ -1,3 +1,7 @@
+---
+date: "2025-12-24"
+---
+
 # PGA vs PGLA vs PDO: A Comprehensive Comparison of Absorbable Suture Materials
 
 **Author:** V5 Medical R&D Team  
@@ -258,4 +262,3 @@ Understanding material science enables better clinical outcomes, lower complicat
 - 📧 sales@v5med.net  
 
 *Disclaimer: This article is for informational purposes only and does not replace professional medical judgment.*
-

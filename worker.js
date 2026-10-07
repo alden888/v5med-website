@@ -192,26 +192,48 @@ function describeLead(payload) {
 
 // ---------------------------------------------------------------- ERP
 
+// Cloudflare Access Service Token headers for erp.12888.de.
+// erp.12888.de is behind Cloudflare Access; every request to it (login, lead
+// creation, logout) must carry these two headers or Access returns a 302 to
+// its login page. Secrets are set via `wrangler secret put`.
+function cfAccessHeaders(env) {
+  const h = {};
+  if (env.CF_ACCESS_CLIENT_ID) h["CF-Access-Client-Id"] = env.CF_ACCESS_CLIENT_ID;
+  if (env.CF_ACCESS_CLIENT_SECRET) h["CF-Access-Client-Secret"] = env.CF_ACCESS_CLIENT_SECRET;
+  return h;
+}
+
 async function erpAuthHeaders(env) {
+  const access = cfAccessHeaders(env);
   // Preferred: API key/secret of a dedicated ERP user that may only create Leads.
   if (env.ERP_API_KEY && env.ERP_API_SECRET) {
-    return { headers: { Authorization: `token ${env.ERP_API_KEY}:${env.ERP_API_SECRET}` }, logout: null };
+    return { headers: { ...access, Authorization: `token ${env.ERP_API_KEY}:${env.ERP_API_SECRET}` }, logout: null };
   }
   if (!env.ERP_USER || !env.ERP_PWD) throw new Error("ERP credentials are not configured");
 
   const loginRes = await fetch(`${env.ERP_URL}/api/method/login`, {
     method: "POST",
     signal: AbortSignal.timeout(ERP_TIMEOUT_MS),
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    // Do NOT follow redirects: erp.12888.de sits behind Cloudflare Access, which
+    // answers unauthenticated calls with a 302 to its login page. Following it
+    // would turn a failed request into a 200 login page and let a lost inquiry
+    // look like success. Treat the 302 itself as a failure.
+    redirect: "manual",
+    headers: { ...access, "Content-Type": "application/x-www-form-urlencoded" },
     body: `usr=${encodeURIComponent(env.ERP_USER)}&pwd=${encodeURIComponent(env.ERP_PWD)}`,
   });
   if (!loginRes.ok) throw new Error(`ERP login failed (${loginRes.status})`);
   const sessionId = ((loginRes.headers.get("Set-Cookie") || "").match(/sid=([^;]+)/) || [])[1];
   if (!sessionId || sessionId === "Guest") throw new Error("ERP login returned no session");
 
-  const headers = { Cookie: `sid=${sessionId}` };
+  const headers = { ...access, Cookie: `sid=${sessionId}` };
   const logout = () =>
-    fetch(`${env.ERP_URL}/api/method/logout`, { method: "POST", headers, signal: AbortSignal.timeout(3000) }).catch(() => {});
+    fetch(`${env.ERP_URL}/api/method/logout`, {
+      method: "POST",
+      headers,
+      signal: AbortSignal.timeout(3000),
+      redirect: "manual",
+    }).catch(() => {});
   return { headers, logout };
 }
 
@@ -255,6 +277,9 @@ async function createErpLead(env, payload) {
     fetch(endpoint, {
       method: "POST",
       signal: AbortSignal.timeout(ERP_TIMEOUT_MS),
+      // Same reasoning as login: never follow an Access 302; it must surface as a
+      // failed request so the [ERP FAILED] e-mail fallback captures the inquiry.
+      redirect: "manual",
       headers: { ...auth, "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify(body),
     });
@@ -269,10 +294,19 @@ async function createErpLead(env, payload) {
       response = await post(withoutNotes);
     }
     if (!response.ok) {
-      throw new Error(`ERP lead creation failed (${response.status}): ${(await response.text()).slice(0, 300)}`);
+      const detail = await response.text().catch(() => "");
+      throw new Error(`ERP lead creation failed (${response.status}): ${detail.slice(0, 300)}`);
     }
     const created = await response.json().catch(() => ({}));
-    return created?.data?.name || null;
+    const leadName = created?.data?.name;
+    // Hard gate: if ERP answers 200 but the created Lead's name is missing (for
+    // example a redirected Access login page parsed as JSON), do NOT report the
+    // inquiry as stored. Fall through to the [ERP FAILED] e-mail so sales still
+    // gets the full inquiry and can re-enter it.
+    if (!leadName) {
+      throw new Error(`ERP accepted the request but returned no lead name (HTTP ${response.status})`);
+    }
+    return leadName;
   } finally {
     if (logout) await logout();
   }

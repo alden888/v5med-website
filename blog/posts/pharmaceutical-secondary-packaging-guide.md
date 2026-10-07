@@ -14,6 +14,8 @@ description: "How to source a complete pharmaceutical secondary packaging set �
 
 Most procurement teams source packaging the wrong way: cartons from one printer, labels from another, blister trays from a third factory — and then they discover the label doesn't fit the carton, the adhesive fails in tropical humidity, and the "anti-counterfeit" sticker can be peeled off and reused.
 
+For a component-to-shipment handoff checklist, read [How to Deliver a Pharmaceutical Packaging Kit Order Right](pharma-packaging-order-delivery-playbook.md).
+
 Over the past quarter, we have been supplying a **complete secondary packaging set** to a pharmaceutical distributor in the **Philippines**: medicine cartons, package inserts (IFU), self-adhesive labels, holographic security labels and blister trays — all coordinated under one quality standard and shipped as one consolidated order.
 
 This article shares the specification framework we used, so you can apply it to your own packaging procurement.

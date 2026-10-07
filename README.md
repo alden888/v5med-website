@@ -211,16 +211,21 @@ Visit `http://localhost:8000`
 ### Current architecture and release flow
 
 1. Edit source content and increment `V5Config.ASSET_VERSION` whenever JS or CSS changes.
-2. Run `python3 build-static.py`; it regenerates SEO pages/sitemaps and synchronizes every local `?v=` reference to that version.
+2. Run `.venv/bin/python build-static.py`; it regenerates SEO pages/sitemaps, checks local image references and synchronizes every local `?v=` reference to that version.
+3. To publish an article, add one `blog/posts/*.md` file with frontmatter (`title`, `date`, `author`, `category`, `description`) and rerun the build; the static article, index, navigation and sitemap are generated automatically.
 3. Deploy `worker.js` to `v5med.net/api/*`; it validates public RFQ/contact submissions, stores approved attachments in R2, then creates the ERP lead and sends the sales notification.
 4. Deploy the Pages site only after the Worker health checks pass.
 
 ### Release checklist
 
-- [ ] JS/CSS changed: increment `V5Config.ASSET_VERSION` and run `python3 build-static.py`.
+- [ ] JS/CSS changed: increment `V5Config.ASSET_VERSION` and run `.venv/bin/python build-static.py`.
+- [ ] Run `python3 scripts/check-assets.py`; it must report zero missing local images.
+- [ ] New article: add only its frontmatter Markdown source, then verify its generated page and sitemap entry.
 - [ ] Run `node --check worker.js` and `python3 -m py_compile build-static.py`.
 - [ ] Verify `/api/submit-quote` and `/api/contact` with the deployed Worker.
 - [ ] Confirm R2 object storage and the sales notification for a test attachment.
+
+Release documentation last updated: 2026-10-07 · asset version: `20261007.1`.
 
 ### Worker setup
 

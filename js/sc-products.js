@@ -20,7 +20,7 @@ const scProductData = [
       "FSC"
     ],
     "images": [
-      "images/products/v5-pkg-001-main.jpg",
+      "images/products/pharmaceutical-packaging/pharma-folding-cartons.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -53,7 +53,7 @@ const scProductData = [
       "ISO 9001"
     ],
     "images": [
-      "images/products/v5-pkg-002-main.jpg",
+      "images/products/pharmaceutical-packaging/pharma-package-inserts.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -86,7 +86,7 @@ const scProductData = [
       "ISO 9001"
     ],
     "images": [
-      "images/products/v5-pkg-003-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -117,7 +117,7 @@ const scProductData = [
       "ISO 9001"
     ],
     "images": [
-      "images/products/v5-pkg-004-main.jpg",
+      "images/products/pharmaceutical-packaging/pharma-adhesive-labels.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -151,7 +151,7 @@ const scProductData = [
       "FSC"
     ],
     "images": [
-      "images/products/v5-pkg-005-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -187,7 +187,7 @@ const scProductData = [
       "FDA 510(k)"
     ],
     "images": [
-      "images/products/v5-sur-001-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -223,7 +223,7 @@ const scProductData = [
       "ISO 13485"
     ],
     "images": [
-      "images/products/v5-sur-002-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -258,7 +258,7 @@ const scProductData = [
       "FDA 510(k)"
     ],
     "images": [
-      "images/products/v5-sur-003-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -295,7 +295,7 @@ const scProductData = [
       "FDA"
     ],
     "images": [
-      "images/products/v5-sur-004-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -330,7 +330,7 @@ const scProductData = [
       "ISO 9001"
     ],
     "images": [
-      "images/products/v5-sur-005-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -365,7 +365,7 @@ const scProductData = [
       "FDA"
     ],
     "images": [
-      "images/products/v5-den-001-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -400,7 +400,7 @@ const scProductData = [
       "ISO 9001"
     ],
     "images": [
-      "images/products/v5-den-002-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -435,7 +435,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-001-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -474,7 +474,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-002-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -513,7 +513,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-003-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -552,7 +552,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-004-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -591,7 +591,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-005-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -629,7 +629,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-006-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -668,7 +668,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-007-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -706,7 +706,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-008-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -745,7 +745,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-009-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -784,7 +784,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-010-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -833,7 +833,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-012-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -872,7 +872,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-013-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -911,7 +911,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-014-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -950,7 +950,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-015-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -988,7 +988,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-016-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1026,7 +1026,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-017-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1076,7 +1076,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-019-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1115,7 +1115,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-020-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1154,7 +1154,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-021-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1192,7 +1192,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-022-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1231,7 +1231,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-023-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1269,7 +1269,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-024-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1308,7 +1308,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-025-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1346,7 +1346,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-026-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1384,7 +1384,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-027-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1423,7 +1423,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-028-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1462,7 +1462,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-029-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1501,7 +1501,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-030-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1540,7 +1540,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-031-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1579,7 +1579,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-032-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1618,7 +1618,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-033-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1656,7 +1656,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-034-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1695,7 +1695,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-035-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1734,7 +1734,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-036-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1772,7 +1772,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-037-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1811,7 +1811,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-038-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {
@@ -1849,7 +1849,7 @@ const scProductData = [
       "HPLC tested"
     ],
     "images": [
-      "images/products/v5-pep-039-main.jpg",
+      "images/products/default-product.jpg",
       "images/products/default-product.jpg"
     ],
     "specifications": {

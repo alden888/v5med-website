@@ -1,3 +1,7 @@
+---
+date: "2025-12-03"
+---
+
 # Medical Gauze & Wound Care Products: A B2B Buying Guide for Hospitals and Distributors
 
 **Author:** V5 Medical Supply Chain Team  

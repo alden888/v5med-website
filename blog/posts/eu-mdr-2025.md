@@ -1,3 +1,7 @@
+---
+date: "2025-12-20"
+---
+
 # EU MDR Compliance Essentials (2025): What Medical Device Distributors Must Know
 
 **Author:** V5 Medical Regulatory Affairs Team  

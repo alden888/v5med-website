@@ -1,3 +1,7 @@
+---
+date: "2025-12-15"
+---
+
 # Understanding ISO 13485: A Practical Guide for Medical Device Sourcing (2025)
 
 **Author:** Wells Wan, Head of Quality – V5 Medical  

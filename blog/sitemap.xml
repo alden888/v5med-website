@@ -1,134 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://v5med.net/blog/posts/ce-audit-failure.html</loc>
+        <loc>https://v5med.net/blog/posts/ce-audit-failure</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/ce-marking-process</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/comprehensive-packaging-solutions</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/dental-consumables-procurement-guide</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/eu-mdr-2025</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/gauze-wound-care-buying-guide</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/injection-infusion-procurement-guide</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/integrator-model</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/iso-13485-guide</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/june-greeting-card</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/ce-marking-process.html</loc>
+        <loc>https://v5med.net/blog/posts/moq-negotiation-guide</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/moq-vs-price</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://v5med.net/blog/posts/payment-strategy-guide</loc>
         <lastmod>2026-09-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/comprehensive-packaging-solutions.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/peptide-sourcing-guide</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/dental-consumables-procurement-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/pharma-packaging-order-delivery-playbook</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/eu-mdr-2025.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/pharmaceutical-secondary-packaging-guide</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/gauze-wound-care-buying-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/protective-equipment-procurement-guide</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/injection-infusion-procurement-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/sterilization-validation</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/integrator-model.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/supplier-verification</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/iso-13485-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/surgical-instruments-procurement-guide</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/june-greeting-card.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/surgical-pack-sterilization</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/moq-negotiation-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/suture-material-comparison</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://v5med.net/blog/posts/moq-vs-price.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/payment-strategy-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/peptide-sourcing-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/pharmaceutical-secondary-packaging-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/protective-equipment-procurement-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/sterilization-validation.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/supplier-verification.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/surgical-instruments-procurement-guide.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/surgical-pack-sterilization.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/suture-material-comparison.html</loc>
-        <lastmod>2026-09-23</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://v5med.net/blog/posts/tyvek-vs-paper.html</loc>
-        <lastmod>2026-09-23</lastmod>
+        <loc>https://v5med.net/blog/posts/tyvek-vs-paper</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>

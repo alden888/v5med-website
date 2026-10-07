@@ -1,3 +1,7 @@
+---
+date: "2025-12-13"
+---
+
 # Dental Consumables & Examination Kits: A B2B Procurement Guide for Clinics and Distributors
 
 **Author:** V5 Medical Supply Chain Team  
