@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Request a quote from V5 Medical. Submit your RFQ for surgical sutures, medical supplies, and healthcare products. ISO 13485 Certified.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://v5med.net/rfq.html">
+    <title>Request for Quote (RFQ) | V5 Medical LTD</title>
+
+    <!-- SEO: Open Graph -->
+    <meta property="og:title" content="Request for Quote (RFQ) | V5 Medical LTD">
+    <meta property="og:description" content="Submit your RFQ for medical supplies. Fast response within 24 hours.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://v5med.net/rfq.html">
+    <meta property="og:image" content="https://pub-224e4e74685e409e833e89d4ab5143fb.r2.dev/v5medlogo.png">
+
+    <link rel="icon" type="image/x-icon" href="images/icons/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#1e40af', secondary: '#3b82f6', accent: '#2563eb' } }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="images/v5medlogo.png" alt="V5 Medical" class="h-10">
+                <span class="text-xl font-bold text-primary">V5 Medical</span>
+            </a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="index.html" class="text-gray-700 hover:text-primary">Home</a></li>
+                <li><a href="catalog.html" class="text-gray-700 hover:text-primary">Products</a></li>
+                <li><a href="rfq.html" class="text-primary font-semibold">RFQ</a></li>
+                <li><a href="quality.html" class="text-gray-700 hover:text-primary">Quality</a></li>
+                <li><a href="about.html" class="text-gray-700 hover:text-primary">About</a></li>
+                <li><a href="contact.html" class="text-gray-700 hover:text-primary">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Request for Quote</h1>
+            <p class="text-xl opacity-90">Get competitive pricing within 24 hours</p>
+        </div>
+    </section>
+
+    <!-- RFQ Form Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Submit Your RFQ</h2>
+                
+                <form action="https://formspree.io/f/xyz123" method="POST" class="space-y-6">
+                    <!-- Company Info -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                            <input type="text" name="company" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                            <input type="text" name="contact" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Email & Phone -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone / WhatsApp</label>
+                            <input type="tel" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Country *</label>
+                        <input type="text" name="country" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+
+                    <!-- Product Category -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product Category *</label>
+                        <select name="category" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">Select a category</option>
+                            <option value="surgical-sutures">Surgical Sutures</option>
+                            <option value="surgical-packs">Surgical Packs</option>
+                            <option value="injection-infusion">Injection & Infusion</option>
+                            <option value="dental-products">Dental Products</option>
+                            <option value="wound-care">Wound Care</option>
+                            <option value="protective-equipment">Protective Equipment</option>
+                            <option value="peptide-raw-materials">Peptide Raw Materials</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <!-- Product Details -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product Details *</label>
+                        <textarea name="products" rows="4" required placeholder="Please specify product names, specifications, and quantities..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                    </div>
+
+                    <!-- Additional Requirements -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Additional Requirements</label>
+                        <textarea name="requirements" rows="3" placeholder="Certifications, packaging, delivery timeline, etc." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit RFQ
+                    </button>
+                </form>
+
+                <!-- Response Time -->
+                <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                    <div class="flex items-start">
+                        <i class="fas fa-clock text-primary text-2xl mr-3"></i>
+                        <div>
+                            <h3 class="font-bold text-gray-800">Fast Response</h3>
+                            <p class="text-gray-600 text-sm">We guarantee response within 24 hours on business days. For urgent inquiries, contact us via WhatsApp.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Contact -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-600 mb-4">Prefer direct contact?</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:info@v5med.net" class="text-primary hover:text-secondary">
+                        <i class="fas fa-envelope text-2xl"></i>
+                        <p class="text-sm mt-1">info@v5med.net</p>
+                    </a>
+                    <a href="https://wa.me/8613800138000" class="text-green-600 hover:text-green-700">
+                        <i class="fab fa-whatsapp text-2xl"></i>
+                        <p class="text-sm mt-1">WhatsApp</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">V5 Medical LTD</h3>
+                    <p class="text-gray-400 text-sm">ISO 13485 Certified Medical Supplies Exporter</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="catalog.html" class="hover:text-white">Product Catalog</a></li>
+                        <li><a href="catalog.html#sutures" class="hover:text-white">Surgical Sutures</a></li>
+                        <li><a href="catalog.html#dental" class="hover:text-white">Dental Products</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="quality.html" class="hover:text-white">Quality Assurance</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>info@v5med.net</li>
+                        <li><i class="fas fa-globe mr-2"></i>v5med.net</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 V5 Medical LTD. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
